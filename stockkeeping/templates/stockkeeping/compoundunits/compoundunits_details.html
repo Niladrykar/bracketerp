@@ -1,0 +1,124 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Complex Unit Details{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+	 <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Group Details</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+       
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+          <a href="{% url 'stockkeeping:compoundlist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Compound Unit </a>
+          
+          <a href="{% url 'stockkeeping:compoundcreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Compound Unit</a>
+
+          
+          <a href="{% url 'stockkeeping:simplecreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning pull-right" role="button">Create Simple Unit</a>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="box box-info">
+					<div class="box-header with-border">
+        			
+          				<h2 class="box-title"><b>Compound Unit Details</b></h2>
+        
+        	</div>
+
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-striped">
+              <tr>
+                <th>First unit</th>
+                <th>{{ compoundunits_details.firstunit }}</th>
+              </tr>
+
+              
+
+              <tr>
+                <th>Conversion</th>
+                <th>{{ compoundunits_details.conversion }}</th>
+              </tr>
+
+              <tr>
+                <th>Second unit</th>
+                <th>{{ compoundunits_details.seconds_unit }}</th>
+              </tr>
+
+
+              
+
+              
+            </table>
+          </div>
+
+					<div class="box-footer">
+    					<p><a class='btn btn-warning' href="{% url 'stockkeeping:compoundupdate' pk1=company_details.pk pk2=compoundunits_details.pk pk3=selectdatefield_details.pk %}">Update Compound Unit</a><a class='btn btn-danger pull-right' href="{% url 'stockkeeping:compounddelete' pk=company_details.pk pk2=compoundunits_details.pk pk3=selectdatefield_details.pk %}">Delete Compound Unit</a></p>
+
+  					</div>
+
+				</div>
+
+
+				</div>
+			</div>
+		
+	</section>
+</div>
+
+{% endblock %}

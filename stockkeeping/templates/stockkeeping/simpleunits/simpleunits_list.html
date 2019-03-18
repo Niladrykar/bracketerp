@@ -1,0 +1,142 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Simple Units{% endblock %}
+
+
+
+
+
+{% block content %}
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+			<section class="content-header">
+				<!-- <div class="col-md-12 col-md-offset-4"> -->
+					<h1>
+            		<strong>Company : {{company_details.Name}}</strong>
+					</h1>
+								<ol class="breadcrumb">
+			       					 <li><a href="#"><i class="fa fa-dashboard"></i> Company Details</a></li>
+			       					 <!-- <li><a href="#">Company list</a></li> -->
+			     				   <li class="active">Group List</li>
+			      </ol>
+				<!-- </div> -->
+			</section>
+
+<section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+			<div class="col-xs-12">
+          <div class="box box-default">
+					<div class="box-body">
+
+			<a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+             
+
+				
+
+				
+				</div>
+			
+			</div>
+		
+		</div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+          <a href="{% url 'stockkeeping:simplelist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Simple Unit </a>
+          
+          <a href="{% url 'stockkeeping:simplecreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Simple Unit</a>
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+
+								
+<div class="row">
+        <div class="col-xs-12">
+          {% if simpleunits_list %}
+                <div class="box box-info">
+          
+
+
+                <div class="box-header">
+                  <h3 class="box-title">Simple Unit list details</h3>
+
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                 <table id="example1" class="table table-bordered table-striped">
+
+                  <thead>
+                    <tr>
+                      <th>Sl no</th>
+                      <th>Symbol</th>
+                      <th>Formal Name</th> 
+                    </tr>
+                  </thead>
+                    
+                  <tbody>
+                    {% for simpleunits in simpleunits_list %}
+                    <tr>
+                      <td><a href="{% url 'stockkeeping:simpledetail' pk2=simpleunits.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}">
+                        {{ forloop.counter0|add:page_obj.start_index }}
+                      </a></td>
+                      <td><a href="{% url 'stockkeeping:simpledetail' pk2=simpleunits.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}"">{{simpleunits.symbol}}</a></td>
+                      <td> <a href="{% url 'stockkeeping:simpledetail' pk2=simpleunits.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}">{{simpleunits.formal}}</a></td>
+                     
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+
+
+
+                     
+                   
+                   
+                  </table>
+
+
+                  
+                </div>
+              </div>
+              
+          {% else %}
+              <div class="col-xs-12 alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                  No Simple Unit created !
+              </div>
+          {% endif %}  
+          
+          
+        </div>
+
+      </div>
+</section>
+
+
+{% endblock %}

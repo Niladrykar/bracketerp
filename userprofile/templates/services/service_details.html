@@ -1,0 +1,138 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+
+{% block title %}Service Details{% endblock %}
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+
+  <div class="modal fade" id="modal-book">
+  <div class="modal-dialog">
+    <div class="modal-content"></div>
+  </div>
+</div>
+	 <section class="content-header">
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Profile</li>
+                     <li class="active">Service Details</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+      </div>
+
+
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+
+
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+            <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+            <a href="{% url 'ecommerce_integration:apilist' %}" class="btn btn-primary" role="button">APIs</a>
+
+            
+          <div class='pull-right'>
+            <a href="{% url 'ecommerce_integration:subscribedproductlist' %}" class="btn btn-info" role="button">My Subscriptions</a>
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="box box-info">
+					<div class="box-header with-border">
+        			
+          				<h2 class="box-title"><b>Service Details</b></h2>
+        
+        	</div>
+
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-striped">
+              <tr>
+                <th>Service Name</th>
+                <th>{{ service_details.service_name }}</th>
+              </tr>
+
+              <tr>
+                <th>Details</th>
+                <th>{{ service_details.details }}</th>
+              </tr>
+
+
+               <tr>
+                <th>Service Type</th>
+                <th>{{ service_details.service_type }}</th>
+              </tr>
+
+
+               <tr>
+                <th>Duration</th>
+                <th>{{ service_details.duration }}</th>
+              </tr>
+
+              <tr>
+                <th>Service Mode</th>
+                <th>{{ service_details.service_mode }}</th>
+              </tr>
+
+              <tr>
+                <th>Rate</th>
+                <th>{{ service_details.rate }}</th>
+              </tr>
+            </table>
+          </div>
+
+
+          {% if service_details.User == user %}
+  					<div class="box-footer">
+      					<p><a class='btn btn-warning' href="{% url 'userprofile:service_update' pk=service_details.pk %}">Update Service</a></p>
+
+    				</div>
+          {% endif %}
+
+				</div>
+
+
+				</div>
+			</div>
+		
+	</section>
+</div>
+
+		
+	
+
+
+
+
+
+
+
+
+
+{% endblock %}

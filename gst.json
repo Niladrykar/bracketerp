@@ -1,0 +1,30 @@
+[
+{
+  "model": "Gst.stock_gst",
+  "pk": 4,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 1,
+    "urlhash": "PU-10-P-1-C1-SS1",
+    "date": "2019-03-08",
+    "stock_item": 40,
+    "gst_rate": "5.00",
+    "hsn": 8502
+  }
+},
+{
+  "model": "Gst.stock_gst",
+  "pk": 5,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 2,
+    "urlhash": "PU-10-P-1-C1-SS2",
+    "date": "2019-03-08",
+    "stock_item": 41,
+    "gst_rate": "5.00",
+    "hsn": 8506
+  }
+}
+]

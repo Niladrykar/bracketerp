@@ -1,0 +1,215 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}StockItem Details{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+	 <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Group Details</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+        
+              {% if not selectdatefield_details %}
+
+                  
+                     <button class="btn btn-primary show-form pull-right" data-url="{% url 'accounting_double_entry:datecreate' %}">
+                      <span class="glyphicon glyphicon-plus"></span>
+                        Select Date Range
+                      </button>
+
+                {% else %} 
+              
+  
+                            <button  class="btn btn-warning show-form-update pull-right" data-url="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                              Update Date Range 
+                            </button>
+
+                      <a id="book-table-date" class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a>  
+
+                 
+
+                {% endif %}
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+          <a href="{% url 'stockkeeping:stockdatalist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Stockitem</a>
+          
+          <a href="{% url 'stockkeeping:stockdatacreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Stockitem</a>
+
+          <a href="{% url 'stockkeeping:closingstock' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-primary" role="button">Stock Summary</a>
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="box box-info">
+					<div class="box-header with-border">
+        			
+          		<h2 class="box-title"><b>StockItem Details</b></h2>
+        
+        	</div>
+
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-striped">
+              <tr>
+                <th>Creation Date</th>
+                <th>{{ stockdata_details.Date }}</th>
+              </tr>
+
+              <tr>
+                <th>Stock Name</th>
+                <th>{{ stockdata_details.stock_name }}</th>
+              </tr>
+
+              <tr>
+                <th>Batch No</th>
+                <th>{{ stockdata_details.batch_no }}</th>
+              </tr>
+
+              <tr>
+                <th>Manufacturing Date</th>
+                <th>{{ stockdata_details.mnf_date }}</th>
+              </tr>
+
+              <tr>
+                <th>Expiry Date</th>
+                <th>{{ stockdata_details.exp_date }}</th>
+              </tr>
+
+              <tr>
+                <th>Under</th>
+                <th>{{ stockdata_details.under }}</th>
+              </tr>
+
+              {% if stockdata_details.unitsimple %}
+
+                <tr>
+                  <th>Unit</th>
+                  <th>{{ stockdata_details.unitsimple }}</th>
+                </tr>
+
+              {% else %}
+                <tr>
+                  <th>Unit</th>
+                  <th>{{ stockdata_details.unitcomplex }}</th>
+                </tr>
+
+              {% endif %}
+
+              <tr>
+                  <th>Rate</th>
+                  <th>{{ stockdata_details.gst_rate }}</th>
+              </tr>
+
+              <tr>
+                  <th>HSN/SAC</th>
+                  <th>{{ stockdata_details.hsn }}</th>
+              </tr>
+
+             <tr>
+                <th>Batch No</th>
+                <th>{{ stockdata_details.batch_no }}</th>
+              </tr>
+
+              <tr>
+                <th>Manufacturing Date</th>
+                <th>{{ stockdata_details.mnf_date }}</th>
+              </tr>
+
+              <tr>
+                <th>Expiry Date</th>
+                <th>{{ stockdata_details.exp_date }}</th>
+              </tr>
+
+
+              <tr>
+                  <th>Bar Code</th>
+                  {% if stockdata_details.bar_code %}
+                    <th>                
+                      <img class="user-image" src="{{ stockdata_details.bar_code.url }}/" alt="Bar-Code">
+
+                    </th>
+                {% endif %}
+              </tr>
+
+
+              
+
+              
+            </table>
+          </div>
+
+          <div class="box-footer">
+              <p><a class='btn btn-warning' href="{% url 'stockkeeping:stockdataupdate' pk1=company_details.pk pk2=stockdata_details.pk pk3=selectdatefield_details.pk %}">Update StockItem</a><a class='btn btn-danger pull-right' href="{% url 'stockkeeping:stockdatadelete' pk=company_details.pk pk2=stockdata_details.pk pk3=selectdatefield_details.pk %}">Delete StockItem</a></p>
+
+            </div>
+
+				</div>
+
+
+				</div>
+			</div>
+		
+	</section>
+</div>
+
+
+  <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+{% endblock %}

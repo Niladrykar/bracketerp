@@ -1,0 +1,26 @@
+[
+{
+  "model": "messaging.message",
+  "pk": 3,
+  "fields": {
+    "sender": 10,
+    "reciever": 1,
+    "subject": "For Test Purpose",
+    "msg_content": "<p>Hi There!</p>",
+    "attchment": "message_picture/2017-12-23-21-57-44-327_iVuYagO.jpg",
+    "created_at": "2019-02-25T10:51:09.777Z"
+  }
+},
+{
+  "model": "messaging.message",
+  "pk": 4,
+  "fields": {
+    "sender": 10,
+    "reciever": 1,
+    "subject": "For Test Purpose",
+    "msg_content": "<p><a href=\"http://www.bracketline.com\">http://www.bracketline.com</a></p>\r\n\r\n<p>Hi There!</p>",
+    "attchment": "message_picture/Ledger_List_View.pdf",
+    "created_at": "2019-02-25T10:52:00.563Z"
+  }
+}
+]

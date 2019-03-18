@@ -1,0 +1,216 @@
+[
+{
+  "model": "ecommerce_integration.product",
+  "pk": 1,
+  "fields": {
+    "title": "Bracket-CloudErp (Beta)",
+    "price": "15000.00",
+    "image": "product_images/bracketCloudERP_SWlasQM_yfnPfN2_aeSe4ri_2br4IjU_JF81LjA.jpg",
+    "rating": "4.50",
+    "summary": "A Web-app and mobile-friendly cloud based accounting ERP package based on double entry system with GST Billing, Reporting tools, Stock-keeping.",
+    "description": "Access your business analytics from your devices anywhere, anytime, anyplace with the power of cloud based storage. We are hosted with the worlds best cloud service providers to provide you the ultimate speed and experience.\r\n\r\nwe have partnered with a huge community of professionals to serve you from your own town, state or locality for each professional necessity at reasonable rates. Find and hire the best professional near you.\r\n\r\nBusiness data is mostly on physical paper and its a pain to record them , costs incurred on basic vouching with the professionals help and the hours wasted. we bring the power of OCR for invoices, vouchers, notes in one dashboard.",
+    "coupons": null
+  }
+},
+{
+  "model": "ecommerce_integration.product",
+  "pk": 2,
+  "fields": {
+    "title": "Bracket-OCR -ERP (Beta)",
+    "price": "10000.00",
+    "image": "product_images/8c42a11dd8d768ff29f500feb4b68a99_7NPrgU2_yvxfzc0_LlGQYjE.jpg",
+    "rating": "4.50",
+    "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "coupons": null
+  }
+},
+{
+  "model": "ecommerce_integration.product",
+  "pk": 3,
+  "fields": {
+    "title": "Bracket-QRStock (Comming Soon)",
+    "price": "5000.00",
+    "image": "product_images/clouderp_iBuPWLf_1nIfOG8.jpg",
+    "rating": "4.50",
+    "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "coupons": null
+  }
+},
+{
+  "model": "ecommerce_integration.product",
+  "pk": 4,
+  "fields": {
+    "title": "Bracket-GST-Auditor (Beta)",
+    "price": "1200.00",
+    "image": "product_images/8c42a11dd8d768ff29f500feb4b68a99_EqFksjS_xbrXbZ3_qC8oUH2_xFnamGL.jpg",
+    "rating": "4.50",
+    "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "coupons": null
+  }
+},
+{
+  "model": "ecommerce_integration.product",
+  "pk": 5,
+  "fields": {
+    "title": "Bracket-Ecommerce (Comming Soon)",
+    "price": "10000.00",
+    "image": "product_images/bank-clipart-bank-employee-849702-3979411_ZoHrGBk_dQYWlRI.jpg",
+    "rating": "4.50",
+    "summary": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "coupons": null
+  }
+},
+{
+  "model": "ecommerce_integration.product",
+  "pk": 6,
+  "fields": {
+    "title": "Bracket-HR-Tool (Comming Soon)",
+    "price": "10000.00",
+    "image": "product_images/Vector-Business-meeting-free-download-350x350_0MZLwQ6.jpg",
+    "rating": "4.50",
+    "summary": "An HR managers tool that helps assign tasks to your employees and its allotted time , the employee can then record his activities  for you to monitor.",
+    "description": "An HR managers tool that helps assign tasks to your employees and its allotted time , the employee can then record his activities  for you to monitor.\r\nAnalyse the performance of your employees and allot them tasks easily and maintain records and fetch analytics to optimise your companies working environment.",
+    "coupons": null
+  }
+},
+{
+  "model": "ecommerce_integration.product",
+  "pk": 7,
+  "fields": {
+    "title": "Bracket-CRM (Comming Soon)",
+    "price": "15000.00",
+    "image": "product_images/697707-636721229124486135_270x480_thumb_kJxTE08.jpg",
+    "rating": "4.50",
+    "summary": "A CRM tool that can help you with you customer management with advanced AI functionalities and analytics.",
+    "description": "A CRM tool that can help you with you customer management with advanced AI functionalities and analytics.",
+    "coupons": null
+  }
+},
+{
+  "model": "ecommerce_integration.product",
+  "pk": 8,
+  "fields": {
+    "title": "Bracket-SCM (Comming Soon)",
+    "price": "10000.00",
+    "image": "product_images/pngtree-business-team-people-vector-material-png-clipart_2056353.jpg",
+    "rating": "4.50",
+    "summary": "An SCM management tool which can be easiliy integrated with our existing ERP package and can be used with OCR.",
+    "description": "An SCM management tool which can be easiliy integrated with our existing ERP package and can be used with OCR.",
+    "coupons": null
+  }
+},
+{
+  "model": "ecommerce_integration.product",
+  "pk": 9,
+  "fields": {
+    "title": "Bracket-Agreement-Maker",
+    "price": "1200.00",
+    "image": "product_images/entrepreneur-with-multitasking_23-2147506721_KHEMvV0.jpg",
+    "rating": "4.50",
+    "summary": "A database of all agreements from all acts and procedure on the go to access and quick recommendation based typing to facilitate your clients.",
+    "description": "A database of all agreements from all acts and procedure on the go to access and quick recommendation based typing to facilitate your clients.",
+    "coupons": null
+  }
+},
+{
+  "model": "ecommerce_integration.product_review",
+  "pk": 1,
+  "fields": {
+    "User": 10,
+    "date": "2019-02-06T12:19:25.881Z",
+    "name": "Abhishek Agarwal",
+    "e_mail": "abhishek.ag2000@gmail.com",
+    "reviews": 1,
+    "text": "This is a good product"
+  }
+},
+{
+  "model": "ecommerce_integration.product_review",
+  "pk": 4,
+  "fields": {
+    "User": 10,
+    "date": "2019-02-06T12:54:44.436Z",
+    "name": "Abhishek Agarwal",
+    "e_mail": "abhishek.ag2000@gmail.com",
+    "reviews": 4,
+    "text": "I surely think so . I\u2019ve had these for over a year , used them when running two to three times a week . No problems whatsoever . Good sound quality and sturdy fit."
+  }
+},
+{
+  "model": "ecommerce_integration.product_review",
+  "pk": 6,
+  "fields": {
+    "User": 1,
+    "date": "2019-02-12T13:53:30.406Z",
+    "name": "Niladry kar",
+    "e_mail": "niladry.kar85@gmail.com",
+    "reviews": 1,
+    "text": "Great accounting package"
+  }
+},
+{
+  "model": "ecommerce_integration.services",
+  "pk": 1,
+  "fields": {
+    "User": null,
+    "title": "Bracket-AI Analytics",
+    "image": "service_images/697707-636721229124486135_270x480_thumb.jpg",
+    "summary": "Are you looking for an AI and Machine Learning Expert to help interpret and analyse your data, schedule and appointment here.",
+    "description": "Are you looking for an AI and Machine Learning Expert to help interpret and analyse your data, schedule and appointment here to speak with an Expert and help make better use of your business data. Get customised dashboards to suit your need for any analysis that you need on a regular basis."
+  }
+},
+{
+  "model": "ecommerce_integration.services",
+  "pk": 2,
+  "fields": {
+    "User": null,
+    "title": "Bracket-Data-Operators",
+    "image": "service_images/entrepreneur-with-multitasking_23-2147506721.jpg",
+    "summary": "Get Data operators that use AI based OCR to help you record your transactions easily and effectively in a time effective manner.",
+    "description": "Schedule a booking on an hourly basis with an data operator in your city and let  them handle your data."
+  }
+},
+{
+  "model": "ecommerce_integration.services",
+  "pk": 3,
+  "fields": {
+    "User": null,
+    "title": "Bracket-Customisation",
+    "image": "service_images/basic-accounting-to-finalisation-courses-500x500_l7E95dL.jpg",
+    "summary": "Get any of our preexisting packages or multiple packages customised to suit your needs on a separate Virtual Machine.",
+    "description": "Get any of our preexisting packages or multiple packages customised to suit your needs on a separate Virtual Machine with additional features specifically designed for you and your team."
+  }
+},
+{
+  "model": "ecommerce_integration.api",
+  "pk": 1,
+  "fields": {
+    "User": null,
+    "title": "Bracket-Chatbot (CommingSoon)",
+    "price": "10000.00",
+    "image": "api_images/pngtree-business-team-people-vector-material-png-clipart_2056353.jpg",
+    "rating": "4.50",
+    "summary": "Integrate a customised Chatbot suitable for your system software on Web or Mobile and keep track of the conversational data that influences it.",
+    "description": "Integrate a customised Chatbot suitable for your system software on Web or Mobile and keep track of the conversational data that influences it.",
+    "coupons": null
+  }
+},
+{
+  "model": "ecommerce_integration.api",
+  "pk": 2,
+  "fields": {
+    "User": null,
+    "title": "Bracket-OCR-General (Beta)",
+    "price": "20000.00",
+    "image": "api_images/ten-accounting-terms-you-owe-it-to-your-business-to-know.jpg",
+    "rating": "4.50",
+    "summary": "Opt If you have other types of Data records that you need OCR to interpret and analyse or to fill Forms using automation in any language.",
+    "description": "Opt If you have other types of Data records that you need OCR to interpret and analyse or to fill Forms using automation in any language. Here you can create dashboards and entry mechanisms for your data to be organised into an automated process using OCR and AI NLP to analyse your textual data.",
+    "coupons": null
+  }
+}
+]

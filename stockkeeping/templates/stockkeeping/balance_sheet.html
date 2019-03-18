@@ -1,0 +1,1341 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+{% load mathfilters %}
+
+{% block title %}Balance Sheet Overview{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+   <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Group Details</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+        
+        
+              {% if not selectdatefield_details %}
+
+                  
+                     <button class="btn btn-primary show-form pull-right" data-url="{% url 'accounting_double_entry:datecreate' %}">
+                      <span class="glyphicon glyphicon-plus"></span>
+                        Select Date Range
+                      </button>
+
+                {% else %} 
+              
+  
+                            <button  class="btn btn-warning show-form-update pull-right" data-url="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                              Update Date Range 
+                            </button>
+
+                      <a id="book-table-date" class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a>  
+
+                 
+
+                {% endif %}
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+
+
+  
+
+          <div class="box-body">
+
+          <a href="{% url 'accounting_double_entry:P&Lcond' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Profit & Loss OverView</a>
+          
+          <a href="{% url 'accounting_double_entry:blsht' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Balance Sheet Condensed View</a>
+
+          <a href="{% url 'accounting_double_entry:trialbalcond' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Trial Balance</a>
+
+            <button type="button" class="btn btn-default dropdown-toggle pull-right" data-toggle="dropdown">Wt AVG(default)
+                    <span class="fa fa-caret-down"></span></button>
+                  <ul class="dropdown-menu pull-right">
+                    <li><a  href="{% url 'stockkeeping:closingstock' pk=company_details.pk pk3=selectdatefield_details.pk %}">Wt AVG</a></li>
+                    <li><a  href="">LIFO</a></li>
+                    <li><a href="">FIFO</a></li>
+                    
+                                        
+                  </ul>
+
+                <a class="pull-right"><strong>Stock valuation Method :</strong>&nbsp;</a>
+
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+  
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="box box-info">
+
+
+<div id="printableArea">
+
+<!--         CSS for not printing the urls in print preview
+ -->      <style>
+          @media print  
+          {
+          a[href]:after {
+          content: none !important;
+           }
+          @page {
+          margin-top: 0;
+          margin-bottom: 0;
+          }
+           body{
+          padding-top: 72px;
+          padding-bottom: 72px ;
+          }
+          }
+          </style>
+          <div class="box-header with-border">
+              
+              <h2 class="box-title"><b>Balance Sheet Overview</b></h2>
+        
+          </div>
+
+          <div class="box-body table-responsive no-padding">
+
+
+
+          <style type="text/css">
+
+          .table-bordered td, .table-bordered th{
+            border-color: #bfbfbf !important;
+                    
+               }
+        </style>
+
+            <table class="table table-bordered table-hover">
+
+                <tr>
+                  <th>Liabilities</th>
+                  <th>Amount(&#8377)</th>
+                  <th>Total Amount(&#8377)</th>
+                  <th>Assets</th>
+                  <th>Amount(&#8377)</th>
+                  <th>Total Amount(&#8377)</th>
+                </tr>
+
+
+
+                {% if total_branch >= 0 %}
+
+                    <tr>
+                      <th>Branch/Divisions</th>
+                      <th></th>
+                      <th>{{ total_branch|floatformat:2|abs }}</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+
+                  {% for group1 in branch %}
+
+                      {% if group1.closing >= 0 %}
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>{{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+
+                      {% endif %}
+
+                  {% endfor %}
+
+                  {% for ledger1 in branchled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+                          <tr>
+                            <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                            <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+
+                        {% else %}
+
+                          <tr>
+                            <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                            <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+
+                        {% endif %}
+
+                  {% endfor %}
+
+                {% else %}
+
+                     <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th>Branch/Divisions</th>
+                      <th></th>
+                      <th>{{ total_branch|floatformat:2|abs }}</th>
+                    </tr>
+
+                  {% for group1 in branch %}
+
+                      {% if group1.closing >= 0 %}
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>{{ group1.closing|floatformat:2|abs }}</td>
+                            <td></td>
+                          </tr>
+
+                      {% else %}
+
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                            <td></td>
+                          </tr>
+                      {% endif %}
+
+                  {% endfor %}
+
+                  {% for ledger1 in branchled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                          <td><em>{{ ledger1.Closing_balance|floatformat:2|abs}}</em></td>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                          <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                          <th></th>
+                        </tr>
+
+                      {% endif %}
+
+                  {% endfor %}
+
+                {% endif %}
+
+
+
+
+
+
+
+
+
+                  {% if total_fixed_asset >= 0 %}
+
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Fixed Asset</th>
+                        <th></th>
+                        <th>{{ total_fixed_asset|floatformat:2|abs }}</th>
+                      </tr>
+
+
+
+
+                    {% for group1 in fixed_asset %}
+
+                      {% if group1.closing >= 0 %}
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>{{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                        </tr>
+
+                      {% endif %} 
+
+                    {% endfor %}
+
+                    {% for ledger1 in fixed_assetled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                            <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                          </tr>
+
+                        {% else %}
+
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                            <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                          </tr>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                  {% else %}
+                       <tr>
+                        <th>Fixed Asset</th>
+                        <th></th>
+                        <th>{{ total_fixed_asset|floatformat:2|abs }}</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+
+                    {% for group1 in fixed_asset %}
+
+                      {% if group1.closing >= 0 %}
+                          <tr>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>{{ group1.closing|floatformat:2|abs }}</td>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+
+                      {% else %}
+
+                          <tr>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% for ledger1 in fixed_assetled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                          <td><em>{{ ledger1.Closing_balance|floatformat:2|abs}}</em></td>
+                          <th></th>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                          <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                          <th></th>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                        </tr>
+
+                      {% endif %}
+
+                    {% endfor %}
+                    
+                {% endif %}
+
+
+
+
+
+                 {% if total_capital >= 0 %}
+
+                      <tr>
+                        <th>Capital A/c</th>
+                        <th></th>
+                        <th>{{ total_capital|floatformat:2|abs }}</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+
+                    {% for group1 in capital %}
+
+                      {% if group1.closing >= 0 %}
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>{{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+
+                      {% endif %} 
+
+                    {% endfor %}
+
+                    {% for ledger1 in capitalled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+                          <tr>
+                            <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                            <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+
+                        {% else %}
+
+                          <tr>
+                            <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                            <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                  {% else %}
+                       <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Capital A/c</th>
+                        <th></th>
+                        <th>{{ total_capital|floatformat:2|abs }}</th>
+                      </tr>
+
+                    {% for group1 in capital %}
+
+                      {% if group1.closing >= 0 %}
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>{{ group1.closing|floatformat:2|abs }}</td>
+                            <td></td>
+                          </tr>
+
+                      {% else %}
+
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                            <td></td>
+                          </tr>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% for ledger1 in capitalled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                          <td><em>{{ ledger1.Closing_balance|floatformat:2|abs}}</em></td>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                          <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                          <th></th>
+                        </tr>
+
+                      {% endif %}
+
+                    {% endfor %}
+                    
+                {% endif %}
+
+
+
+
+                {% if total_current_asset >= 0 %}
+
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Current Assets</th>
+                        <th></th>
+                        <th>{{ total_current_asset|floatformat:2|abs }}</th>
+                      </tr>
+
+                      {% if closing_stock %}
+
+                        <tr>
+                        <td></td>
+                        <th></th>
+                        <td></td>
+                        <td><a href="{% url 'stockkeeping:closingstock' pk=company_details.pk pk3=selectdatefield_details.pk %}">Closing Stock</a></td>
+                        <td>{{ closing_stock|floatformat:2|abs }}</td>  
+                        <th></th>
+                        </tr>
+                      {% endif %}
+
+
+
+                    {% for group1 in current_asset %}
+
+                      {% if group1.closing >= 0 %}
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>{{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                        </tr>
+
+                      {% endif %} 
+
+                    {% endfor %}
+
+                    {% for ledger1 in current_assetled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                            <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                          </tr>
+
+                        {% else %}
+
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                            <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                          </tr>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                  {% else %}
+                       <tr>
+                        <th>Current Assets</th>
+                        <th></th>
+                        <th>{{ total_current_asset|floatformat:2|abs }}</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+
+                    {% for group1 in current_asset %}
+
+                      {% if group1.closing >= 0 %}
+                          <tr>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>{{ group1.closing|floatformat:2|abs }}</td>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+
+                      {% else %}
+
+                          <tr>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% for ledger1 in current_assetled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                          <td><em>{{ ledger1.Closing_balance|floatformat:2|abs}}</em></td>
+                          <th></th>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                          <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                          <th></th>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                        </tr>
+
+                      {% endif %}
+
+                    {% endfor %}
+                    
+                {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+                 {% if total_current >= 0 %}
+
+                      <tr>
+                        <th>Current Liabilities</th>
+                        <th></th>
+                        <th>{{ total_current|floatformat:2|abs }}</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+
+                    {% for group1 in current %}
+
+                      {% if group1.closing >= 0 %}
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>{{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+
+                      {% endif %} 
+
+                    {% endfor %}
+
+                    {% for ledger1 in currentled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+                          <tr>
+                            <td><em>{{ ledger1.name }}</em></td>
+                            <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+
+                        {% else %}
+
+                          <tr>
+                            <td><em>{{ ledger1.name }}</em></td>
+                            <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                  {% else %}
+                       <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Current Liabilities</th>
+                        <th></th>
+                        <th>{{ total_current|floatformat:2|abs }}</th>
+                      </tr>
+
+                    {% for group1 in current %}
+
+                      {% if group1.closing >= 0 %}
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>{{ group1.closing|floatformat:2|abs }}</td>
+                            <td></td>
+                          </tr>
+
+                      {% else %}
+
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                            <td></td>
+                          </tr>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% for ledger1 in currentled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><em>{{ ledger1.name }}</em></td>
+                          <td><em>{{ ledger1.Closing_balance|floatformat:2|abs}}</em></td>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><em>{{ ledger1.name }}</em></td>
+                          <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                          <th></th>
+                        </tr>
+
+                      {% endif %}
+
+                    {% endfor %}
+                    
+                {% endif %}
+
+
+
+
+
+
+                 {% if total_loan >= 0 %}
+
+                      <tr>
+                        <th>Loans (Liability)</th>
+                        <th></th>
+                        <th>{{ total_loan|floatformat:2|abs }}</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+
+                    {% for group1 in loan %}
+
+                      {% if group1.closing >= 0 %}
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>{{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+
+                      {% endif %} 
+
+                    {% endfor %}
+
+                    {% for ledger1 in loanled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+                          <tr>
+                            <td><em>{{ ledger1.name }}</em></td>
+                            <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+
+                        {% else %}
+
+                          <tr>
+                            <td><em>{{ ledger1.name }}</em></td>
+                            <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                  {% else %}
+                       <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Loans (Liability)</th>
+                        <th></th>
+                        <th>{{ total_loan|floatformat:2|abs }}</th>
+                      </tr>
+
+                    {% for group1 in loan %}
+
+                      {% if group1.closing >= 0 %}
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>{{ group1.closing|floatformat:2|abs }}</td>
+                            <td></td>
+                          </tr>
+
+                      {% else %}
+
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                            <td></td>
+                          </tr>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% for ledger1 in loanled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><em>{{ ledger1.name }}</em></td>
+                          <td><em>{{ ledger1.Closing_balance|floatformat:2|abs}}</em></td>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><em>{{ ledger1.name }}</em></td>
+                          <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                          <th></th>
+                        </tr>
+
+                      {% endif %}
+
+                    {% endfor %}
+                    
+                {% endif %}
+
+
+
+                {% if total_suspnse >= 0 %}
+
+                      <tr>
+                        <th>Suspense A/c</th>
+                        <th></th>
+                        <th>{{ total_suspnse|floatformat:2|abs }}</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+
+                    {% for group1 in suspnse %}
+
+                      {% if group1.closing >= 0 %}
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>{{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                          <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+
+                      {% endif %} 
+
+                    {% endfor %}
+
+                    {% for ledger1 in suspnseled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+                          <tr>
+                            <td><em>{{ ledger1.name }}</em></td>
+                            <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+
+                        {% else %}
+
+                          <tr>
+                            <td><em>{{ ledger1.name }}</em></td>
+                            <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                  {% else %}
+                       <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Suspense A/c</th>
+                        <th></th>
+                        <th>{{ total_suspnse|floatformat:2|abs }}</th>
+                      </tr>
+
+                    {% for group1 in suspnse %}
+
+                      {% if group1.closing >= 0 %}
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>{{ group1.closing|floatformat:2|abs }}</td>
+                            <td></td>
+                          </tr>
+
+                      {% else %}
+
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <th></th>
+                            <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                            <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                            <td></td>
+                          </tr>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% for ledger1 in suspnseled %}
+
+                      {% if ledger1.Closing_balance >= 0 %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><em>{{ ledger1.name }}</em></td>
+                          <td><em>{{ ledger1.Closing_balance|floatformat:2|abs}}</em></td>
+                          <th></th>
+                        </tr>
+
+                      {% else %}
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><em>{{ ledger1.name }}</em></td>
+                          <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                          <th></th>
+                        </tr>
+
+                      {% endif %}
+
+                    {% endfor %}
+                    
+                {% endif %}
+
+
+
+                
+
+                  {% if nett_profit >= 0 %}
+
+                        <tr>
+                          <th>Profit & Loss A/c</th>
+                          <td></td>
+                          <th>{{ nett_profit|floatformat:2|abs }}</th>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                        </tr>                    
+
+                        <tr>
+                          <td><em> Opening Balance</em></td>
+                          <td></td>
+                          <th></th>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                        </tr>   
+
+
+                        <tr>
+                          <td><em>Current Period</em></td>
+                          <td>{{ nett_profit|floatformat:2|abs }}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                        </tr>
+
+                      {% else %}  
+
+                        <tr>
+                          <th></th>
+                          <td></td>
+                          <th></th>
+                          <th>Profit & Loss A/c</th>
+                          <td></td>
+                          <th>(-){{ nett_profit|floatformat:2|abs }}</th>
+                        </tr>                    
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                          <td><em> Opening Balance</em></td>
+                          <td></td>
+                          <th></th>
+                        </tr>   
+
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td><em> Current Period</em></td>
+                          <td>(-){{ nett_profit|floatformat:2|abs }}</td>
+                          <th></th>
+                        </tr>   
+
+                      {% endif %} 
+
+
+                      {% if total_credit_closing < total_debit_closing %} 
+
+                        <tr>
+                          <th>Difference in opening Balance</th>
+                          <td></td>
+                          <th>{{ total_debit_closing|sub:total_credit_closing|floatformat:2|abs }}</th>
+                          <td></td>
+                          <td></td>
+                          <th></th>
+                        </tr> 
+
+                      {% else %}
+
+                        <tr>
+                          <th></th>
+                          <td></td>
+                          <th></th>
+                          <th>Difference in opening Balance</th>
+                          <td></td>
+                          <th>{{ total_credit_closing|sub:total_debit_closing|floatformat:2|abs }}</th>
+                        </tr> 
+
+                      {% endif %}
+
+
+                    {% if total_credit_closing < total_debit_closing %}
+
+                        {% if nett_profit >= 0 %}
+                          <tr>
+                            <th>Grand Total</th>
+                            <td></td>
+                            <th>______________<br>{{total_debit_closing|sub:total_credit_closing|add:total_liabilities|add:nett_profit|floatformat:2|abs }}<br>______________</th>
+                            <th>Grand Total</th>
+                            <td></td>
+                            <th>______________<br>{{ total_asset|floatformat:2|abs }}<br>______________</th>
+                          </tr>
+
+                        {% else %}
+
+                          <tr>
+                            <th>Grand Total</th>
+                            <td></td>
+                            <th>______________<br>{{total_debit_closing|sub:total_credit_closing|add:total_liabilities|floatformat:2|abs }}<br>______________</th>
+                            <th>Grand Total</th>
+                            <td></td>
+                            <th>______________<br>{{ total_asset|add:nett_profit|floatformat:2|abs }}<br>______________</th>
+                          </tr>
+
+                        {% endif %}
+
+                      {% else %}
+
+                        {% if nett_profit >= 0 %}
+
+                          <tr>
+                            <th>Grand Total</th>
+                            <td></td>
+                            <th>______________<br>{{ total_liabilities|add:nett_profit|floatformat:2|abs }}<br>______________</th>
+                            <th>Grand Total</th>
+                            <td></td>
+                            <th>______________<br>{{ total_asset|add:total_credit_closing|sub:total_debit_closing|floatformat:2|abs }}<br>______________</th>
+                          </tr>
+
+                        {% else %}
+
+                          <tr>
+                            <th>Grand Total</th>
+                            <td></td>
+                            <th>______________<br>{{ total_liabilities|floatformat:2|abs }}<br>______________</th>
+                            <th>Grand Total</th>
+                            <td></td>
+                            <th>______________<br>{{ total_asset|add:total_credit_closing|sub:total_debit_closing|add:nett_profit|floatformat:2|abs }}<br>______________</th>
+                          </tr>
+
+                        {% endif %}
+
+                      {% endif %}
+
+
+
+
+                
+
+
+
+
+   
+            </table>
+              
+          </div>
+
+</div>
+
+
+
+              <div class="box-footer">
+                    <hr>
+                     <div class="pull-left">
+                      <input class='btn btn-default' type="button" onclick="printDiv('printableArea')" value="Print" />
+                    
+                     </div>
+
+                  <div class="pull-right">
+                        <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                               <i class="fa fa-download"></i> Generate PDF
+                        </button>
+                  </div>
+
+              </div>
+
+        </div>
+
+
+        </div>
+      </div>
+    
+  </section>
+</div>
+
+
+
+  <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  
+  function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+  }
+</script>
+
+
+{% endblock %}

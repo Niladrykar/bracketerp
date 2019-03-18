@@ -1,0 +1,334 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+
+
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Product Details</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Group</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+
+
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+            <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+            <a href="{% url 'ecommerce_integration:apilist' %}" class="btn btn-primary" role="button">APIs</a>
+
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-info" role="button">My Products</a>
+            <a href="{% url 'blog:blogcreate' %}" class="btn btn-warning" role="button">My APIs</a>
+              
+
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<style type="text/css">
+  
+</style>
+
+
+
+<div class="row">
+
+
+                 
+
+        <!--  Product Details -->
+        <div class="product product-details clearfix">
+          
+          <div class="col-md-6">
+            <div class="box box-info">
+              <div id="product-main-view">
+              <div class="product-view">
+                {% if products_details.image %}
+                  <img class="img-responsive" src="{{ products_details.image.url }}/" alt="product picture">
+                {% else %}
+                  <img class="img-responsive" src="{% static 'userprofile/comming soon.jpg' %}" alt="product picture">
+                {% endif %}
+              </div>
+              
+            </div>
+            </div>
+
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="box box-info">
+              <div class="container-fluid">
+              <div class="product-body">
+              <h2 class="product-name">{{ products_details.title}}</h2>
+              <h3 class="product-price"><strong> &#8377; {{ products_details.price }}/-</strong>   annually. <del class="product-old-price">&#8377; 35000.00</del></h3>
+              <div>
+                <style type="text/css">
+                  .checked {
+                    color: orange;
+                }
+              </style>
+                <div class="product-rating">
+                  <i class="fa fa-star checked"></i>
+                  <i class="fa fa-star checked"></i>
+                  <i class="fa fa-star checked"></i>
+                  <i class="fa fa-star-o empty"></i>
+                  <i class="fa fa-star-o empty"></i>
+                </div>
+                <a href="#">{{ products_details.product_review.count }} Review{{ products_details.product_review.count|pluralize }}</a>
+              </div>
+              <p><strong>Availability:</strong> In Stock</p>
+              <p><strong>Brand:</strong> BRACKET LINE</p>
+              
+                <p>{{ products_details.summary}}</p>
+              
+
+              <div class="box-footer">
+                
+                  <!-- <span class="text-uppercase"><STRONG>QUANTITY:  </STRONG> </span> -->
+                  <!-- <input class="input" type="number"> -->
+                  {% if products_details in user.profile.subscribed_products.all %}
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                                  Subscribed
+                    </button>
+
+                  {% elif products_details in current_order_products %}
+
+                  <a href="{% url 'ecommerce_cart:order_summary' %}" class="btn btn-warning pull-right">Go to Cart</a>
+
+                  {% else %}
+
+                    <div class="col-xs-3">
+                                  
+                      <a href="https://www.instamojo.com/@bracketlinelimited/l798821d2522d432a99234314e0ce6ee2/" rel="im-checkout" data-behaviour="remote" data-style="flat" data-text="Buy now"></a>
+                      <script src="https://js.instamojo.com/v1/button.js"></script>
+                    </div>
+                  
+                    <a href="{% url 'ecommerce_cart:add_to_cart' products_details.id %}" class="btn btn-warning pull-right" onclick="return confirm_delete();"><i class="fa fa-shopping-cart" style="font-size:16px"></i>&nbsp; Add to cart</a>
+
+                  {% endif %}
+
+               
+
+
+              </div>
+              <br>
+            </div>
+              </div>
+
+            </div>
+            
+          </div>
+
+
+        </div>
+        <!-- /Product Details -->
+
+                <!-- /.col -->
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab"><strong>Summary</strong></a></li>
+              <li><a href="#timeline" data-toggle="tab"><strong>Details</strong> </a></li>
+              <li><a href="#settings" data-toggle="tab"><strong>Reviews</strong> </a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                <!-- Post -->
+                <div class="post">
+                  <!-- /.user-block -->
+                  <p>
+                    {{ products_details.summary}}
+                  </p>
+
+                </div>
+                <!-- /.post -->
+
+
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="timeline">
+                                <!-- Post -->
+                <div class="post">
+                  <!-- /.user-block -->
+                  <p>
+                      {{ products_details.description}}
+                    </p>
+
+                </div>
+                <!-- /.post -->
+              </div>
+              <!-- /.tab-pane -->
+
+              <div class="tab-pane" id="settings">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="product-reviews">
+
+                        <div id="book-table">
+                            {% include 'products/reviews.html' %}
+                        </div>
+
+                      </div>
+                    </div>
+                  {% if user.is_authenticated %}
+                    <div class="col-md-6">
+                      <h4 class="text-uppercase"><strong>Write Your Review</strong></h4>
+                      <p>Your email address will not be published.</p>
+                      <form method="post" class="form-horizontal">
+                        {% csrf_token %}
+                      <div class="form-group">
+
+                          <div class="col-sm-10">
+                            {{ Productreview_form.name }}
+                        </div>
+                      </div>
+                  
+                  <div class="form-group">
+                   
+
+                    <div class="col-sm-10">
+                      {{ Productreview_form.e_mail }}
+                    </div>
+                  </div>
+                        <div class="form-group">
+                           <div class="col-sm-10">
+                          {{ Productreview_form.text }}
+                        </div>
+                        </div>
+
+
+                        <div class="form-group">
+                          <div class="col-sm-10">
+                          <div class="input-rating">
+
+                          <style type="text/css">
+                            .checked {
+                            color: orange;
+                          }
+                          </style>
+
+                            <strong class="text-uppercase">Your Rating: </strong>
+                            <div class="stars">
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star checked"></span>
+                              <span class="fa fa-star-o empty"></span>
+                              <span class="fa fa-star-o empty"></span>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        <input type="submit" class="btn btn-info" value="Submit">
+                      </form>
+                    </div>
+                  {% endif %}
+                  </div>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+
+
+
+
+
+
+</div>
+<!-- /.row -->
+
+
+
+                  
+
+                    
+    
+
+   
+
+    
+          
+
+
+
+
+
+</section>
+</div>
+
+  <div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+    
+
+
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>You have already subscribed to this product&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->    
+
+   <script>
+  function confirm_delete(){
+    return alert("Item added to cart");
+  }
+  </script> 
+
+{% endblock %}

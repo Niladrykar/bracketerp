@@ -1,0 +1,623 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+{% load mathfilters %}
+
+{% block title %}Profit & Loss Overview{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+   <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Group Details</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+        
+        
+              {% if not selectdatefield_details %}
+
+                  
+                     <button class="btn btn-primary show-form pull-right" data-url="{% url 'accounting_double_entry:datecreate' %}">
+                      <span class="glyphicon glyphicon-plus"></span>
+                        Select Date Range
+                      </button>
+
+                {% else %} 
+              
+  
+                            <button  class="btn btn-warning show-form-update pull-right" data-url="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                              Update Date Range 
+                            </button>
+
+                      <a id="book-table-date" class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a>  
+
+                 
+
+                {% endif %}
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+          <a href="{% url 'accounting_double_entry:P&Lcond' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Profit & Loss Condensed View</a>
+          
+          <a href="{% url 'accounting_double_entry:blsht' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Balance Sheet Overview</a>
+
+          <a href="{% url 'accounting_double_entry:trialbalcond' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Trial Balance</a>
+
+            <button type="button" class="btn btn-default dropdown-toggle pull-right" data-toggle="dropdown">Wt AVG(default)
+                    <span class="fa fa-caret-down"></span></button>
+                  <ul class="dropdown-menu pull-right">
+                    <li><a  href="{% url 'stockkeeping:closingstock' pk=company_details.pk pk3=selectdatefield_details.pk %}">Wt AVG</a></li>
+                    <li><a  href="">LIFO</a></li>
+                    <li><a href="">FIFO</a></li>
+                    
+                                        
+                  </ul>
+
+                <a class="pull-right"><strong>Stock valuation Method :</strong>&nbsp;</a>
+
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+  
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="box box-info">
+
+
+<div id="printableArea">
+
+  <!--         CSS for not printing the urls in print preview
+ -->      <style>
+          @media print  
+          {
+          a[href]:after {
+          content: none !important;
+           }
+          @page {
+          margin-top: 0;
+          margin-bottom: 0;
+          }
+           body{
+          padding-top: 72px;
+          padding-bottom: 72px ;
+          }
+          }
+          </style>
+  
+  <div class="box-header with-border">
+              
+              <h2 class="box-title"><b>Profit & Loss Overview</b></h2>
+        
+          </div>
+
+          <div class="box-body table-responsive no-padding">
+
+          <style type="text/css">
+
+          .table-bordered td, .table-bordered th{
+            border-color: #bfbfbf !important;
+                    
+               }
+        </style>
+
+            <table class="table table-bordered table-hover">
+
+                <tr>
+                  <th>Particulars</th>
+                  <th>Amount(&#8377)</th>
+                  <th>Total Amount(&#8377)</th>
+                  <th>Particulars</th>
+                  <th>Amount(&#8377)</th>
+                  <th>Total Amount(&#8377)</th>
+                </tr>
+                
+                <tr>
+                  <th>Opening Stock</th>
+                  <td></td>
+                  {% if each_opening_stock %}
+                    <th>{{ opening_stock|floatformat:2|abs }}</th>
+                  {% else %}
+                    <th>0.00</th>
+                  {% endif %}
+                  <th>Sales Accounts</th>
+                  <td></td>
+                  <th>{{ total_sales_ledger|floatformat:2|abs }}</th>
+                </tr>
+
+                {% for ledger1 in sales_ledger %}
+                  <tr>
+                    <th></th>
+                    <td></td>
+                    <th></th>
+                    <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td> 
+                    <td>{{ ledger1.Closing_balance|floatformat:2|abs }}</td>
+                    <th></th>
+                  </tr>
+                {% endfor %}
+
+            {% if opening_stock %}
+              {% for stockdata in each_opening_stock %}
+
+               <tr>
+                 <td>{{ stockdata.stock_name }}</td>
+                  <td>{{ stockdata.total|floatformat:2|abs }}</td>
+                  <td></td>
+                  <th></th>
+                  <td></td>
+                  <th></th>
+                </tr>
+              {% endfor %}
+            {% endif %}
+
+                <tr>
+                  <th>Purchase account</th>
+                  <td></td>
+                  <th>{{ total_purchase_ledger|floatformat:2|abs }}</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                {% for ledger1 in purchase_ledger %}
+                <tr>
+                  <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                  <td>{{ ledger1.Closing_balance|floatformat:2|abs }}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                {% endfor %}
+                
+                <tr>
+                  <th></th>
+                  <td></td>
+                  <th></th>
+                  <th>Closing Stock</th>
+                  <td></td>
+                  {% if closing_stock %}
+                  <th>{{ closing_stock|floatformat:2|abs }}</th>
+                  {% endif %}
+                </tr>
+
+            {% if closing_stock %}
+              {% for stockdata in each_closing_stock %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <th></th>
+                  <td><a href="{% url 'stockkeeping:stockmonthly' pk=company_details.pk pk2=stockdata.id pk3=selectdatefield_details.pk %}">{{ stockdata.stock_name }}</a></td>
+                  <td>{{ stockdata.total|floatformat:2|abs }}</td>
+                  <th></th>
+                </tr>
+              {% endfor %}
+            {% endif %}
+
+              {% if total_direct_expenses > 0 %}
+
+                <tr>
+                  <th>Direct Expenses</th>
+                  <td></td>
+                  <th>{{ total_direct_expenses|floatformat:2|abs }}</th>
+                  <td></td>
+                  <td></td>
+                  <th></th>
+                </tr>
+
+                {% for ledger1 in direct_expenses %}
+                 <tr>
+                  <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                  <td>{{ ledger1.Closing_balance|floatformat:2|abs }}</td>
+                  <th></th>
+                  <td></td>
+                  <td></td>
+                  <th></th>
+                </tr>
+                {% endfor %}
+
+              {% else %}
+
+                <tr>
+                  <th></th>
+                  <td></td>
+                  <th></th>
+                  <th>Direct Expenses</th>
+                  <td></td>
+                  <th>{{ total_direct_expenses|floatformat:2|abs }}</th>
+                </tr>
+
+                {% for ledger1 in direct_expenses %}
+                 <tr>
+                  <td></td>
+                  <td></td>
+                  <th></th>
+                  <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                  <td>{{ ledger1.Closing_balance|floatformat:2|abs }}</td>
+                  <th></th>
+                </tr>
+                {% endfor %}
+
+              {% endif %}
+
+              {% if total_direct_incomes > 0 %}
+
+                 <tr>
+                  <th></th>
+                  <td></td>
+                  <th></th>
+                  <th>Direct Incomes</th>
+                  <td></td>
+                  <th>{{ total_direct_incomes|abs }}</th>
+                </tr>
+
+                {% for ledger1 in direct_incomes %}
+                 <tr>
+                  <td></td>
+                  <th></th>
+                  <td></td>
+                  <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                  <td>{{ ledger1.Closing_balance|floatformat:2|abs }}</td>
+                  <th></th>
+                </tr>
+                {% endfor %}
+
+              {% else %}
+
+                 <tr>
+                  <th>Direct Incomes</th>
+                  <td></td>
+                  <th>{{ total_direct_incomes|floatformat:2|abs }}</th>
+                  <th></th>
+                  <td></td>
+                  <th></th>
+                </tr>
+
+                {% for ledger1 in direct_incomes %}
+                 <tr>
+                  <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                  <th>{{ ledger1.Closing_balance|floatformat:2|abs }}</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <th></th>
+                </tr>
+                {% endfor %}
+
+              {% endif %}
+
+
+
+
+
+
+            {% if gross_profit > 0 %}
+              <tr>
+                  <th>Gross Profit</th>
+                  <td></td>
+                  <th>{{ gross_profit|floatformat:2|abs }}</th> 
+                  <td> </td>
+                  <td></td>
+                  <th></th>
+              </tr>
+            {% else %}
+              <tr>
+                  <th></th>
+                  <td></td>
+                  <th></th>
+                  <th>Gross Loss</th>
+                  <td></td>
+                  <th>{{ gross_profit|floatformat:2|abs }}</th>
+              </tr>
+            {% endif %}
+
+                <tr>
+
+                  <td></td>
+                  <td></td>
+                  <th>______________<br>{{ tradingprofit|floatformat:2|abs }}<br>______________</th>
+                  <td></td>
+                  <td></td>
+                  <th>______________<br>{{ tradingprofit2|floatformat:2|abs }}<br>______________</th>
+
+                </tr>
+
+                 {% if gross_profit > 0 %}
+              <tr>
+                
+                  <th></th>
+                  <td></td>
+                  <th></th>
+                
+                  <th>Gross Profit b/f</th>
+                  <td></td>
+                  <th>{{ gross_profit|floatformat:2|abs }}</th>
+                
+              </tr>
+            {% else %}
+              <tr>
+                  <th>Gross Loss b/f</th>
+                  <td></td>
+                  <th>{{ gross_profit|floatformat:2|abs }}</th>
+                  <th></th>
+                  <td></td>
+                  <th></th>
+              </tr>
+            {% endif %}
+
+
+              {% if total_indirectexp_ledger > 0 %}
+
+                <tr>
+                  <th>Indirect Expenses</th>
+                  <td></td>
+                  <th>{{ total_indirectexp_ledger|floatformat:2|abs }}</th>
+                  <td></td>
+                  <td></td>
+                  <th></th>
+                </tr>
+                {% for ledger1 in indirectexp_ledger %}
+
+                  <tr>
+                    <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                    <td>{{ ledger1.Closing_balance|floatformat:2|abs }}</td>
+                    <th></th>
+                    <th></th>
+                    <td></td>
+                    <th></th>
+                  </tr>
+
+                {% endfor %}
+
+              {% else %}
+
+                <tr>
+                  <th></th>
+                  <td></td>
+                  <th></th>
+                  <th>Indirect Expenses</th>
+                  <td></td>
+                  <th>{{ total_indirectexp_ledger|floatformat:2|abs }}</th>
+                </tr>
+
+                {% for ledger1 in indirectexp_ledger %}
+
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <th></th>
+                    <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                    <td>{{ ledger1.Closing_balance|floatformat:2|abs }}</td>
+                    <th></th>
+                  </tr>
+
+                {% endfor %}
+
+              {% endif %}
+
+              {% if total_indirectinc_ledger > 0 %}
+           
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <th></th>
+                  <th>Indirect Incomes</th>
+                  <td></td>
+                  <th>{{ total_indirectinc_ledger|floatformat:2|abs }}</th>
+                </tr>
+
+                {% for ledger1 in indirectinc_ledger %}
+
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <th></th>
+                      <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                      <td>{{ ledger1.Closing_balance|floatformat:2|abs }}</td>
+                      <th></th>
+                    </tr>
+
+                 {% endfor %}
+
+              {% else %}
+
+                <tr>
+                  <th>Indirect Incomes</th>
+                  <td></td>
+                  <th>{{ total_indirectinc_ledger|floatformat:2|abs }}</th>
+                  <th></th>
+                  <td></td>
+                  <th></th>
+                </tr> 
+
+                 {% for ledger1 in indirectinc_ledger %}
+
+                    <tr>
+                      <td><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}"><em>{{ ledger1.name }}</em></a></td>
+                      <td>{{ ledger1.Closing_balance|floatformat:2|abs }}</td>
+                      <th></th>
+                      <td></td>
+                      <td></td>
+                      <th></th>
+                    </tr>
+
+                 {% endfor %}
+
+              {% endif %}                               
+
+
+
+
+
+              {% if gross_profit > 0 %}
+                {% if nett_profit >= 0 %}
+
+                    <tr>
+                      <th>Nett Profit</th>
+                      <td></td>
+                      <th>{{ nett_profit|floatformat:2|abs }}</th>
+                      <th></th>
+                      <td></td>
+                      <th></th>
+                    </tr>
+
+                {% else %}
+
+                     <tr>
+                      <td></td>
+                      <td></td>
+                      <th></th>
+                      <th>Nett Profit</th>
+                      <td></td>
+                      <th>{{ nett_profit|floatformat:2|abs }}</th>
+                    </tr>
+                {% endif %}
+
+              {% else %}
+
+                  {% if nett_profit >= 0 %}
+
+                    <tr>
+                      <th>Nett Loss</th>
+                      <td></td>
+                      <th>{{ nett_profit|floatformat:2|abs }}</th>
+                      <th></th>
+                      <td></td>
+                      <th></th>
+                    </tr>
+
+                  {% else %}
+
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <th></th>
+                      <th>Nett Loss</th>
+                      <td></td>
+                      <th>{{ nett_profit|floatformat:2|abs }}</th>
+                    </tr>
+                  {% endif %}
+
+              {% endif %}
+
+                <tr>
+                  <th></th>
+                  <td></td>
+                  <td></td>
+                  <th></th>
+                  <td></td>
+                  <th></th>
+                </tr>
+
+                <tr>
+                  <th>Total</th>
+                  <td></td>
+                  <th>______________<br>{{ totalpl|floatformat:2|abs }}<br>______________</th>
+                  <th>Total</th>
+                  <td></td>
+                  <th>______________<br>{{ totalplright|floatformat:2|abs }}<br>______________</th>
+                </tr>     
+            </table>
+          </div>
+
+</div>
+          
+
+
+
+                            <div class="box-footer">
+                    <hr>
+                     <div class="pull-left">
+                     <input class='btn btn-default' type="button" onclick="printDiv('printableArea')" value="Print" />
+                    
+                     </div>
+
+                  <div class="pull-right">
+                        <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                               <i class="fa fa-download"></i> Generate PDF
+                        </button>
+                    </div>
+
+                  </div>
+
+        </div>
+
+
+        </div>
+      </div>
+    
+  </section>
+</div>
+
+
+
+  <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+
+
+<script type="text/javascript">
+  
+  function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+  }
+</script>
+{% endblock %}

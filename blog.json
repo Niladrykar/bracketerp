@@ -1,0 +1,123 @@
+[
+{
+  "model": "blog.categories",
+  "pk": 1,
+  "fields": {
+    "Title": "GST"
+  }
+},
+{
+  "model": "blog.categories",
+  "pk": 2,
+  "fields": {
+    "Title": "Income Tax"
+  }
+},
+{
+  "model": "blog.blog",
+  "pk": 8,
+  "fields": {
+    "User": 1,
+    "Date": "2018-01-01T00:00:00Z",
+    "Blog_title": "Deadline to file tax returns extended to 5 August 2017",
+    "Description": "<p>The Income Tax Department has announced an extension on the deadline to&nbsp;<a href=\"https://cleartax.in/income-tax-efiling\">file income tax returns</a>.&nbsp;<strong>The new return filing deadline for FY 2016-17 (AY 2017-18) is 5 August 2017.</strong>The extension was announced today from the previous deadline of 31 July 2017.</p>\r\n\r\n<p>Taxpayers who have an income of more than \u20b95 lakh have to compulsorily&nbsp;<a href=\"https://cleartax.in/income-tax-efiling\">e-file income tax returns</a>. You can&nbsp;<a href=\"https://cleartax.in/paytax/UploadForm16?ref=income-tax-efiling\">upload your Form 16 on ClearTax</a>&nbsp;and finish e-filing in just 7 minutes.</p>\r\n\r\n<p>The e-filing deadline is important and you should file your income tax returns before the deadline to:</p>\r\n\r\n<ul>\r\n\t<li>Carry forward losses from previous years</li>\r\n\t<li>Avoid paying interest on tax due</li>\r\n\t<li>Claim a full tax refund without loss of interest</li>\r\n</ul>\r\n\r\n<p>Make sure you e-file income tax returns right away, even if the deadline has been extended, to avoid any last minute rush.&nbsp;<a href=\"https://cleartax.in/Account/LogOn\">Log in to your ClearTax account</a>&nbsp;and finish e-filing in a matter of minutes.</p>",
+    "Blog_image": "blog_image/income-tax-return-online_Y0aom77_kFsx0oP_MpoTgGb_bk1LFXC_MRdnYgB_JnhBxdy_AuuU_MlcG3Cg.jpg",
+    "Category": 2,
+    "blog_views": 100,
+    "likes": [
+      1,
+      10,
+      19
+    ]
+  }
+},
+{
+  "model": "blog.blog",
+  "pk": 9,
+  "fields": {
+    "User": 1,
+    "Date": "2018-01-01T00:00:00Z",
+    "Blog_title": "March Your Way to Financial Freedom",
+    "Description": "<p>Our 71st Independence Day is now behind us! It has been nearly three quarters of a century since our country has been free from the British Empire. We are free to live our lives the way we want to, within the confines of legal jurisdictions, of course. We can make our own decisions and choose our own paths. We are also free to use the resources of our country for our own good. Yes, Independence Day is a day we should all get together and celebrate.</p>\r\n\r\n<p>And yet, there are some parts of our lives where we are not as free as we should be. One such part has to do with our finances. We often tend to fall into the clutches of money and that too, by our own doing. Hence, this Independence Day, let&rsquo;s understand how we can achieve financial freedom.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Use credit cards only for emergencies</strong></p>\r\n\r\n<p>Credit card companies lure us with offers, discounts and cashbacks. We are allowed to buy whatever we want right now and asked to pay for it only later. The credit card companies give us this flexibility because they bank on most of us missing our payment dates and then having to pay the amount we owe with interest. This interest is just money you&rsquo;re paying additionally. Avoid that by using credit cards only for emergencies or at least sparingly.</p>\r\n\r\n<p><strong>Invest before you can spend</strong></p>\r\n\r\n<p>One reason to choose a date at the beginning of the month for your&nbsp;<a href=\"http://cleartax.in/s/sip\">SIP</a>&nbsp;is that you will invest that money before you have the opportunity to spend it.&nbsp;<a href=\"https://cleartax.in/s/investments\">Investing is important</a>&nbsp;because it allows you to not only save, but also grow your wealth. If you leave money in your bank account, you will be tempted to spend it. There are so many things to buy, after all. Best to get it out of your bank and into a&nbsp;<a href=\"https://cleartax.in/s/mutual-funds/\">mutual fund</a>.</p>\r\n\r\n<p><strong>Buy health insurance</strong></p>\r\n\r\n<p>Medical emergencies are unforeseen and expensive. A sudden medical issue can burn a big hole in your savings and derail your finances. The best way to stay prepared for such emergencies is by buying&nbsp;<a href=\"https://cleartax.in/s/health-insurance/\">health insurance</a>. A health insurance policy for a substantial cover can be bought for a small annual premium. A good insurance policy will take care of medical emergencies and as an added benefit, you can also claim tax-saving deductions on the premium you pay.</p>\r\n\r\n<p><strong>Keep a tab on expenses</strong></p>\r\n\r\n<p>The easiest way to save more is by spending less. Unfortunately, spending less is not as easy as it sounds. One way to keep a tight grip on your spends is by creating a budget and noting down where your money is going. You can figure out the top expenses heads and decide how much you want to spend on them. Such a budget will stop you from not spending more than you need to and allow you to save more.</p>",
+    "Blog_image": "blog_image/New-ITR-2018-19_i0ZRE5K_MFlwavy_ISVi9FP_2ZGVrgM_blvCHrV_IgAwOHO_pPiQtWD_m2Bs7_kdCGHzC.jpg",
+    "Category": 2,
+    "blog_views": 50,
+    "likes": [
+      1,
+      10
+    ]
+  }
+},
+{
+  "model": "blog.blog",
+  "pk": 11,
+  "fields": {
+    "User": 1,
+    "Date": "2018-01-01T00:00:00Z",
+    "Blog_title": "PFC Bonds eligible for claiming Exemption from Long term Capital gains Tax",
+    "Description": "<p>Any profit arising from the sale of long term capital assets is called as long term capital gain and is chargeable to tax at the rate of 20%. However, you can save this tax if you invest the amount of capital gains in long term specified bonds as notified by the government under section 54EC for a minimum period of 3 years.</p>\r\n\r\n<p>Recently the government has given approval to the state owned Power Finance Corporation(PFC) for issuing bonds redeemable after 3 years as eligible for exemption from capital gains tax. But bonds issued on or after 15th&nbsp;June 2017 only and redeemable after 3 years will be considered as eligible for investment to save tax on&nbsp;<a href=\"https://cleartax.in/s/capital-gains-income\">LTCG.</a>Currently the investment in the bonds of REC and NHAI,redeemable after 3 years is allowed under sec 54EC of the income tax act.However,the maximum investment allowed in such bonds is up to Rs 50 lakhs.</p>\r\n\r\n<p>In order to claim exemption from capital gains tax by investing in the bonds of PFC, REC or NHAI under sec 54EC, following conditions must be kept in mind:</p>\r\n\r\n<ul>\r\n\t<li>The bonds should not be transferred or converted into money at any time within a period of 3 years from the date of its acquisition. Otherwise the capital gain so exempted will be chargeable to tax in the year in which such bonds are transferred or converted into money.</li>\r\n\t<li>Any loan or advance taken on the security of such bonds is also not allowed. It is considered as conversion of such bonds into money.</li>\r\n</ul>",
+    "Blog_image": "blog_image/GST_BFArR82_sddJRjP_ku4Cmxt_HgLg3We_SdZOfje_98b8v9m_rZH2UrN_JsYCTeN_zxihzVE_7_oY7jVlg.jpg",
+    "Category": 1,
+    "blog_views": 37,
+    "likes": [
+      10
+    ]
+  }
+},
+{
+  "model": "blog.blog",
+  "pk": 14,
+  "fields": {
+    "User": 1,
+    "Date": "2018-12-20T00:00:00Z",
+    "Blog_title": "GST: What it means for the Common Man?",
+    "Description": "<p>With the&nbsp;<a href=\"https://www.sagesoftware.co.in/gst-india/rajya-sabha-gives-thumbs-up-to-all-four-gst-bills-govt-determined-for-july-1-rollout/\">Rajya Sabha passing all the four GST bills in the parliament</a>&nbsp;a week back, the nation&rsquo;s biggest and revolutionary tax regime GST (Goods and Services Tax) is all set to become a reality soon. Boasted as the most subversive tax reform in the country after independence, GST is expected to curb transactional costs by introducing a unified tax system stirring economic growth in the long run.</p>\r\n\r\n<p>With the prospects that GST would improve the GDP by a couple of percentages, the reform in its entirety might come with a mixed bag of surprises for the common man.</p>\r\n\r\n<p>Talking about its long-term impact, GST should mark a positive impact on most sectors. Based on the GST implementation experience derived from other nations, India might experience an inflationary impact especially during the transition stage, which is expected to fade with the rollout of measures such as anti-profiteering.</p>\r\n\r\n<p>Yes, with the inclusion of anti-profiteering along with other counteractive measures, GST should lead to reduced cost for most of the supplies to the end-users in the long-run.</p>",
+    "Blog_image": "blog_image/GST_6rNxIdd_eaTIi2d_StcAkto_I45fAOD_VK9M5TG_bVMuqIh.jpg",
+    "Category": 1,
+    "blog_views": 29,
+    "likes": [
+      10
+    ]
+  }
+},
+{
+  "model": "blog.blog",
+  "pk": 16,
+  "fields": {
+    "User": 10,
+    "Date": "2019-02-04T18:30:00Z",
+    "Blog_title": "Implications of GST for Services",
+    "Description": "<p>The new Goods and Services Tax (GST) is a unified tax structure that was implemented by the Government of India on 1 July 2017. The new regime has ushered a significant change in taxation levels and rules associated with it. On an average, we see the tax slab increasing from 15% to 18% for most of the services. While this may translate to higher cost of services to the end consumer, GST also presents a whole lot of opportunities, pushing ease of business.</p>\r\n\r\n<p><strong>Services Sector in India: An Overview</strong></p>\r\n\r\n<p>India is a strong services-led economy with the sector generating a significant chunk of employment opportunities and contributing to the GDP. It contributed around 66.1% of India&rsquo;s Gross Value Added (GVA) growth in 2015-16, is the biggest magnet for Foreign Direct Investment (FDI), and an important net foreign exchange earner. Some of the core areas of service are IT and ITES, banking and financial services, outsourcing, research and development, transportation, telecommunications, real estate and professional services.</p>\r\n\r\n<p>Some of the positive impacts of GST on service providers are:</p>\r\n\r\n<p><strong>Clear distinction between goods and services:</strong>&nbsp;The old regime does not clearly distinguish between goods and services, leading to many instances of double taxation. For example, software is often treated as a good and as a service. The new regime clearly distinguishes goods from services, and also defines principal supply, composite supply, and mixed supply separately. For example, when an individual books a Rajdhani train ticket which includes meals, it involves a composite supply wherein the ticket and the meals cannot be sold separately. Since the transportation of the passenger is the principal supply, the rate of tax will only be charged on the ticket. Alternatively, for items that can be sold separately, but are sold together, like a hamper of snacks and aerated drinks, the rate of tax applicable on the higher product will be levied on the composite supply. There are also&nbsp;<a href=\"https://blog.capitalfloat.com/important-gst-definitions/\" target=\"_blank\">separate definitions</a>&nbsp;for supply of software, works contracts, and leasing transactions to bring in more clarity and transparency on their taxation rules.</p>\r\n\r\n<p><strong>Streamlining of taxation for intra-state service providers:</strong></p>\r\n\r\n<p>&nbsp;Due to the state level taxes being subsumed, it will become easier for service providers that operate within the state to know their tax obligations better. Such companies can move away from multiple tax calculations. For example, a CD with software incurs Excise, Service Tax, and VAT under the old regime; this is simplified to one unified rate under GST, making tax calculations and administration easier for intra-state service providers.</p>\r\n\r\n<p><strong>Input credit facility:</strong></p>\r\n\r\n<p>&nbsp;VAT payment under the old regime was not eligible for setting off against output liabilities. The input credit facility is now made available to service providers as well, wherein tax paid on any inputs can be claimed and adjusted against tax paid on output. This will result in direct cost savings for service providers and may even offset the expected rise in end pricing. For example, an AC fitter who paid tax on the raw material for AC fittings (pipe, tape, solder etc.) will be able to claim that tax, and end up spending less on the cost of fitting the AC. This cost advantage can spill over to the customer as well.</p>\r\n\r\n<p>While a shorter timeline for filing returns might seem overwhelming, regularisation in return filing will result in better streamlining of taxes. Since all these returns are required to be submitted online through a common portal provided by GSTN, the process is simplified and will help the government weed out regular defaulters. This in turn will result in a major boost in the contribution of the Service sector to the GDP.</p>\r\n\r\n<p>Service providers, however, are concerned about the following aspects:</p>\r\n\r\n<ul>\r\n\t<li>State-wise registration will be required: In the old regime, a service provider could operate with a single place of registration, since services were taxed only by the Central government. For example, if an IT services provider was present across states, they could carry out tax and delivery transactions from the main location. However, now a service provider that is offering services across states must register each place of business separately in each state. This is because the new GST regime entails taxation of services at &ldquo;location of service recipient&rdquo;, which will differ for different states. This means service providers will need to register afresh in new states and then carry out tax transactions separately in each state. For example, an IT company like TCS that has a widespread presence across states will need to decentralise service delivery.</li>\r\n\t<li>Decentralised reporting will add to costs: Under GST, the &ldquo;location of service recipient&rdquo; is the key criterion for how a service will be taxed. Tax considerations will be related to the place the service is being delivered, and even a pan-India service provider with several &ldquo;locations of service&rdquo; will need to maintain state-wise records of input credit, audits, service consumption, etc. For example, earlier a service provider like TCS would enter into a single contract with the client, based on its main location, and then would discharge service tax based on the single-service tax registration model. GST will decentralise service delivery models, ensuring various TCS units adopt their own tax reporting and tax management. While this need for decentralised tax tracking and processing is an immediate cost to service providers, it presents a very real opportunity to streamline reporting and compliance measures for the future.</li>\r\n</ul>\r\n\r\n<p>GST offers clear benefits to the services sector, and while some of these measures entail additional cost and effort in the short term, businesses can look forward to simpler operations with the new taxation laws.</p>\r\n\r\n<p>All in all, services industries must gear up for better ways to manage business. Now is the time for them to equip themselves with the right people, processes and technologies, and emerge as service providers of the future.</p>\r\n\r\n<p>&nbsp;</p>",
+    "Blog_image": "blog_image/bigstock-Word-Of-Gst-Spelled-With-Color-105751313-1_HEBNxHz_k2PRYqv_L7JdD0A_D_hob2g8J.jpg",
+    "Category": 1,
+    "blog_views": 30,
+    "likes": [
+      10
+    ]
+  }
+},
+{
+  "model": "blog.blog",
+  "pk": 18,
+  "fields": {
+    "User": 10,
+    "Date": "2019-02-27T18:30:00Z",
+    "Blog_title": "Want to save your Tax?",
+    "Description": "<p>You can save up to Rs. 46,800/- if your income is above Rs. 10 Lac by making a prudent decision &amp; choosing the right Investment option u/s 80C.</p>\r\n\r\n<p>Out of the many investment option available in the market like the LIP, ULIP, PPF, NSC, ELSS we have narrowed done to 5 option to make it easy for you-</p>\r\n\r\n<p>1. ELSS- Investment in ELSS Fund or Tax Saving Mutual Fund is so far the best tax saving option.</p>\r\n\r\n<p>Why so?</p>\r\n\r\n<p>This will give you a dual benefit 1st an higher return, 2nd tax deduction.</p>\r\n\r\n<p>The Lock-in period is 3 years &amp; it can give you a return more then 12%</p>\r\n\r\n<p>2. Tax Saving FDs- You can open up an FD Account with your Bank, the lock in period for investment in FD is 5 year&rsquo;s &amp; it will give a return of 5.5% to 7.75%. Interest earned on this FD is not tax free.</p>\r\n\r\n<p>3. Public Provident Fund- PPF is a 15-year scheme. It can be further extended by 5 years. Partial withdrawals are allowed after 7 years It can be opened in a designated post office or a bank branch. It can also be opened online with few banks. PPF will get you a return of 8.0% p.a. &amp; interest earned is tax-free.</p>\r\n\r\n<p>The Minimum and maximum investment limit is Rs 500 and Rs 1.5 lakh respectively.</p>\r\n\r\n<p>To know more about PPF visit the below site-</p>\r\n\r\n<ul>\r\n\t<li><a href=\"https://www.bankbazaar.com/saving-schemes/ppf.html?fbclid=IwAR0Lr5_ZCfoYPTeQRo9sPxaM6c2e24IjX32wgDS2gcHAvBGuUSXiNbVtIHw\" rel=\"noopener nofollow\" target=\"_blank\">https://www.bankbazaar.com/saving-schemes/ppf.html</a></li>\r\n\t<li><a href=\"https://www.ndtv.com/business/ppf-public-provident-fund-vs-nps-interest-rates-withdrawal-rules-tax-benefits-lock-in-pension-1872216?fbclid=IwAR1kID8DUSK8cFquUqEKoBn5k4bV-SwsP4mwlsPWHmGqShAYAco7p5S7bxI\" rel=\"noopener nofollow\" target=\"_blank\">https://www.ndtv.com/business/ppf-public-provident-fund-vs-nps-interest-rates-withdrawal-rules-tax-benefits-lock-in-pension-1872216</a></li>\r\n</ul>\r\n\r\n<p>4. Investments in NPS- Can be opted by an individual who wants to get a pension after retirement, the amount invested in NPS gets locked in till one attains the age of 60. Although, Partial withdrawals are only allowed after 15 years &amp; under special conditions. Interest rate on this investment somewhere ranges between 10 to 12%.</p>\r\n\r\n<p>To know more visit-</p>\r\n\r\n<ul>\r\n\t<li><a href=\"https://enps.nsdl.com/eNPS/NationalPensionSystem.html?fbclid=IwAR3SlZyCZbMR9DJgv_YSVua8XDxaAW3g-CxwUu2ObQPfTzMq-dJtZJJcqU0\" rel=\"noopener nofollow\" target=\"_blank\">https://enps.nsdl.com/eNPS/NationalPensionSystem.html</a></li>\r\n\t<li><a href=\"https://economictimes.indiatimes.com/mf/nps-national-pension-scheme?fbclid=IwAR0OHdrsX3pne6dIOQ5CoiZpFVN4QE0iRE3YBMpKv-YxatNrgr5vgFv6r4A\" rel=\"noopener nofollow\" target=\"_blank\">https://economictimes.indiatimes.com/mf/nps-national-pension-scheme</a></li>\r\n</ul>\r\n\r\n<p>5. LIC &ndash; Life Insurance Premium- The annual premium that you pay for life insurance for yourself, your wife and children is an eligible tax-saving investment. The deduction is valid only if the premium is less than 10% of the sum assured.</p>",
+    "Blog_image": "blog_image/BV-Acharya-82_vmitfEl_KCpRI8E_w4QMzmV_BsiWd3D_felrPgN_cy8MOxm_qqDvvWp_Pb7yIen_E8DROQD.jpg",
+    "Category": 2,
+    "blog_views": 1,
+    "likes": []
+  }
+},
+{
+  "model": "blog.blog_comments",
+  "pk": 1,
+  "fields": {
+    "User": 10,
+    "Questions": 9,
+    "text": "Nyc Blog\r\n",
+    "Date": "2019-02-27T13:18:05.725Z"
+  }
+}
+]

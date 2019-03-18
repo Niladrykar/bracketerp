@@ -1,0 +1,134 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+
+{% block title %}Achievements{% endblock %}
+
+
+
+
+
+{% block content %}
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+			<section class="content-header">
+				<!-- <div class="col-md-12 col-md-offset-4"> -->
+					<h1>
+            		<strong>Achievements</strong>
+					</h1>
+
+				<!-- </div> -->
+			</section>
+
+<section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+
+
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+            <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+            <a href="{% url 'ecommerce_integration:apilist' %}" class="btn btn-primary" role="button">APIs</a>
+            <a href="{% url 'userprofile:case_create' %}" class="btn btn-warning" role="button">Create Achievements</a>
+            
+          <div class='pull-right'>
+            <a href="{% url 'ecommerce_integration:subscribedproductlist' %}" class="btn btn-info" role="button">My Subscriptions</a>
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+
+
+
+								
+<div class="row">
+        <div class="col-xs-12">
+          {% if case_list %}
+                <div class="box box-info">
+          
+
+
+                <div class="box-header">
+                  <h3 class="box-title">My Achievements</h3>
+
+                  <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                      <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                      <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-bordered table-hover" id="book-table">
+
+                    <thead>
+                      <tr>
+                      
+                      <th><center>Sl no</center></th>
+                      <th><center>Legal Case?</center></th>
+                      <th><center>Act</center></th>
+                      <th><center>Location</center></th>
+                      <th><center>Role</center></th> 
+                      <th><center>Remove</center></th>   
+                    </tr>
+                    </thead>
+                    
+
+                    <tbody>
+                      
+                      {% include "achievement/case_list2.html" %}
+
+                    </tbody>
+                    
+                     
+                   
+                   
+                  </table>
+
+                  
+                </div>
+              </div>
+              
+          {% else %}
+              <div class="col-xs-12 alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                  No achievement done !
+              </div>
+          {% endif %}  
+          
+          
+        </div>
+
+      </div>
+</section>
+
+
+  <div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+{% endblock %}

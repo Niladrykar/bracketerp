@@ -1,0 +1,27 @@
+{% load staticfiles %}
+
+{% for comment in blogcomments %}
+                <!-- User image -->
+                {% if comment.User.profile.image %}
+                    <img class="img-circle img-sm" src="{{ comment.User.profile.image.url }}/" alt="">
+                {% else %}
+                    <img class="img-circle img-sm" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+                    <div class="comment-text">
+                          <span class="username">
+                            <a href="{% url 'userprofile:specific_profile' pk=comment.User.profile.pk %}">{{ comment.User }}</a>
+                            
+                            <span class="text-muted">{{ comment.Date|date }}</span>   <span class="text-muted pull-right"> {{ comment.Date|timesince }} ago</span>
+                          </span><!-- /.username -->
+                      {{ comment.text }}
+                    </div>
+
+
+
+                    {% if not forloop.last %}
+                      <hr>
+                    {% endif %}
+
+
+                <!-- /.comment-text -->
+{% endfor %}

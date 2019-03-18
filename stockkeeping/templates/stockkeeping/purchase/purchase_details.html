@@ -1,0 +1,335 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+{% load mathfilters %}
+{% load humanize %}
+{% block title %}
+  
+    Purchase Invoice
+   
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+      <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Simple Unit</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+             
+
+              {% if not selectdatefield_details %}
+
+                  
+                     <button class="btn btn-primary show-form pull-right" data-url="{% url 'accounting_double_entry:datecreate' %}">
+                      <span class="glyphicon glyphicon-plus"></span>
+                        Select Date Range
+                      </button>
+
+                {% else %} 
+              
+  
+                            <button  class="btn btn-warning show-form-update pull-right" data-url="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                              Update Date Range 
+                            </button>
+
+                      <a id="book-table-date" class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a>  
+
+                 
+
+                {% endif %}
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+          <a href="{% url 'stockkeeping:purchaselist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Purchase Invoice</a>
+          
+          <a href="{% url 'stockkeeping:purchasecreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Purchase Invoice</a>
+                  
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            
+            <div id="printableArea">
+              
+<div class="box-header with-border">
+            
+      <h3 class="box-title">Purchase Invoice</h3>
+           
+  </div>
+            <!-- /.box-header -->
+  <div class="box-body">
+     <section class="invoice">
+      <!-- title row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            {{company_details.Name}}
+            <small class="pull-right">Date: {{purchase_details.date}}</small>
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+
+        <div class="col-sm-4 invoice-col">
+          Seller
+          <address>
+          {% if purchase_details.Party_ac.name == 'Cash' %}
+            <strong>{{purchase_details.billname}}&nbsp;(Cash Payment)</strong><br>
+          {% else %}
+            <strong>{{purchase_details.billname}}&nbsp;(Credit Payment)</strong><br>
+          {% endif %}
+            {{purchase_details.Address}}<br>
+            State : {{purchase_details.State}}<br>
+            Phone : {{purchase_details.Contact}}<br>
+            
+          </address>
+        </div>
+        <div class="col-sm-4 invoice-col">
+          Buyer
+          <address>
+            <strong>{{company_details.Name}}</strong><br>
+            {{company_details.Address}}<br>
+             Pin   : {{company_details.Pincode}}<br>
+             State : {{company_details.State}}<br>
+             Phone : {{company_details.Mobile_No}}<br>
+             GSTIN : {{company_details.gst}}<br>
+          </address>
+        </div>
+        <!-- /.col -->
+        
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <b>Invoice #{{purchase_details.ref_no}}</b><br>
+          <br>
+          <b>Order ID:</b> {{purchase_details.id}}<br>
+          <b>Payment Due:</b> ----<br>
+          <b>Account:</b> ----
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Sl.no</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Rate</th>
+              <th>Discount(%)</th>
+              <th>Sub Total(&#8377;)</th>
+              {% if company_details.State == purchase_details.State %}
+                <th>CGST(%)</th>
+                <th>SGST(%)</th>
+              {% else %}
+                <th>IGST(%)</th>
+              {% endif %}
+              <th>Total(&#8377;)</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for stock_total in stocklist %}
+
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{stock_total.stockitem}}</td>
+                <td>{{stock_total.Quantity_p}}</td>
+                <td>{{stock_total.rate_p}}</td>
+                <td>{{stock_total.Disc_p}}</td>
+                <td>{{stock_total.Total_p}}</td>
+                {% if company_details.State == purchase_details.State %}                
+
+                  <td>{{stock_total.cgst_total|intcomma}}-({{stock_total.cgst}}%)</td>
+                  <td>{{stock_total.gst_total|intcomma}}-({{stock_total.sgst}}%)</td>
+                
+                {% else %}
+
+                  <td>{{stock_total.gst_total|intcomma}}-({{stock_total.igst}}%)</td>
+
+                {% endif %}
+
+                <td>{{stock_total.grand_total|intcomma}}</td>
+                
+              </tr>
+
+
+              {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6">
+          <p class="lead"><strong>Company Bank Details:</strong></p>
+          
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            <strong>Bank Name:</strong>_____________________________________  
+          </p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            <strong>A/c no:</strong>__________________________________________
+          </p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            <strong>
+            Branch & IFSC code:</strong>_______________________________  
+          </p>
+          <p class="lead"><strong>Declaration:</strong></p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            We declare that this invoice shows the actual price of the goods described and all the paritculars are true and correct.
+          </p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            Subjected to local jurisdiction.
+          </p>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+          
+
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+                <th style="width:50%">Subtotal:(&#8377;)</th>
+                <td>{{purchase_details.sub_total|intcomma}}</td>
+              </tr>
+          {% if company_details.State == purchase_details.State %}
+              <tr>
+                <th style="width:50%">CGST:(&#8377;)</th>
+                <td>{{purchase_details.cgst_alltotal|intcomma}}</td>
+              </tr>
+              <tr>
+                <th style="width:50%">SGST:(&#8377;)</th>
+                <td>{{purchase_details.gst_alltotal|intcomma}}</td>
+              </tr>
+          {% else %}
+              <tr>
+                <th style="width:50%">IGST:(&#8377;)</th>
+                <td>{{purchase_details.gst_alltotal|intcomma}}</td>
+              </tr>
+          {% endif %}
+              <tr>
+                <th style="width:50%">Total:(&#8377;)</th>
+                <td>{{purchase_details.Total|intcomma}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+  </div> 
+
+            </div>
+            <!-- printablearea -->
+       <!-- form start -->
+   
+
+      <!-- this row will not appear when printing -->
+      <div class="box-footer">
+        
+          <input class='btn btn-default' type="button" onclick="printDiv('printableArea')" value="Print" />
+
+          <a class='btn btn-warning' href="{% url 'stockkeeping:purchaseupdate' pk1=company_details.pk pk2=purchase_details.pk pk3=selectdatefield_details.pk %}">Update Purchase Invoice</a><a class='btn btn-danger pull-right' href="{% url 'stockkeeping:purchasedelete' pk=company_details.pk pk2=purchase_details.pk pk3=selectdatefield_details.pk %}">Delete Purchase Invoice</a>
+
+          <a href="{% url 'pdf:purchasedetailpdf' pk2=purchase_details.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-primary pull-right" role="button"><i class="fa fa-download "></i> Generate Pdf</a>
+       
+      </div>
+ 
+          </div>
+
+        </div>
+</div>
+
+
+
+
+
+
+
+
+</section>
+</div>
+
+  <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+   
+
+<script type="text/javascript">
+  
+  function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+  }
+</script> 
+  
+
+{% endblock %}

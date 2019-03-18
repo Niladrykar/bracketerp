@@ -1,0 +1,318 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+{% block title %}Blog Details{% endblock %}
+
+
+{% block content %}
+
+<div class="content-wrapper">
+	 <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>{{ blog_details.Blog_title }}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Group Details</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">View Posts By
+                    <span class="fa fa-caret-down"></span></button>
+                    
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'blog:latestbloglist' %}">Most Recent</a></li>
+                    <li><a href="{% url 'blog:viewbloglist' %}">Most Popular</a></li>
+                    <li><a href="{% url 'blog:likebloglist' %}">Most Helpful</a></li>
+                    
+                    
+                  </ul>
+
+
+
+            <a href="{% url 'blog:allbloglist' %}" class="btn btn-success" role="button">Show all Posts</a>
+
+            
+
+                
+        {% if user.is_authenticated %}
+
+          <div class='pull-right'>
+            <a href="{% url 'blog:bloglist' %}" class="btn btn-info" role="button">Show my Posts</a>
+            <a href="{% url 'blog:blogcreate' %}" class="btn btn-warning" role="button">Create Post</a>
+              
+
+          </div>
+
+        {% else %}
+
+          {% include 'blog/unauthorised_modal_2.html' %}
+
+        {% endif %}
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        <div class="box box-info">
+        
+      
+      <div class="box-body">
+            
+        <div class="col-lg-12">
+
+          <!-- Title -->
+          <h1 >{{ blog_details.Blog_title }}</h1>
+
+          <!-- Author -->
+          <div>
+            <p>
+            by
+            <a href="{% url 'userprofile:specific_profile' pk=blog_details.User.profile.pk %}">{{ blog_details.User }} </a>| Posted on: {{ blog_details.Date|date }} | Under Catagory : <b>{{ blog_details.Category }}
+            
+           
+          </p>
+          </div>
+          
+          
+
+          <hr>
+
+          <!-- Date/Time -->
+          <div class="pull-left">
+           
+          </div>
+          <div class="pull-right">
+            <p>Posted : {{ blog_details.Date|timesince }} ago</p>
+          </div>
+          
+          <br>
+          <hr>
+
+          <!-- Preview Image -->
+
+          <style type="text/css">
+
+            .rounded{
+              border-radius: 0.25rem!important;
+            }
+            .img-fluid{
+              max-width: 100%;
+              height: auto;
+            }
+            img{
+              vertical-align: middle;
+              border-style: none;
+            }
+            
+          </style>
+          
+          {% if blog_details.Blog_image %}
+                <center><img class="img-fluid rounded" src="{{ blog_details.Blog_image.url }}/" alt=""></center>
+          {% endif %}
+          <hr>
+
+          <!-- Post Content -->
+          <p class="lead">{{ blog_details.Description|safe|linebreaks }}</p>
+
+          <hr>
+    
+          {% if blog_details.User == user %}
+              <p><a class='btn btn-warning' href="{% url 'blog:blogupdate' pk=blog_details.pk %}">Update This Blog</a>
+                <a class='btn btn-danger pull-right' href="{% url 'blog:blogdelete' pk=blog_details.pk %}">Delete This Blog</a></p>
+
+          {% endif %}
+         
+          
+          
+         
+
+          <!-- Comments Form -->
+         
+          <!-- Single Comment -->
+
+            </div>
+        
+
+      </div>
+      <!-- /.row -->
+
+    {% if user.is_authenticated %}
+      <div id="like-section">
+        
+        {% include 'blog/like_section.html' %}
+
+      </div>
+    {% else %}
+
+      <div>
+        {% include 'blog/unauthorised_modal.html' %}
+      </div>
+    {% endif %}
+
+                <div class="box-footer box-comments">
+              <div class="box-comment">
+                <div id="book-table">
+                  {% include 'blog/blog_comment.html' %}
+                </div>
+                
+              </div>
+              <!-- /.box-comment -->
+             
+              <!-- /.box-comment -->
+            </div>
+            <!-- /.box-footer -->
+          {% if user.is_authenticated %}
+            <div class="box-footer">
+
+              <form method="post">
+                {% csrf_token %}
+
+                
+                
+                
+                <div class="col-sm-10 col-md-10 col-xs-6">
+                  {{ Blog_comments_user_form.text}}
+                </div>
+                  
+                <div class="col-sm-2 col-md-2 col-xs-6">
+                  <input type="submit" class="btn btn-info pull-right" value="Submit">
+                </div>
+                   
+                  
+              
+              </form>
+            </div>
+          {% endif %}
+
+   
+    </div>
+
+
+  </div>
+
+
+
+
+        <div class="col-sm-4 col-md-4 col-xs-4">
+        <div class="box box-info">
+        
+          <div class="box-header">
+            <h3 class="box-title">Search</h3>
+          </div>
+          <form method='GET' class="form-horizontal" id="search-form" action="{% url 'blog:search' %}">
+          <div class="box-body">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <input  class="form-control" name="q" value="{{request.GET.q}}" placeholder="Search">
+              
+             
+            </div>
+          </div>
+          <div class="box-footer">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-info pull-right">Go</button>
+            </span>
+          </div>
+        </form>
+        
+        </div>
+
+        <br>
+
+        <div class="box box-info">
+          <div class="box-header">
+            <h3 class="box-title">Categories</h3>
+          </div>
+                 <div class="box-footer no-padding">
+                      {% for categories in categories_list %}
+
+                          <ul class="nav nav-stacked">
+                                
+                              
+                                
+                                  <li><a href="{% url 'blog:categoryDetail' pk=categories.pk  %}"><strong>{{ categories.Title }}</strong> <span class="pull-right badge bg-blue">
+                                  {{ categories.blogs.count }}</span></a></li>
+                                 
+                             
+                                  
+                                
+                          </ul>
+                          
+                      {% endfor %}
+              </div>
+
+              <div class="box-footer no-padding">
+                      {% for categories in categories_l %}
+
+                          <ul class="nav nav-stacked">
+                                
+                              
+                                
+                                  <li><a href="{% url 'blog:categoryDetail' pk=categories.pk  %}">{{ categories.Title }} <span class="pull-right badge bg-blue">{{ categories.blogs.count }}</span></a></li>
+                                 
+                             
+                                  
+                                
+                          </ul>
+                      {% endfor %}
+              </div>
+        </div>
+
+          </div>
+                 
+</div>
+			
+
+
+
+              
+
+					<!-- <h2> <small>Group Name</small> : {{ group1_details.group_Name }}</h2>
+					<h2> <small>Under</small> : {{ group1_details.Master }}<h2>
+					
+					
+					<h3> <small>Nature_of_group</small> : {{ group1_details.Nature_of_group1 }}</h3>
+					<h3> <small>Balance Nature</small> : {{ group1_details.balance_nature }}</h3>
+					<h3> <small>Group_behaves_like_a_Sub_Ledger?</small> {{ group1_details.Group_behaves_like_a_Sub_Ledger}}</h3>
+					<h3> <small>Nett_Debit_or_Credit_Balances_for_Reporting?</small> {{ group1_details.Nett_Debit_or_Credit_Balances_for_Reporting}}</h3>
+ -->
+
+				
+			
+
+    </section>
+			</div>
+
+
+		
+	
+	
+
+	
+
+{% endblock %}

@@ -1,0 +1,162 @@
+{% extends "clouderp/base.html" %}
+
+{% block title %}
+    {% if not form.instance.pk %}
+    Create Compound Unit
+    {% else %}
+    Update Compound Unit
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+      <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Simple Unit</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+             
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+          <a href="{% url 'stockkeeping:simplelist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Compound Unit </a>
+          
+          <a href="{% url 'stockkeeping:simplecreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Compound Unit</a>
+              
+
+        <a href="{% url 'stockkeeping:simplecreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning pull-right" role="button">Create Simple Unit</a>
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+            {% if not form.instance.pk %}
+              <h3 class="box-title">Create Compound Unit</h3>
+            {% else %}
+              <h3 class="box-title">Update Compound Unit</h3>
+            {% endif %}
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form method="POST" class="form-horizontal">
+
+            {% csrf_token %}
+            
+              <div class="box-body">
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">First Unit<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                  
+                    <div class="col-sm-10">
+                          
+                        {{ form.firstunit.errors }}
+                        {{ form.firstunit }}
+                      
+                    </div>
+
+                 
+
+                </div>
+
+           
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Conversion<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+
+                  <div class="col-sm-10">
+                    {{ form.conversion.errors }}
+                    {{ form.conversion }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Second Unit<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+
+                  <div class="col-sm-10">
+                    {{ form.seconds_unit.errors }}
+                    {{ form.seconds_unit }}
+                  </div>
+                </div>
+
+                
+                
+                
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+               <a href="{% url 'stockkeeping:compoundlist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-default" role="button">Cancel </a>
+                {% if not form.instance.pk %}
+                <button type="submit" class="btn btn-info pull-right" value="Submit">Create</button>
+                {% else %}
+                <button type="submit" class="btn btn-info pull-right" value="Submit">Update</button>
+                {% endif %}
+
+                
+             </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+
+<div class="box box-danger">
+        {{ form.non_field_errors }}
+</div>
+
+
+
+
+</section>
+</div>
+
+    
+  
+
+{% endblock %}

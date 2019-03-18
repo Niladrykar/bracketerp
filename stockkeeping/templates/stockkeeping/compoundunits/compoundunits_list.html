@@ -1,0 +1,138 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Compound Units{% endblock %}
+
+
+
+
+
+{% block content %}
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+			<section class="content-header">
+				<!-- <div class="col-md-12 col-md-offset-4"> -->
+					<h1>
+            		<strong>Company : {{company_details.Name}}</strong>
+					</h1>
+								<ol class="breadcrumb">
+			       					 <li><a href="#"><i class="fa fa-dashboard"></i> Company Details</a></li>
+			       					 <!-- <li><a href="#">Company list</a></li> -->
+			     				   <li class="active">Group List</li>
+			      </ol>
+				<!-- </div> -->
+			</section>
+
+<section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+			<div class="col-xs-12">
+          <div class="box box-default">
+					<div class="box-body">
+
+			<a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+ 
+				
+				</div>
+			
+			</div>
+		
+		</div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+          <a href="{% url 'stockkeeping:compoundlist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Compound Unit </a>
+          
+          <a href="{% url 'stockkeeping:compoundcreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Compound Unit</a>
+              
+          <a href="{% url 'stockkeeping:simplecreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning pull-right" role="button">Create Simple Unit</a>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+
+								
+<div class="row">
+        <div class="col-xs-12">
+          {% if compoundunits_list %}
+                <div class="box box-info">
+          
+
+
+                <div class="box-header">
+                  <h3 class="box-title">Compound Unit list details</h3>
+
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table id="example1" class="table table-bordered table-striped">
+
+                    <thead>
+                    <tr>
+                      <th>Sl no</th>
+                      <th>Compound Units</th>
+                      <th>Conversion</th> 
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for compoundunits in compoundunits_list %}
+                    <tr>
+                      <td><a href="{% url 'stockkeeping:compounddetail' pk2=compoundunits.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}">
+                        {{ forloop.counter0|add:page_obj.start_index }}
+                      </a></td>
+                      <td><a href="{% url 'stockkeeping:compounddetail' pk2=compoundunits.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}">{{compoundunits.firstunit}} of {{compoundunits.seconds_unit}}</a></td>
+                      <td> <a href="{% url 'stockkeeping:compounddetail' pk2=compoundunits.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}">{{compoundunits.conversion}}</a></td>
+                     
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+
+
+                     
+                   
+                   
+                  </table>
+
+                  
+                </div>
+              </div>
+              
+          {% else %}
+              <div class="col-xs-12 alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                  No Compound Unit created !
+              </div>
+          {% endif %}  
+          
+          
+        </div>
+
+      </div>
+</section>
+
+
+{% endblock %}

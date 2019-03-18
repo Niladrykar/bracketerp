@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{% block title %}BracketLine{% endblock %}</title>
+
+   <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.7 -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+
+        <!-- bootstrap datepicker -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/font-awesome/css/font-awesome.min.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
+          <!-- DataTables -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+
+          <!-- daterange picker -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/bootstrap-daterangepicker/daterangepicker.css' %}">
+
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/Ionicons/css/ionicons.min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/jvectormap/jquery-jvectormap.css' %}">
+
+       <!--  {# MEDIUM STYLE EDITOR#} -->
+        <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+          <style>
+              .example-modal .modal {
+              position: relative;
+              top: auto;
+              bottom: auto;
+              right: auto;
+              left: auto;
+              display: block;
+              z-index: 1;
+            }
+
+              .example-modal .modal {
+              background: transparent !important;
+            }
+
+          </style>
+
+
+        <!-- {# Custom CSS#} -->
+        <link rel="stylesheet" href="{% static 'clouderp/css/master.css' %}">
+        <!-- {# Theme CSS#} -->
+        <link rel="stylesheet" href="{% static 'clouderp/css/theme.min.css' %}">
+        <!-- {# Skin CSS#} -->
+        <link rel="stylesheet" href="{% static 'clouderp/css/skin.min.css' %}">
+
+         <link rel="stylesheet" href="{% static 'clouderp/css/select2.min.css' %}">
+
+        <!-- {# Fonts#} -->
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+{% block head_extra %} 
+
+{% endblock head_extra %}
+<body class="hold-transition skin-blue sidebar-mini">
+{% block main-header %}
+<div class="wrapper">
+
+  
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="{% url 'home' %}" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>B</b>L</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Bracket</b>Line</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          {% if user.is_authenticated %}
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-envelope-o"></i>
+              <span class="label label-success">{{ inbox_count }}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have {{ inbox_count }} messages</li>
+            {% for message in inbox %}
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li><!-- start message -->
+                    <a href="{% url 'messaging:messagedetails' pk=message.pk %}">
+                      <div class="pull-left">
+                      {% if message.sender.profile.image %}
+                        <img src="{{ message.sender.profile.image.url }}/" class="img-circle" alt="User Image">
+                      {% else %}
+                        <img class="img-circle" src="{% static 'userprofile/download (1).jpg' %}" alt="User Image">
+                      {% endif %}
+                      </div>
+                      <h4>
+                        {{ message.sender }}
+                        <small><i class="fa fa-clock-o"></i>{{ message.created_at|date }}</small>
+                      </h4>
+                      <p>{{ message.subject|safe|truncatewords:"7" }}</p>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+            {% endfor %}
+              <li class="footer"><a href="{% url 'messaging:messageinbox' %}">See All Messages</a></li>
+            
+            </ul>
+          </li>
+          {% endif %}
+          <!-- Notifications: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    <a href="{% url 'messaging:messageinbox' %}">
+                      <i class="fa fa-envelope text-aqua"></i> You have {{ inbox_count }} mails
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                      page and may cause design problems
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-red"></i> 5 new members joined
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user text-red"></i> You changed your username
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="#">View all</a></li>
+            </ul>
+          </li>
+          <!-- Tasks: style can be found in dropdown.less -->
+          {% if user.is_authenticated %}
+          <li class="dropdown tasks-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-flag-o"></i>
+              <span class="label label-danger">{{ Todos_total }}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have {{ Todos_total }} task{{ Todos_total|pluralize }}</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                {% for Todo in Todos %}
+                  <li><!-- Task item -->
+                    
+                    <a href="{% url 'todogst:index' %}">
+                      <h3>
+                        {{ Todo.text }}
+                        {% if Todo.daysince > 0 %}
+                          <small class="pull-right">{{ Todo.daysince }} days left</small>
+                        {% else %}
+                          <small class="pull-right">{{ Todo.daysince }} days ago</small>
+                        {% endif %}
+                      </h3>
+                      <div class="progress progress-xs">
+                      {% if Todo.daysince > 0 %}
+                        {% if Todo.daysince >= 60 and Todo.daysince <= 80 %}
+                          <div class="progress-bar progress-bar-aqua" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <span class="sr-only">40% Complete</span>
+                          </div>
+                        {% elif Todo.daysince >= 80 %}
+                        <div class="progress-bar progress-bar-green" style="width: 20%" role="progressbar"
+                               aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <span class="sr-only">20% Complete</span>
+                        </div>
+                        {% elif Todo.daysince >= 10 and Todo.daysince <= 60 %}
+                        <div class="progress-bar progress-bar-yellow" style="width: 60%" role="progressbar"
+                               aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <span class="sr-only">60% Complete</span>
+                          </div>
+                        {% elif Todo.daysince <= 10 %}
+                         <div class="progress-bar progress-bar-red" style="width: 90%" role="progressbar"
+                               aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <span class="sr-only">90% Complete</span>
+                          </div>
+
+                        {% endif %}
+                      {% else %}
+                        <div class="progress-bar progress-bar-red" style="width: 100%" role="progressbar"
+                               aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <span class="sr-only">100% Complete</span>
+                          </div>
+                      {% endif %}
+                      </div>
+                    </a>
+                    
+                  </li>
+                {% endfor %}
+                   <!-- end task item -->
+                
+                </ul>
+              </li>
+              <li class="footer">
+                <a href="{% url 'todogst:index' %}">View all tasks</a>
+              </li>
+            </ul>
+          </li>
+          {% endif %}
+
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                {% if user.profile.image %}
+                  <img class="user-image" src="{{ user.profile.image.url }}/" alt="User profile picture">
+                {% else %}
+                    <img class="user-image" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+              <span class="hidden-xs">{{ user.get_username }}</span>
+              <!-- https://stackoverflow.com/questions/16906515/how-can-i-get-the-username-of-the-logged-in-user-in-django -->
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                {% if user.profile.image %}
+                  <img class="profile-user-img img-responsive img-circle" src="{{ user.profile.image.url }}/" alt="User profile picture">
+                {% else %}
+                    <img class="user-image" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+
+                <p>
+                  {{ user.get_username }} - Business Subscription
+                  <small>Member since {{ user.profile.Date|date:"M Y" }}</small>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <!-- <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">User Type</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+                
+              </li> -->
+              <!-- Menu Footer-->
+                <li class="user-footer">
+                <div class="pull-left">
+                  <a href="{% url 'userprofile:profiledetail' %}" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="pull-right">
+                  <a href="{% url 'accounts:logout' %}" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+                {% endif %}
+              </li>
+            </ul>
+          </li>
+
+        {% if user.is_authenticated %} 
+           <li><a href="{% url 'ecommerce_cart:order_summary' %}" class="btn btn-simple"><i class="fa fa-cart-plus "></i>  <strong>Cart</strong></a></li>
+      
+        {% endif %} 
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+{% endblock %} 
+
+
+  
+
+   
+
+
+
+    <aside class="main-sidebar">
+    {% block main-sidebar %}
+
+    {% if Products %}
+      {% if user.is_authenticated %}
+        <section class="sidebar">
+      
+            <div class="user-panel">
+          <div class="pull-left image">
+                  {% if user.profile.image %}
+                    <img class="img-circle" src="{{ user.profile.image.url }}/" alt="User profile picture">
+                  {% else %}
+                      <img class="img-circle" src="{% static 'userprofile/download (1).jpg' %}">
+                  {% endif %}
+            
+          </div>
+          <div class="pull-left info">
+            <p>{{ user.profile.Full_Name }}</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        <!-- Sidebar user panel -->
+       
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+          </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+         <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">MAIN NAVIGATION</li>
+          
+          <li><a href="{% url 'company:list' %}"><i class="fa fa-industry" aria-hidden="true"></i><span>Select Company</span></a></li>
+          <li><a href="{% url 'ecommerce_integration:subscribedproductlist' %}"><i class="fa fa-briefcase" aria-hidden="true"></i><span>My Subscriptions</span></a></li>
+          <li><a href="{% url 'userprofile:social' %}"><i class="fa fa-dashboard" aria-hidden="true"></i><span>Social Wall</span></a></li>
+
+          
+          
+         <li>
+          <a href="{% url 'messaging:messageinbox' %}">
+            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-aqua">{{ inbox_count }}</small>
+              <small class="label pull-right bg-yellow">{{ send_count }}</small>
+              <small class="label pull-right bg-red">0</small>
+            </span>
+          </a>
+        </li>
+          
+          
+          <li><a href="{% url 'userprofile:profiledetail' %}"><i class="fa fa-user" aria-hidden="true"></i><span>Profile Settings</span></a></li>
+
+          <li class="header">MARKET PLACE</li>
+          <li><a href="{% url 'products:productlist' %}"><i class="fa fa-circle-o text-red"></i> <span>Products</span></a></li>
+          <li><a href="{% url 'ecommerce_integration:servicelist' %}"><i class="fa fa-circle-o text-red"></i> <span>Services</span></a></li>
+          <li><a href="{% url 'ecommerce_integration:apilist' %}"><i class="fa fa-circle-o text-red"></i> <span>APIs</span></a></li>
+          <li><a href="{% url 'blog:allbloglist' %}"><i class="fa fa-circle-o text-red"></i> <span>Read Blogs & Articles</span></a></li>
+
+          <li><a href="{% url 'consultancy:consultancylist' %}"><i class="fa fa-circle-o text-red"></i> <span>Consultancy Forum</span></a></li>
+          <!-- <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Subscribe Newsletter</span></a></li> -->
+          
+          
+          <li><a href="{% url 'userprofile:search' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Find Professional</span></a></li>
+          <li><a href="#"><i class="fa fa-question-circle" style="color:blue"></i> <span>Help & Support</span></a></li>
+          
+          
+        </ul>
+        
+      </section>
+    {% else %}
+         <section class="sidebar">
+      
+            <div class="user-panel">
+          <div class="pull-left image">
+                  {% if user.profile.image %}
+                    <img class="img-circle" src="{{ user.profile.image.url }}/" alt="User profile picture">
+                  {% else %}
+                      <img class="img-circle" src="{% static 'userprofile/download (1).jpg' %}">
+                  {% endif %}
+            
+          </div>
+          <div class="pull-left info">
+            <p>{{ user.profile.Full_Name }}</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        <!-- Sidebar user panel -->
+       
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+          </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+         <ul class="sidebar-menu" data-widget="tree">
+
+          <li class="header">NAVIGATION</li>
+          <li><a href="{% url 'ecommerce_integration:productlist' %}"><i class="fa fa-circle-o text-red"></i> <span>Products</span></a></li>
+          <li><a href="{% url 'ecommerce_integration:servicelist' %}"><i class="fa fa-circle-o text-red"></i> <span>Services</span></a></li>
+          <li><a href="{% url 'ecommerce_integration:apilist' %}"><i class="fa fa-circle-o text-red"></i> <span>APIs</span></a></li>
+          <li><a href="{% url 'blog:allbloglist' %}"><i class="fa fa-circle-o text-red"></i> <span>Read Blogs & Articles</span></a></li>
+          <li><a href="{% url 'consultancy:consultancylist' %}"><i class="fa fa-circle-o text-red"></i> <span>Consultancy Forum</span></a></li>
+          <!-- <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Subscribe Newsletter</span></a></li> -->
+          
+          
+          <li><a href="{% url 'userprofile:search' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Find Professional</span></a></li>
+          <li><a href="#"><i class="fa fa-question-circle" style="color:blue"></i> <span>Help & Support</span></a></li>
+          
+          
+        </ul>
+        
+      </section>
+    {% endif %}
+  {% else %}
+    <!-- /.sidebar -->
+    <!-- sidebar: style can be found in sidebar.less -->
+     <section class="sidebar">
+    
+          <div class="user-panel">
+        <div class="pull-left image">
+                {% if user.profile.image %}
+                  <img class="img-circle" src="{{ user.profile.image.url }}/" alt="User profile picture">
+                {% else %}
+                    <img class="img-circle" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+          
+        </div>
+        <div class="pull-left info">
+          <p>{{ user.profile.Full_Name }}</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+      <!-- Sidebar user panel -->
+     
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+       <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        
+     
+        <li><a href="{% url 'ecommerce_integration:subscribedproductlist' %}"><i class="fa fa-briefcase" aria-hidden="true"></i></i> <span>My Subscriptions</span></a></li>
+        <li><a href="{% url 'userprofile:social' %}"><i class="fa fa-dashboard" aria-hidden="true"></i><span>Social Wall</span></a></li>
+
+        
+        
+         <li>
+          <a href="{% url 'messaging:messageinbox' %}">
+            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-aqua">{{ inbox_count }}</small>
+              <small class="label pull-right bg-yellow">{{ send_count }}</small>
+              <small class="label pull-right bg-red">0</small>
+            </span>
+          </a>
+        </li>
+        
+        
+        <li><a href="{% url 'userprofile:profiledetail' %}"><i class="fa fa-user" aria-hidden="true"></i><span>Profile Settings</span></a></li>
+
+        <li class="header">MARKET PLACE</li>
+        <li><a href="{% url 'products:productlist' %}"><i class="fa fa-circle-o text-red"></i> <span>Products</span></a></li>
+        <li><a href="{% url 'ecommerce_integration:servicelist' %}"><i class="fa fa-circle-o text-red"></i> <span>Services</span></a></li>
+        <li><a href="{% url 'ecommerce_integration:apilist' %}"><i class="fa fa-circle-o text-red"></i> <span>APIs</span></a></li>
+        <li><a href="{% url 'blog:allbloglist' %}"><i class="fa fa-circle-o text-red"></i> <span>Read Blogs & Articles</span></a></li>
+
+        <li><a href="{% url 'consultancy:consultancylist' %}"><i class="fa fa-circle-o text-red"></i> <span>Consultancy Forum</span></a></li>
+        <!-- <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Subscribe Newsletter</span></a></li> -->
+        
+        
+        <li><a href="{% url 'userprofile:search' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Find Professional</span></a></li>
+        <li><a href="#"><i class="fa fa-question-circle" style="color:blue"></i> <span>Help & Support</span></a></li>
+        
+        
+      </ul>
+      
+    </section>
+
+  {% endif %}
+    <!-- /.sidebar -->
+    {% endblock %}
+  </aside>
+
+
+<aside class="control-sidebar control-sidebar-dark">
+{% block control-sidebar %}
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">Recent Activity</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                <p>Will be 23 on April 24th</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-user bg-yellow"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                <p>New phone +1(800)555-1234</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+                <p>nora@example.com</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                <p>Execution time 5 seconds</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Custom Template Design
+                <span class="label label-danger pull-right">70%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Update Resume
+                <span class="label label-success pull-right">95%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Laravel Integration
+                <span class="label label-warning pull-right">50%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Back End Framework
+                <span class="label label-primary pull-right">68%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+      </div>
+      <!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <form method="post">
+          <h3 class="control-sidebar-heading">General Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Report panel usage
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Some information about this general settings option
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Allow mail redirect
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Other sets of options are available
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Expose author name in posts
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Allow the user to show his name in blog posts
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Show me as online
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Turn off notifications
+              <input type="checkbox" class="pull-right">
+            </label>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Delete chat history
+              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+            </label>
+          </div>
+          <!-- /.form-group -->
+        </form>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+    {% endblock %}
+  </aside>
+
+  
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+    {% endif %}
+
+
+<div id="content">
+  {% block content %}
+
+
+  {% endblock %}
+</div>
+
+{% block footer %}
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.1.0
+    </div>
+    BracketLine - <strong>Copyright &copy; 2017-2018 <a href="#"></a>.</strong> All rights
+    reserved.
+</footer>
+{% endblock %}
+
+
+
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="{% static 'clouderp/bower_components/jquery/dist/jquery.min.js' %}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{% static 'clouderp/bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'clouderp/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+<script src="{% static 'clouderpjs/plugins/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
+<!-- jquery-confirm JS  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
+<!-- js Render  -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.88/jsrender.min.js'></script> 
+
+<!-- Slimscroll -->
+<script src="{% static 'clouderp/bower_components/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+<!-- FastClick -->
+<script src="{% static 'clouderp/bower_components/fastclick/lib/fastclick.js' %}"></script>
+
+<!-- DataTables -->
+<script src="{% static 'clouderp/bower_components/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'clouderp/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+
+<script src="{% static 'clouderp/bower_components/chart.js/Chart.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'clouderp/js/main.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'clouderp/js/demo.js' %}"></script>
+<script src="{% static 'clouderp/js/select2.min.js' %}"></script>
+
+<script src="{% static 'clouderp/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+
+<!-- date-range-picker -->
+<script src="{% static 'clouderp/bower_components/moment/min/moment.min.js' %}"></script>
+<script src="{% static 'clouderp/bower_components/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+
+
+<script src="{% static 'group_js/plugin.js' %}"></script>
+
+<script src="{% static 'case_js/plugin.js' %}"></script>
+
+<script src="{% static 'company_js/plugin.js' %}"></script>
+
+<script src="{% static 'product_review_js/plugin.js' %}"></script>
+
+<script src="{% static 'consultancycomments_js/plugin.js' %}"></script>
+
+<script src="{% static 'post_comment_js/plugin.js' %}"></script>
+
+<script src="{% static 'pro_servicejs/plugin.js' %}"></script>
+
+<script src="{% static 'consultancyajax_js/plugin.js' %}"></script>
+
+<script src="{% static 'ledger_js/plugin.js' %}"></script>
+
+<script src="{% static 'journal_js/plugin.js' %}"></script>
+
+<script src="{% static 'daterange_js/plugin.js' %}"></script>
+
+
+
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false
+    })
+  })
+</script>
+
+
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(event){
+    $(document).on('click', '#like', function(event){
+      event.preventDefault();
+      var pk = $(this).attr('value');
+      $.ajax({
+        type : 'POST',
+        url  : '{% url "blog:like_post" %}',
+        data : {'blog_details_id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        datatype : 'json',
+        success : function(response){
+          $('#like-section').html(response['form'])
+          console.log($('#like-section').html(response['form']));
+        },
+        error : function(rs, e){
+          console.log(rs, responseText);
+        }
+
+      });
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(event){
+    $(document).on('click', '#like', function(event){
+      event.preventDefault();
+      var pk = $(this).attr('value');
+      $.ajax({
+        type : 'POST',
+        url  : '{% url "consultancy:like_question" %}',
+        data : {'consultancy_details_id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        datatype : 'json',
+        success : function(response){
+          $('#like-section-consultancy').html(response['form'])
+          console.log($('#like-section-consultancy').html(response['form']));
+        },
+        error : function(rs, e){
+          console.log(rs, responseText);
+        }
+
+      });
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(event){
+    $(document).on('click', '#likepost', function(event){
+      event.preventDefault();
+      var pk = $(this).attr('value');
+      $.ajax({
+        type : 'POST',
+        url  : '{% url "userprofile:like_post" %}',
+        data : {'post_details_id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        datatype : 'json',
+        success : function(response){
+          $('#like-section-post').html(response['form'])
+          console.log($('#like-section-post').html(response['form']));
+        },
+        error : function(rs, e){
+          console.log(rs, responseText);
+        }
+
+      });
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+      var searchForm = $("#search-form")
+      var searchInput = searchForm.find("[name='q']") // input name='q'
+      var typingTimer;
+      var typingInterval = 500 // .5 seconds
+      var searchBtn = searchForm.find("[type='submit']")
+
+      searchInput.keyup(function(event){
+      
+        clearTimeout(typingTimer)
+
+        typingTimer = setTimeout(perfomSearch, typingInterval)
+      })
+
+      searchInput.keydown(function(event){
+
+        clearTimeout(typingTimer)
+      })
+
+      // function displaySearching(){
+      //  searchBtn.addClass("disabled")
+      //  searchBtn.html("<i class='fa fa-spin fa-spinner'></i> Searching...")
+      // }
+
+      function performSearch(){
+        // displaySearching()
+        var query = searchInput.val()
+        setTimeout(function(){
+        window.location.href='/blog/result/?q=' + query
+        }, 1000)
+      }
+  })
+
+</script> 
+
+    </div>
+
+</div>
+
+    </div>
+
+
+
+
+         
+
+</body>
+</html>

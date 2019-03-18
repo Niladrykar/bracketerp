@@ -1,0 +1,27 @@
+{% for case in case_list %}
+  <tr>
+
+    <td><center><a href="{% url 'userprofile:case_details' pk=case.pk %}">{{ forloop.counter }}</a></center></td>
+
+    <td><center><a href="{% url 'userprofile:case_details' pk=case.pk %}">{{case.legal_case }}</a></center></td>
+
+    <td><a href="{% url 'userprofile:case_details' pk=case.pk %}">{{case.act }}</a></td>
+
+    <td><a href="{% url 'userprofile:case_details' pk=case.pk %}">{{case.location }}</a></td>
+
+    <td><a href="{% url 'userprofile:case_details' pk=case.pk %}">{{case.user_role }}</a></td>
+
+    <td>
+    <center>
+       <button class="btn btn-danger show-form-delete" data-url="{% url 'userprofile:casedelete' case.id %}">
+        <span class="glyphicon glyphicon-trash"></span>
+                              
+    </button> 
+    </center>
+    
+    </td>
+
+  </tr>
+
+{% endfor %}
+

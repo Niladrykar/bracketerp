@@ -1,0 +1,31 @@
+{% for service in services %}
+<tr>
+
+  <td><center><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.service_name}}</a></center></td>
+
+
+  <td><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.details}}</a></td>
+
+  <td><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.service_type}}</a></td>
+
+  <td><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.duration}}</a></td>
+
+   <td><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.service_mode}}</a></td>
+
+   <td><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.rate}}</a></td>
+
+  {% if service.User == user %}
+    <td>
+    <center>
+       <button class="btn btn-danger show-form-delete" data-url="{% url 'userprofile:servicedelete' service.id %}">
+        <span class="glyphicon glyphicon-trash"></span>
+                              
+    </button> 
+    </center>
+    
+    </td>
+  {% endif %}
+
+</tr>
+
+{% endfor %}

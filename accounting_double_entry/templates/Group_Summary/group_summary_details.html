@@ -1,0 +1,420 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+{% load mathfilters %}
+
+{% block title %}Group Summary{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+	 <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Group Details</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+           
+
+        
+        
+                {% if not selectdatefield_details %}
+
+                   <a type="button" class="btn btn-primary pull-right" href="{% url 'accounting_double_entry:datecreate' %}">Select Date Range</a>
+
+                {% else %} 
+              
+  
+                      <a type="button" class='btn btn-warning pull-right'  href="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">Update Date Range</a>
+
+                      <a class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a> 
+
+                 
+
+                {% endif %} 
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+            <a href="{% url 'accounting_double_entry:groupsummary' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Group Summary </a>
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="box box-info">
+
+<div id="printableArea">
+
+  <!--         CSS for not printing the urls in print preview
+ -->      <style>
+          @media print  
+          {
+          a[href]:after {
+          content: none !important;
+           }
+          @page {
+          margin-top: 0;
+          margin-bottom: 0;
+          }
+           body{
+          padding-top: 72px;
+          padding-bottom: 72px ;
+          }
+          }
+          </style>
+  
+  <div class="box-header with-border">
+              
+              <h2 class="box-title"><b>Group Summary</b></h2>
+              <h2><b><center>{{ group1_details.group_Name }}</center></b></h2>
+        
+          </div>
+
+          <div class="box-body table-responsive no-padding">
+
+          <style type="text/css">
+
+          .table-bordered td, .table-bordered th{
+            border-color: #bfbfbf !important;
+                    
+               }
+        </style>
+
+          <table class="table table-bordered table-hover">
+              <tr>
+                <th class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></th>
+                <th class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><center>Closing Balance</center></th>
+
+              </tr>
+          </table>
+
+            <table class="table table-bordered table-hover">
+
+              <tr>
+               <th class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><center>Particulars</center></th>
+                <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Debit</th>
+                <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Credit</th>
+                
+                  
+              </tr>
+    {% if group1_details.group_Name == 'Primary' %}
+
+            {% for group1 in primary_groups %}
+              <tr>
+
+                <th><center><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></center></th>
+
+              {% if group1.balance_nature == 'Debit' %}
+
+                {% if group1.closing > 0 %}
+                  <td>{{ group1.closing|floatformat:2|abs }}</td>
+                  <td></td>
+                {% else %}
+                  <td></td>
+                  <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                {% endif %}
+
+              {% else %}
+
+                {% if group1.closing > 0 %}
+                  <th></th>
+                  <td>{{ group1.closing|floatformat:2|abs }}</td>
+                {% else %}
+                  <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                  <th></th>
+                {% endif %}
+
+              {% endif %}
+
+
+              </tr>
+
+
+            {% endfor %}
+
+
+
+              {% for ledger1 in primary_ledgers %}
+                  <tr>
+
+                    <th><center><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}">{{ledger1.name}}</a></center></th>
+
+                    {% if ledger1.group1_Name.balance_nature == 'Debit' %}
+
+                      {% if ledger1.Closing_balance > 0 %}
+
+                        <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                        <td></td>
+
+                      {% else %}
+
+                        <td></td>
+                        <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                      {% endif %}
+
+                    {% else %}
+
+                      {% if ledger1.Closing_balance > 0 %}
+
+                        <td></td>
+                        <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                      {% else %}
+
+                        <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                        <td></td>
+
+                      {% endif %}
+
+                    {% endif %}
+                   
+                  </tr>
+
+              {% endfor %}
+
+
+    {% else %}
+
+
+
+            {% for group1 in group1_obj %}
+              <tr>
+
+                <th><center><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></center></th>
+
+              {% if group1.balance_nature == 'Debit' %}
+
+                {% if group1.closing > 0 %}
+                  <td>{{ group1.closing|floatformat:2|abs }}</td>
+                  <td></td>
+                {% else %}
+                  <td></td>
+                  <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                {% endif %}
+
+              {% else %}
+
+                {% if group1.closing > 0 %}
+                  <th></th>
+                  <td>{{ group1.closing|floatformat:2|abs }}</td>
+                {% else %}
+                  <td>(-){{ group1.closing|floatformat:2|abs }}</td>
+                  <th></th>
+                {% endif %}
+
+              {% endif %}
+
+
+              </tr>
+
+
+            {% endfor %}
+
+
+
+              {% for ledger1 in ledger1_obj %}
+                  <tr>
+
+                    <th><center><a href="{% url 'accounting_double_entry:ledgerdetailmonthly' pk=company_details.pk pk2=ledger1.pk pk3=selectdatefield_details.pk %}">{{ledger1.name}}</a></center></th>
+
+                    {% if ledger1.group1_Name.balance_nature == 'Debit' %}
+
+                      {% if ledger1.Closing_balance > 0 %}
+
+                        <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                        <td></td>
+
+                      {% else %}
+
+                        <td></td>
+                        <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                      {% endif %}
+
+                    {% else %}
+
+                      {% if ledger1.Closing_balance > 0 %}
+
+                        <td></td>
+                        <td><em>{{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                      {% else %}
+
+                        <td><em>(-){{ ledger1.Closing_balance|floatformat:2|abs }}</em></td>
+                        <td></td>
+
+                      {% endif %}
+
+                    {% endif %}
+                   
+                  </tr>
+
+              {% endfor %}
+
+    {% endif %}
+
+              {% if group1_details.group_Name == 'Primary' %}
+
+                <tr>
+                      <th class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><center>Diffrence in Opening Balance</center></th>
+
+                      {% if debitside < creditside %}
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ creditside|sub:debitside|floatformat:2|abs }}</th>
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></th>
+
+                      {% else %}
+
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></th>
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ debitside|sub:creditside|floatformat:2|abs }}</th>
+
+                      {% endif %}
+
+                
+                    
+                </tr>
+
+              {% endif %} 
+
+              {% if group1_details.group_Name == 'Primary' %}
+
+                <tr>
+                      <th class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><center>Grand Total</center></th>
+
+                      {% if debitside < creditside %}
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ debitside|add:creditside|sub:debitside|floatformat:2|abs }}</th>
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ creditside|floatformat:2|abs }}</th>
+
+                      {% else %}
+
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ debitside|floatformat:2|abs }}</th>
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ creditside|add:debitside|sub:creditside|floatformat:2|abs }}</th>
+
+                      {% endif %}               
+                    
+                </tr>
+
+              {% else %}
+
+                  <tr>
+                   <th class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><center>Grand Total</center></th>
+
+
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ debitside|floatformat:2|abs }}</th>
+                        <th class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ creditside|floatformat:2|abs }}</th>
+
+                    
+                      
+                  </tr>
+
+
+              {% endif %}
+
+
+              
+
+            </table>
+          </div>
+
+</div>
+					
+
+                            <div class="box-footer">
+                    
+                    <div class="pull-left">
+                    <p>Showing item {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }} entries</p>
+
+                    <br>
+
+                    <input class='btn btn-default' type="button" onclick="printDiv('printableArea')" value="Print" />
+                  </div>
+
+                  <div class="pull-right">
+                        {% if is_paginated %}
+                            <ul class="pagination">
+                             {% if page_obj.has_previous %}
+                                <li><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                              {% else %}
+                                <li class="disabled"><span>Previous</span></li>
+                              {% endif %}
+                              {% for i in paginator.page_range %}
+                                  {% if page_obj.number == i %}
+                                     <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                  {% else %}
+                                      <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                  {% endif %}
+                              {% endfor %}
+                              {% if page_obj.has_next %}
+                                  <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                              {% else %}
+                                  <li class="disabled"><span>Next</span></li>
+                              {% endif %}
+                          </ul>
+                      {% endif %}
+                    </div>
+                  </div>
+
+				</div>
+
+
+				</div>
+			</div>
+		
+	</section>
+</div>
+
+
+<script type="text/javascript">
+  
+  function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+  }
+</script> 
+
+{% endblock %}

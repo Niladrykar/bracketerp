@@ -1,0 +1,20 @@
+{% for service in services %}
+<tr>
+
+  <td><center><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.service_name}}</a></center></td>
+
+
+  <td><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.details}}</a></td>
+
+  <td><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.service_type}}</a></td>
+
+  <td><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.duration}}</a></td>
+
+   <td><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.service_mode}}</a></td>
+
+   <td><a href="{% url 'userprofile:service_details' pk=service.pk %}">{{service.rate}}</a></td>
+
+
+</tr>
+
+{% endfor %}

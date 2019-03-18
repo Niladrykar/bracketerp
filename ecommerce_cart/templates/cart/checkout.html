@@ -1,0 +1,281 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+{% load mathfilters %}
+{% block title %}Checkout{% endblock %}
+
+
+{% block content %}
+
+<div class="content-wrapper">
+
+
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Checkout</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Group</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+
+
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+            <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+            <a href="{% url 'blog:allbloglist' %}" class="btn btn-primary" role="button">APIs</a>
+
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'blog:bloglist' %}" class="btn btn-info" role="button">My Subscriptions</a>
+            
+              
+
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            
+            <div id="printableArea">
+              
+<div class="box-header with-border">
+            
+      <h3 class="box-title">Checkout</h3>
+           
+  </div>
+            <!-- /.box-header -->
+  <div class="box-body">
+     <section class="invoice">
+      <!-- title row -->
+      {% for order in order_list %}
+        {% if forloop.last %}
+          <div class="row">
+            <div class="col-xs-12">
+              <h2 class="page-header">
+                BracketLine Pvt Ltd
+                <small class="pull-right">Date: {{order.date_ordered}}</small>
+              </h2>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- info row -->
+          <div class="row invoice-info">
+
+            <div class="col-sm-4 invoice-col">
+              Seller
+              <address>
+                <strong>BracketLine Pvt Ltd</strong><br>
+                P.N.B.Building, Hill Cart Rd, Siliguri<br>
+                State : West Bengal<br>
+                Phone : 097330 25982<br>
+                
+              </address>
+            </div>
+            <div class="col-sm-4 invoice-col">
+              Buyer
+              <address>
+                <strong>{{order.owner.Name}}</strong><br>
+                {{order.owner.Permanant_Address}}<br>
+                 State : {{order.owner.State}}<br>
+                 Phone : {{order.owner.Phone_no}}<br>
+              </address>
+            </div>
+            <!-- /.col -->
+            
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+              <b>Invoice #{{order.ref_code}}</b><br>
+              <br>
+              <b>Order ID:</b> {{order.id}}<br>
+              <b>Payment Due:</b> ----<br>
+              <b>Account:</b> ----
+            </div>
+            <!-- /.col -->
+          </div>
+        {% endif %}
+      {% endfor %}
+      <!-- /.row -->
+
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><center>Sl No</center></th>
+                <th><center>Products</center></th>
+                <th><center>Valid upto</center></th>
+                <th><center>Price</center></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for item in order.get_cart_items %}
+
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td><center>{{ item.product.title }}</center></td>
+
+                <td><center>12 months</center></td>
+                                      
+                <td><center>{{ item.product.price }}</center></td>
+                
+              </tr>
+
+
+            {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6">
+          <p class="lead">Payment Methods:</p>
+          <img src="{% static 'clouderp/dist/img/credit/visa.png' %}" alt="Visa">
+          <img src="{% static 'clouderp/dist/img/credit/mastercard.png' %}" alt="Mastercard">
+          <img src="{% static 'clouderp/dist/img/credit/american-express.png' %}" alt="American Express">
+          <img src="{% static 'clouderp/dist/img/credit/paypal2.png' %}" alt="Paypal">
+
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
+            dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+          </p>
+          <p class="lead"><strong>Declaration:</strong></p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            We declare that this invoice shows the actual price of the goods described and all the paritculars are true and correct.
+          </p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            Subjected to local jurisdiction.
+          </p>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+          
+
+          <div class="table-responsive">
+            <table class="table">
+              
+                {% if order.get_cart_total != None %}
+                  <tr>
+                    <th style="width:50%">Subtotal:(&#8377;)</th>
+                    <td>{{ order.get_cart_total }}</td>
+                  </tr>
+                  {% if company_details.State == purchase_details.State %}
+                    <tr>
+                      <th style="width:50%">CGST:(&#8377;)</th>
+                      <td>9.0%</td>
+                    </tr>
+                    <tr>
+                      <th style="width:50%">SGST:(&#8377;)</th>
+                      <td>9.0%</td>
+                    </tr>
+                  {% else %}
+                    <tr>
+                      <th style="width:50%">IGST:(&#8377;)</th>
+                      <td>9.0%</td>
+                    </tr>
+                  {% endif %}
+                  <tr>
+                    <th style="width:50%">Total:(&#8377;)</th>
+                    <td>{{ order.get_cart_total|mul:18|div:100|add:order.get_cart_total|floatformat:2 }}</td>
+                  </tr>
+                {% endif %}
+            </table>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+  </div> 
+
+            </div>
+            <!-- printablearea -->
+       <!-- form start -->
+   
+
+      <!-- this row will not appear when printing -->
+      <div class="box-footer">
+        
+          <input class='btn btn-default' type="button" onclick="printDiv('printableArea')" value="Print" />
+
+
+          {% if order.get_cart_items %}
+              <a href="{% url 'ecommerce_cart:update_records' %}" class="pull-right btn btn-primary">Pay  <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+          {% endif %}
+
+       
+      </div>
+ 
+          </div>
+
+        </div>
+</div>
+
+
+  <!-- /.container -->
+</section>
+</div>
+
+  <script>
+  function confirm_delete(){
+    return confirm("Do you want to remove this item from cart?");
+  }
+  </script>
+
+  <script type="text/javascript">
+  
+  function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+  }
+</script> 
+
+{% endblock %}

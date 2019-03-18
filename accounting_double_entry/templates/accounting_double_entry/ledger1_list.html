@@ -1,0 +1,202 @@
+{% extends "clouderp/base.html" %}
+{% load mathfilters %}
+
+
+{% block title %}Ledgers{% endblock %}
+
+
+{% block content %}
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+			<section class="content-header">
+				<!-- <div class="col-md-12 col-md-offset-4"> -->
+					<h1>
+            		<strong>Company : {{company_details.Name}}</strong>
+					</h1>
+								<ol class="breadcrumb">
+			       					 <li><a href="#"><i class="fa fa-dashboard"></i> Company Details</a></li>
+			       					 <!-- <li><a href="#">Company list</a></li> -->
+			     				   <li class="active">Ledger List</li>
+			      </ol>
+				<!-- </div> -->
+			</section>
+
+<section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+			<div class="col-xs-12">
+          <div class="box box-default">
+					<div class="box-body">
+
+			<a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+              {% if not selectdatefield_details %}
+
+                  
+                     <button class="btn btn-primary show-form pull-right" data-url="{% url 'accounting_double_entry:datecreate' %}">
+                      <span class="glyphicon glyphicon-plus"></span>
+                        Select Date Range
+                      </button>
+
+                {% else %} 
+              
+  
+                            <button  class="btn btn-warning show-form-update pull-right" data-url="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                              Update Date Range 
+                            </button>
+
+                      <a id="book-table-date" class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a>  
+
+                 
+
+                {% endif %}
+				
+				
+				
+				</div>
+			
+			</div>
+		
+		</div>
+
+</div>
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+            <a href="{% url 'accounting_double_entry:ledgerlist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Ledger </a>
+            <a href="{% url 'accounting_double_entry:ledgercreate' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Create Ledger</a>
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+								
+<div class="row">
+        <div class="col-xs-12">
+        {% if ledger1_list %}
+                <div class="box box-info">
+                  <div class="box-header">
+                    <h3 class="box-title">Ledger list details</h3>
+
+                    <div class="box-tools">
+                      <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                        <div class="input-group-btn">
+                          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body table-responsive no-padding">
+                    <table class="table table-bordered table-striped" id="book-table">
+
+                      <thead>
+                        
+                        <tr>
+                        <th>Ledger ID</th>
+                        <th>Ledger Name</th>
+                        <th>Date Created</th>
+                        <th>Under Group</th>
+                        <th>Balance Nature</th>
+                        <th>Opening Balance</th>
+                        <th>Closing Balance</th>
+                        <th>Delete</th>
+                      </tr>
+
+                      </thead>
+
+                      <tbody>
+                        {% include "accounting_double_entry/ledger_list_2.html" %}
+                      </tbody>
+
+                      
+
+
+                     
+                     
+                    </table>
+
+                    <div class="box-footer">
+                    <br>
+                    <div class="pull-left">
+                    <p>Showing item {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }} entries</p>
+                  </div>
+
+                  <div class="pull-right">
+                        {% if is_paginated %}
+                            <ul class="pagination">
+                             {% if page_obj.has_previous %}
+                                <li><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                              {% else %}
+                                <li class="disabled"><span>Previous</span></li>
+                              {% endif %}
+                              {% for i in paginator.page_range %}
+                                  {% if page_obj.number == i %}
+                                     <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                  {% else %}
+                                      <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                  {% endif %}
+                              {% endfor %}
+                              {% if page_obj.has_next %}
+                                  <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                              {% else %}
+                                  <li class="disabled"><span>Next</span></li>
+                              {% endif %}
+                          </ul>
+                      {% endif %}
+                    </div>
+                  </div>
+                  </div>
+                 
+                </div>
+        {% else %}
+              <div class="col-xs-12 alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                  No ledger created !
+              </div>
+        {% endif %}
+                
+        </div>
+
+      </div>
+</section>
+
+
+  <div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+   <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div> 
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "clouderp/base.html" %}
+
+
+{% block title %}Delete Journal{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+	<div class="container">
+		<section class="content-header">
+			<div class="col-md-12">
+			<h1>
+			<strong>Delete {{ multijournal_details.Total_Debit }}?</strong>
+			</h1>
+			</div>
+		</section>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="submit" class="btn btn-danger" value="Delete">
+  <a href="{% url 'accounting_double_entry:multijournaldetail' pk=company_details.pk pk2=multijournal_details.pk pk3=selectdatefield_details.pk %}">Cancel</a>
+
+</form>
+	</div>
+</div>
+
+{% endblock %}

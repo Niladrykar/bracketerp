@@ -1,0 +1,194 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+{% load mathfilters %}
+
+{% block title%}Company List{% endblock %}
+
+
+
+{% block content %}
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+			<section class="content-header">
+				<!-- <div class="col-md-12 col-md-offset-4"> -->
+					<h1>
+						<strong>Company List</strong>
+					</h1>
+								<ol class="breadcrumb">
+			       					 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			       					 <!-- <li><a href="#">Company list</a></li> -->
+			     				   <li class="active">Company list</li>
+			      </ol>
+				<!-- </div> -->
+			</section>
+
+<section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="box box-default">
+					<div class="box-body">
+
+			         <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+
+                {% if not selectdates %}
+
+                     <button class="btn btn-primary show-form pull-right" data-url="{% url 'accounting_double_entry:datecreate' %}">
+                      <span class="glyphicon glyphicon-plus"></span>
+                        Select Date Range
+                      </button>
+
+                {% else %} 
+
+              <table id="book-table-date">
+                <tbody>
+                  {% include "company/company_list_2.html" %}
+                </tbody>
+                
+              </table> 
+                
+              
+                
+             
+                
+
+                {% endif %}                 
+          		
+          		</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+								
+<div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          
+          {% if company_list %}
+              <div class="box box-info">
+                <div class="box-header">
+                  <h3 class="box-title">Company list details</h3>
+
+                  <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                      <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                      <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-bordered table-hover" id="book-table">
+
+                  <thead>
+                    <tr>                      
+                      <th>Name</th>
+                      <th>Date Created</th>
+                      <th>Capital</th>
+                      <th>Detail</th>
+                      <th>Assets</th>
+                      <th>Last updated</th>
+                      <th>P/L</th>
+                      <th>Delete Company</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    
+                    {% include "company/companies.html" %}
+                  </tbody>
+
+
+
+                   
+                      
+                      <!-- <td><span class="label label-warning">Pending</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td> -->
+                    
+                    <!-- <tr>
+                      <td>657</td>
+                      <td>Bob Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="label label-primary">Approved</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>175</td>
+                      <td>Mike Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="label label-danger">Denied</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr> -->
+                  </table>
+                </div>
+
+
+
+
+
+                {% if is_paginated %}
+                    <ul class="pagination">
+                       {% if page_obj.has_previous %}
+                          <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                          <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in paginator.page_range %}
+                            {% if page_obj.number == i %}
+                               <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                            <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+               </div>
+          {% else %}
+          
+                <div class="col-xs-12 alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                  No company details created !
+              </div>
+          {% endif %}  
+         
+          <!-- /.box -->
+        </div>
+
+      </div>
+</section>
+
+</div>
+
+
+  <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,380 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+
+{% block title %}Find Professional{% endblock %}
+
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+
+
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Find Professional</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Group</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Filter Category
+                    <span class="fa fa-caret-down"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Most Recent</a></li>
+                    <li><a href="#">Most Popular</a></li>
+                    <li><a href="#">Most Helpful</a></li>
+                    
+                    
+                  </ul>
+            <a href="" class="btn btn-success" role="button">Consultants</a>
+            <a href="" class="btn btn-info" role="button">Service Providers</a>
+            <a href="" class="btn btn-primary" role="button">Experts</a>
+
+
+            
+                  
+          <div class='pull-right'>
+            <a href="" class="btn btn-info" role="button">Previously Interacted</a>
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+
+</div>
+
+</div>
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      
+
+          <form method='GET' class="form-horizontal" id="search-form" action="{% url 'userprofile:search' %}">
+
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
+              <input  class="form-control" name="q" value="{{request.GET.q}}" placeholder="Search Professional by name / location / category / Services">
+             
+            </div>
+        
+          <div >
+
+            <span class="col-lg-1 col-md-1 col-sm-1 col-xs-2 input-group-btn">
+              <button type="submit" class="btn btn-info pull-right">Go</button>
+            </span>
+
+          </div>
+
+
+        </form>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>150</h3>
+
+              <p>New Orders</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+              <p>Bounce Rate</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>44</h3>
+
+              <p>User Registrations</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>65</h3>
+
+              <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+
+
+
+
+
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+        
+              <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Professionals</h3>
+
+                  <div class="box-tools pull-right">
+                    <span class="label label-danger">{{ professional_count }} Professional Member{{ professional_count|pluralize }}</span>
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <ul class="users-list clearfix">
+                  {% for prof in users %}
+                    <li>
+                    {% if prof.image %}
+                      <img class="profile-user-img img-responsive img-circle" src="{{ prof.image.url }}/" alt="User profile picture">
+                    {% else %}
+                        <img class="profile-user-img img-responsive img-circle" src="{% static 'userprofile/download (1).jpg' %}">
+                    {% endif %}
+                      <a data-toggle="modal" data-target="#{{ prof.pk }}">{{ prof.Name }}</a>
+                      <span class="users-list-date">{{ prof.City }}</span>
+                      <span class="users-list-date">{{ prof.State }}</span>
+                    </li>
+
+                        <div class="modal fade" id="{{ prof.pk }}">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                          <div class="box box-widget widget-user-2">
+                            <!-- Add the bg color to the header using any of the bg-* classes -->
+                            <div class="widget-user-header bg-yellow">
+                              <div class="widget-user-image">
+                            {% if prof.image %}
+                              <img class="profile-user-img img-responsive img-circle" src="{{ prof.image.url }}/" alt="User profile picture">
+                            {% else %}
+                                <img class="profile-user-img img-responsive img-circle" src="{% static 'userprofile/download (1).jpg' %}">
+                            {% endif %}
+                              </div>
+                              <!-- /.widget-user-image -->
+                              <h3 class="widget-user-username">{{ prof.Name }}</h3>
+                              <h5 class="widget-user-desc">{{ prof.user_type }}</h5>
+                            </div>
+                            <div class="box-footer no-padding">
+                              <ul class="nav nav-stacked">
+                                <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
+                                <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
+                                <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
+                                <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <!-- /.widget-user -->
+
+
+                            </div>
+                            <!-- /.modal-content -->
+                          </div>
+                          <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                  {% endfor %}
+                   
+                  </ul>
+                  <!-- /.users-list -->
+
+                          <!-- Pagination -->
+                    <ul class="text-center">
+                          {% if users.has_other_pages %}
+                              <ul class="pagination">
+                               {% if users.has_previous %}
+                                  <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                  <li class="disabled"><span>&laquo;</span></li>
+                                {% endif %}
+                                {% for i in users.paginator.page_range %}
+                                    {% if users.number == i %}
+                                       <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                    {% else %}
+                                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if users.has_next %}
+                                    <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                    <li class="disabled"><span>&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                  </ul>
+                </div>
+
+              </div>
+              <!--/.box -->
+
+        
+
+      </div>
+
+          
+
+</div>
+
+      <div class="row">
+
+          <!-- Info Boxes Style 2 -->
+          <div class="col-lg-3 col-xs-6">
+             <div class="info-box bg-yellow">
+            <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Inventory</span>
+              <span class="info-box-number">5,200</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 50%"></div>
+              </div>
+              <span class="progress-description">
+                    50% Increase in 30 Days
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          </div>
+
+          <div class="col-lg-3 col-xs-6">
+          <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Mentions</span>
+              <span class="info-box-number">92,050</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 20%"></div>
+              </div>
+              <span class="progress-description">
+                    20% Increase in 30 Days
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          </div>
+
+          <div class="col-lg-3 col-xs-6">
+          <div class="info-box bg-red">
+            <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Downloads</span>
+              <span class="info-box-number">114,381</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 70%"></div>
+              </div>
+              <span class="progress-description">
+                    70% Increase in 30 Days
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          </div>
+
+            <div class="col-lg-3 col-xs-6">
+          <div class="info-box bg-aqua">
+            <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Direct Messages</span>
+              <span class="info-box-number">163,921</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 40%"></div>
+              </div>
+              <span class="progress-description">
+                    40% Increase in 30 Days
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          </div>
+      </div>
+      <!-- /.row -->
+
+
+</section>
+</div>
+ 
+
+{% endblock %}

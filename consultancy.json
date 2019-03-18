@@ -1,0 +1,48 @@
+[
+{
+  "model": "consultancy.consultancy",
+  "pk": 1,
+  "fields": {
+    "User": 1,
+    "Date": "2018-09-26T13:14:29.861Z",
+    "Questions": "What is my gst number?",
+    "like": [
+      10
+    ]
+  }
+},
+{
+  "model": "consultancy.consultancy",
+  "pk": 3,
+  "fields": {
+    "User": 10,
+    "Date": "2018-09-26T13:45:35.336Z",
+    "Questions": "Refund for merchant exports against purchase at 0.1%?",
+    "like": [
+      1,
+      10,
+      18
+    ]
+  }
+},
+{
+  "model": "consultancy.answer",
+  "pk": 7,
+  "fields": {
+    "User": 10,
+    "Questions": 3,
+    "text": "yes!",
+    "Date": "2019-02-02T14:16:07.809Z"
+  }
+},
+{
+  "model": "consultancy.answer",
+  "pk": 10,
+  "fields": {
+    "User": 18,
+    "Questions": 3,
+    "text": "no",
+    "Date": "2019-02-04T09:43:43.043Z"
+  }
+}
+]

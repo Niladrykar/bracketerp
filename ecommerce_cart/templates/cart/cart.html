@@ -1,0 +1,253 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+{% load mathfilters %}
+{% block title %}Cart{% endblock %}
+
+
+{% block content %}
+
+<div class="content-wrapper">
+
+
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Cart</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Group</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+
+
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+            <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+            <a href="{% url 'blog:allbloglist' %}" class="btn btn-primary" role="button">APIs</a>
+
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'blog:bloglist' %}" class="btn btn-info" role="button">My Subscriptions</a>
+            
+              
+
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+
+
+
+                <div class="row">
+                <div class="col-xs-12">
+              <div class="box box-info">
+             <div class="box-header">
+                  <h3 class="box-title"><strong>Cart</strong> </h3>
+
+                </div>
+
+                  <div class="box-body table-responsive no-padding">
+                    <table id="example1" class="table table-hover">
+                
+               
+                  <tr>
+                    <th><center>Sl No</center></th>
+                    <th><center>Products</center></th>
+                    <th><center>Valid upto</center></th>
+                    <th><center>Price</center></th>
+                    <th><center>Delete Products from cart</center></th>
+                  </tr>
+               
+
+                
+                  {% for item in order.get_cart_items %}
+                    
+                    <tr>
+                                            
+                      <td><center>{{ forloop.counter }}</center></td>
+
+                                            
+                      <td><center>{{ item.product.title }}</center></td>
+
+                      <td><center>12 months</center></td>
+                                            
+                      <td><center>{{ item.product.price }}</center></td>
+                                            
+
+
+                      <td>
+                        <center><a href="{% url 'ecommerce_cart:delete_item' item.id %}" data-balloon="remove this item from cart" class="text-danger btn btn-danger" onclick="return confirm_delete();">
+                            <i class="fa fa-trash"></i>
+                          </a></center>
+
+                        </td>     
+                                          
+                    </tr>
+
+
+                  {% empty %}
+
+                          <tr>
+                            <td colspan= 3> You have not added any items yet.</td>
+                          </tr>
+
+                                        
+
+                  {% endfor %}
+                
+                
+
+                  
+              </table>
+                  </div>
+
+
+            </div>
+                </div>
+
+
+
+
+    </div>
+
+
+
+    <!-- /.row -->
+
+
+    <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Offers</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Coupon Code</label>
+
+                  <div class="col-xs-9">
+                    <input type="" class="form-control"  placeholder="CODE1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Professional referral code</label>
+
+                  <div class="col-xs-9">
+                    <input  class="form-control" placeholder="REFERRAL1">
+                  </div>
+                </div>
+               
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-default">Remove</button>
+                <button type="submit" class="btn btn-info pull-right">Apply</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+          
+          <div class="box box-info">
+          <div class="table-responsive">
+            <table class="table">
+
+                {% if order.get_cart_total != None %}
+                  <tr>
+                    <th style="width:50%">Subtotal:(&#8377;)</th>
+                     <td><strong></strong>{{ order.get_cart_total }}</td>
+                  </tr>
+                  {% if company_details.State == purchase_details.State %}
+                    <tr>
+                      <th style="width:50%">CGST:(&#8377;)</th>
+                      <td>9.0%</td>
+                    </tr>
+                    <tr>
+                      <th style="width:50%">SGST:(&#8377;)</th>
+                      <td>9.0%</td>
+                    </tr>
+                  {% else %}
+                    <tr>
+                      <th style="width:50%">IGST:(&#8377;)</th>
+                      <td></td>
+                    </tr>
+                  {% endif %}
+                  <tr>
+                    <th style="width:50%">Total:(&#8377;)</th>
+                    <td>{{ order.get_cart_total|mul:18|div:100|add:order.get_cart_total|floatformat:2 }}</td>
+                  </tr>
+                {% endif %}
+
+
+            </table>
+            <div class="box-footer">
+              <tr>
+              <td colspan=1>
+                <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-warning">
+                  {% if order.get_cart_items %}Add more Products{% else %}Add Items to Cart {% endif %}
+                </a> 
+              </td>
+              <td colspan=2>
+                {% if order.get_cart_items %}
+                  <a href="{% url 'ecommerce_cart:checkout' %}" class="pull-right btn btn-primary">Proceed To Checkout  <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                {% endif %}
+              </td>
+            </tr>
+            </div>
+          </div>
+          </div>
+
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+  <!-- /.container -->
+</section>
+</div>
+
+  <script>
+  function confirm_delete(){
+    return confirm("Do you want to remove this item from cart?");
+  }
+  </script>
+
+{% endblock %}

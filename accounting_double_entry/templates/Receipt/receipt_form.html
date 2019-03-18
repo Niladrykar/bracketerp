@@ -1,0 +1,237 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    {% if not form.instance.pk %}
+    Create Receipt
+    {% else %}
+    Update Receipt
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+
+
+<!-- <div class="container"> -->
+      <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Simple Unit</li>
+            </ol>
+        <!-- </div> -->
+
+         {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+
+                {% if not selectdatefield_details %}
+
+                   <a type="button" class="btn btn-primary pull-right" href="{% url 'accounting_double_entry:datecreate' %}">Select Date Range</a>
+
+                {% else %} 
+              
+  
+                      <a type="button" class='btn btn-warning pull-right'  href="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">Update Date Range</a>
+
+                      <a class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a> 
+
+                 
+
+                {% endif %}     
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+        <a href="{% url 'accounting_double_entry:create' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-primary" role="button">Create Journal</a>
+
+        <a href="{% url 'stockkeeping:purchasecreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-success" role="button">Create Purchase Invoice</a>
+
+          
+        <a href="{% url 'stockkeeping:salescreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Sales Invoice</a>
+
+
+        <a href="" class="btn btn-success pull-right" role="button">Upload via Excel</a>
+        <a href="" class="btn btn-info pull-right" role="button">Upload via Image</a>
+        <a href="" class="btn btn-warning pull-right" role="button">Multiple Image Upload</a>
+                  
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box">
+            <div class="box-header with-border">
+            {% if not form.instance.pk %}
+              <h3 class="box-title"><strong>Create Receipt</strong></h3>
+            {% else %}
+              <h3 class="box-title"><strong>Update Receipt</strong></h3>
+            {% endif %}
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form method="POST" class="form-horizontal">
+
+            {% csrf_token %}
+            
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-success">
+              
+              <div class="box-body form-responsive no-padding">
+
+                <br>
+                 <br>
+                <div class="col-md-2">  
+
+                    <div class="form-group">
+                       <label for="PAN1" class="col-md-4 control-label">Account<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                       <div class="col-md-8">
+                        {{ form.account }}
+                      </div>
+                    </div> 
+
+                </div> 
+
+
+                 <div class="col-md-10">
+
+                    <div class="form-group">
+                       <label for="State1" class="col-md-4 control-label">Date<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                       <div class="col-md-8">
+                        {{form.date}}
+                      </div>
+                    </div> 
+
+                     
+                   
+                 </div>
+
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-success">
+
+              <div class="box-body table-responsive no-padding">
+                <table class="table">
+                    {{ receipts.management_form }}
+
+                        <thead>
+                        <tr>
+                          <th class="col-md-6">Particulars<i class="material-icons" style="font-size:16px;color:red">*</i></th>
+                          <th class="col-md-6">Amount<i class="material-icons" style="font-size:16px;color:red">*</i></th>
+                        </tr>
+                        </thead>
+
+                    {% for form in receipts.forms %}
+                      
+                        <tr class='{% cycle "row1" "row2" %}  formset_row'>
+                          <td class="col-md-6">{{ form.id }} {{ form.particular}}</td>
+                          <td class="col-md-6">{{ form.amount}}</td>
+                        </tr>  
+                      
+                    {% endfor %}
+                </table>
+                
+              </div>
+
+             
+            </div>
+          </div>
+        </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+               <button class="btn btn-default" type="reset" value="Reset">Reset</button>
+                {% if not form.instance.pk %}
+                <button type="submit" class="btn btn-info pull-right" value="Submit">Create</button>
+                {% else %}
+                <button type="submit" class="btn btn-info pull-right" value="Submit">Update</button>
+                {% endif %}
+
+                
+             </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+        </div>
+        </div>
+
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{% static 'formset/jquery.formset.js' %}"></script>
+
+<script type="text/javascript">
+    $('.formset_row').formset({
+        addText: 'add receipt',
+        deleteText: 'remove',
+        prefix: 'receipts'
+    });
+</script>
+
+</section>
+</div>
+
+    
+  
+
+{% endblock %}

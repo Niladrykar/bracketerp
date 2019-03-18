@@ -1,0 +1,224 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+{% block title %}Update Profile{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+      <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Update Your Profile</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Profile</li>
+                     <li class="active">Profile Update</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+
+
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+            <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+            <a href="{% url 'ecommerce_integration:apilist' %}" class="btn btn-primary" role="button">APIs</a>
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'ecommerce_integration:subscribedproductlist' %}" class="btn btn-info" role="button">My Subscriptions</a>
+            {% if user.has_usable_password %}
+              <a href="{% url 'accounts:change_password' %}" class="btn btn-success" role="button">Change Password</a>
+            {% endif %}
+ 
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+            
+              <h3 class="box-title">Update Your Profile</h3>
+           
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form method="POST" class="form-horizontal" enctype="multipart/form-data">
+              
+            {% csrf_token %}
+            
+              <div class="box-body">
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Full Name</label>
+                  
+                    <div class="col-sm-10">
+                          
+                        
+                        {{ form.Full_Name }}
+                      
+                    </div>
+
+                 
+
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Type</label>
+                  
+                    <div class="col-sm-10">
+                          
+                        
+                        {{ form.user_type }}
+                      
+                    </div>
+
+                 
+
+                </div>
+
+                 
+              
+               
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Username</label>
+
+                  <div class="col-sm-10">
+                    {{ user.get_username }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">E-mail Address</label>
+
+                  <div class="col-sm-10">
+                    {{ form.E_mail }}
+                  </div>
+                </div>
+                
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Permanant Address</label>
+
+                  <div class="col-sm-10">
+                    {{ form.Permanant_Address }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">District</label>
+
+                  <div class="col-sm-10">
+                    {{ form.District }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">City</label>
+
+                  <div class="col-sm-10">
+                    {{ form.City }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">State</label>
+
+                  <div class="col-sm-10">
+                    {{ form.State }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Country</label>
+
+                  <div class="col-sm-10">
+                    {{ form.Country }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Phone-no</label>
+
+                  <div class="col-sm-10">
+                     {{ form.Phone_no }}
+                  </div>
+                </div>
+
+                
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Basic Info</label>
+
+                  <div class="col-sm-10">
+                     {{ form.basic_info}}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-4 control-label">Profile Picture</label>
+
+                  <div class="col-sm-8">
+                     {{ form.image }}
+                  </div>
+                </div>
+                
+                
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+               
+              
+                 <button type="submit" class="btn btn-info pull-right" value="Submit">Update Profile</button>
+                
+
+                
+             </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+
+
+
+</div>
+</div>
+
+
+
+</section>
+</div>
+
+		
+	
+
+{% endblock %}

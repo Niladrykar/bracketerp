@@ -1,0 +1,229 @@
+{% extends "clouderp/base.html" %}
+
+
+{% block title %}Journals{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company Details</li>
+                     <li class="active">Create Journal</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+            {% if not selectdatefield_details %}
+
+                   <a type="button" class="btn btn-primary pull-right" href="{% url 'accounting_double_entry:datecreate' %}">Select Date Range</a>
+
+                {% else %} 
+              
+  
+                      <a type="button" class='btn btn-warning pull-right'  href="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">Update Date Range</a>
+
+                      <a class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a> 
+
+                 
+
+                {% endif %} 
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+            <a href="{% url 'accounting_double_entry:multijournallist' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-success" role="button">Select MultiJournal </a>
+            <a href="{% url 'accounting_double_entry:multijournalcreate' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Create MultiJournal</a>
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+            
+              <h3 class="box-title"><b>Journal Details</b></h3>
+           
+            </div>
+
+    
+
+
+
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box box-info">
+                    <style type="text/css">
+
+                    .table-bordered td, .table-bordered th{
+                        border-color: #bfbfbf !important;
+                    
+                         }
+                    </style>
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-bordered">
+
+                            <tr>
+                                <td>
+                                   <table class="table table-hover">
+									<tr>
+										<th></th>
+										
+										
+										<th><center>Particulars</center></th>
+										<th><center>Lf</center></th>
+										<th><center>Debit</center></th>
+									</tr>
+
+                  {% for multijournal in Multijournals %}
+										<tr>
+										
+											<th><center><strong>By</strong></center></th>
+											
+											
+											<td><center>{{multijournal.By}}</center></td>
+											<td><center>{{multijournal.id}}</center></td>
+											<td><center>{{multijournal.Debit}}</center></td>
+										
+										</tr>
+                  {% endfor %}
+							   
+
+                   <tr>
+                  
+                    
+                    <th><center></center></th>
+                    <th><center>Total</center></th>
+                    <th><center></center></th>
+                    <th><center>{{multijournal_details.Total_Debit}}</center></th>
+                  </tr>
+
+							</td>
+						</tr>
+					</table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+
+                <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box box-info">
+                    <style type="text/css">
+
+                    .table-bordered td, .table-bordered th{
+                        border-color: #bfbfbf !important;
+                    
+                         }
+                    </style>
+
+                    <div class="box-body table-responsive no-padding">
+              <table class="table table-bordered">
+
+                            <tr>
+                                <td>
+                <table class="table table-hover">
+									<tr>
+										<th><center></center></th>
+										
+										
+										<th><center>Particulars</center></th>
+										<th><center>Lf</center></th>
+										<th><center>Credit</center></th>
+									</tr>
+                  
+                  {% for multijournal in Multijournals %}
+  									<tr>
+  										<th><center><strong>To</strong></center></th>
+  			
+  									
+  										<td><center>{{multijournal.To}}</center></td>
+  										<td><center>{{multijournal.id}}</center></td>
+  										<td><center>{{multijournal.Credit}}</center></td>
+  									</tr>
+                  {% endfor %}
+
+                   <tr>
+                    
+                    
+                    <th><center></center></th>
+                    <th><center>Total</center></th>
+                    <th><center></center></th>
+                    <th><center>{{multijournal_details.Total_Credit}}</center></th>
+                  </tr>
+									
+								</table>
+             </td>
+            </tr>
+          </table>
+
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+
+
+        <div class="box-footer">
+               
+               <p><a class='btn btn-warning' href="{% url 'accounting_double_entry:multijournalupdate' pk=company_details.pk  pk2=multijournal_details.pk pk3=selectdatefield_details.pk %}">Update journal</a> <a class='btn btn-danger pull-right' href="{% url 'accounting_double_entry:multijournaldelete' pk=company_details.pk pk2=multijournal_details.pk pk3=selectdatefield_details.pk %}">Delete journal</a></p> 
+        </div>
+    
+    
+
+</section>
+
+{% endblock %}

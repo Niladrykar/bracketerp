@@ -1,0 +1,260 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+
+{% block title %}My Blogs{% endblock %}
+
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+
+
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>My Blogs</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Group</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">View Posts By
+                    <span class="fa fa-caret-down"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'blog:latestbloglist' %}">Most Recent</a></li>
+                    <li><a href="{% url 'blog:viewbloglist' %}">Most Popular</a></li>
+                    <li><a href="{% url 'blog:likebloglist' %}">Most Helpful</a></li>
+                    
+                    
+                  </ul>
+
+            <a href="{% url 'blog:allbloglist' %}" class="btn btn-success" role="button">Show all Posts</a>
+
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'blog:bloglist' %}" class="btn btn-info" role="button">Show my Posts</a>
+            <a href="{% url 'blog:blogcreate' %}" class="btn btn-warning" role="button">Create Post</a>
+              
+
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+
+
+        <!-- Blog Post -->
+        {% for blog in blog_list %}
+          <div class="box box-info">
+                    
+            {% if blog.Blog_image %}
+                <img width="100%" height="100%" src="{{ blog.Blog_image.url }}/" alt="">
+            {% endif %}
+
+            <div class="box-body">
+              <div class="box-header">
+                <h3 class="box-title"><a href="{% url 'blog:blogdetail' pk=blog.pk %}">{{ blog.Blog_title }}</a></h3>
+              </div>
+              <p>{{ blog.Description|safe|truncatewords:"50"|linebreaks}}</p>
+              <a href="{% url 'blog:blogdetail' pk=blog.pk %}" class="btn btn-info btn-block">Read More &rarr;</a>
+            </div>
+            <div class="box-footer text-muted">
+              Posted  {{ blog.Date|timesince}} ago by
+              <a href="{% url 'userprofile:specific_profile' pk=blog.User.profile.pk %}">{{ blog.User }}</a>
+            </div>
+          
+          </div>
+        {% endfor %}
+
+
+        {% for blog in blogs %}
+          <div class="box box-info">
+                    
+            {% if blog.Blog_image %}
+                <img width="100%" height="100%" src="{{ blog.Blog_image.url }}/" alt="">
+            {% endif %}
+
+            <div class="box-body">
+              <div class="box-header">
+                <h3 class="box-title"><a href="{% url 'blog:blogdetail' pk=blog.pk %}">{{ blog.Blog_title }}</a></h3>
+              </div>
+              <p>{{ blog.Description|safe|truncatewords:"50"|linebreaks}}</p>
+              <a href="{% url 'blog:blogdetail' pk=blog.pk %}" class="btn btn-info btn-block">Read More &rarr;</a>
+            </div>
+            <div class="box-footer text-muted">
+              Posted  {{ blog.Date|timesince}} ago by
+              <a href="{% url 'userprofile:specific_profile' pk=blog.User.profile.pk %}">{{ blog.User }}</a>
+            </div>
+          
+          </div>
+        {% endfor %}
+
+
+
+        <!-- Pagination -->
+        <ul class="text-center">
+                  {% if is_paginated %}
+                      <ul class="pagination">
+                       {% if page_obj.has_previous %}
+                          <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                          <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in paginator.page_range %}
+                            {% if page_obj.number == i %}
+                               <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                            <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+        </ul>
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+
+
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+        <!-- Search Widget -->
+        <div class="box box-info">
+        
+          <div class="box-header">
+            <h3 class="box-title">Search</h3>
+          </div>
+          <form method='GET' class="form-horizontal" id="search-form" action="{% url 'blog:search' %}">
+          <div class="box-body">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <input  class="form-control" name="q" value="{{request.GET.q}}" placeholder="Search">
+              
+             
+            </div>
+          </div>
+          <div class="box-footer">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-info pull-right">Go</button>
+            </span>
+          </div>
+        </form>
+        
+        </div>
+
+
+        <!-- Categories Widget -->
+        <div class="box box-info">
+          <div class="box-header">
+            <h3 class="box-title">Categories</h3>
+          </div>
+                 <div class="box-footer no-padding">
+                      {% for categories in categories_list %}
+
+                          <ul class="nav nav-stacked">
+                                
+                              
+                                
+                                  <li><a href="{% url 'blog:categoryDetail' pk=categories.pk  %}"><strong>{{ categories.Title }}</strong> <span class="pull-right badge bg-blue">
+                                  {{ categories.blogs.count }}</span></a></li>
+                                 
+                             
+                                  
+                                
+                          </ul>
+                          
+                      {% endfor %}
+              </div>
+
+              <div class="box-footer no-padding">
+                      {% for categories in categories_l %}
+
+                          <ul class="nav nav-stacked">
+                                
+                              
+                                
+                                  <li><a href="{% url 'blog:categoryDetail' pk=categories.pk  %}">{{ categories.Title }} <span class="pull-right badge bg-blue">{{ categories.blogs.count }}</span></a></li>
+                                 
+                             
+                                  
+                                
+                          </ul>
+                      {% endfor %}
+              </div>
+        </div>
+
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+
+  <!-- /.container -->
+                  
+
+                    
+    
+
+   
+
+    
+          
+
+
+
+
+
+</section>
+</div>
+
+    
+  
+  
+
+  
+
+{% endblock %}

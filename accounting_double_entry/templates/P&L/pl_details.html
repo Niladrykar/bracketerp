@@ -1,0 +1,213 @@
+{% extends "clouderp/base.html" %}
+
+
+{% block title %}Journals{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company Details</li>
+                     <li class="active">Create Journal</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      		<a href="{% url 'accounting_double_entry:list' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Journal </a>
+          <a href="{% url 'accounting_double_entry:create' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Create Journal</a>
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+            
+              <h3 class="box-title"><b>Journal Details</b></h3>
+           
+            </div>
+
+    
+
+
+
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box box-info">
+                    <style type="text/css">
+
+                    .table-bordered td, .table-bordered th{
+                        border-color: #bfbfbf !important;
+                    
+                         }
+                    </style>
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-bordered">
+
+                            <tr>
+                                <td>
+                                   <table class="table table-hover">
+									<tr>
+										<th></th>
+										
+										<th><center>Date</center></th>
+										<th><center>Particulars</center></th>
+										<th><center>Lf</center></th>
+										<th><center>Debit</center></th>
+									</tr>
+										<tr>
+										
+											<th><center><strong>By</strong></center></th>
+											
+											<td><center>{{pl_details.Date}}</center></td>
+											<td><center>{{pl_details.By}}</center></td>
+                    {% if pl_details.voucher_id == None %}
+                      <td><center>{{pl_details.id}}</center></td>
+                    {% else %}
+                      <td><center>{{pl_details.voucher_id}}</center></td>
+                    {% endif %}
+											<td><center>{{pl_details.Debit}}</center></td>
+										
+										</tr>
+							
+							</td>
+						</tr>
+					</table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+
+                <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box box-info">
+                    <style type="text/css">
+
+                    .table-bordered td, .table-bordered th{
+                        border-color: #bfbfbf !important;
+                    
+                         }
+                    </style>
+
+                    <div class="box-body table-responsive no-padding">
+              <table class="table table-bordered">
+
+                            <tr>
+                                <td>
+                <table class="table table-hover">
+									<tr>
+										<th><center></center></th>
+										
+										<th><center>Date</center></th>
+										<th><center>Particulars</center></th>
+										<th><center>Lf</center></th>
+										<th><center>Credit</center></th>
+									</tr>
+                  
+									<tr>
+										<th><center><strong>To</strong></center></th>
+			
+										<td><center>{{pl_details.Date}}</center></td>
+										<td><center>{{pl_details.To}}</center></td>
+                    {% if pl_details.voucher_id == None %}
+                      <td><center>{{pl_details.id}}</center></td>
+                    {% else %}
+										  <td><center>{{pl_details.voucher_id}}</center></td>
+                    {% endif %}
+										<td><center>{{pl_details.Credit}}</center></td>
+									</tr>
+									
+								</table>
+             </td>
+            </tr>
+          </table>
+          <table class="table table-hover">
+                                        <tr>
+                                          
+                                            <th>Narration</th>
+                                            
+                                          </tr>
+                                        <tr>
+                                          {% if pl_details.narration %}
+                                            <td>{{ pl_details.narration }}</td>
+                                          {% else %}
+                                            <td>being {{pl_details.By}} debited by {{pl_details.To}} for {{pl_details.Credit}}.</td>
+                                          {% endif %}  
+                                        </tr>
+                                    </table>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+
+
+        <div class="box-footer">
+               
+               <p><a class='btn btn-warning' href="{% url 'accounting_double_entry:pl_update' pk1=company_details.pk  pk2=pl_details.pk pk3=selectdatefield_details.pk %}">Update journal</a></p> 
+        </div>
+    
+    
+
+</section>
+
+{% endblock %}

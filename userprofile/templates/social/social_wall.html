@@ -1,0 +1,354 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+
+{% block title %}Social Wall{% endblock %}
+
+
+    
+{% block head_extra %} 
+
+{{ form.media }}
+
+{% endblock head_extra %}		
+			
+{% block content %}
+<div class="content-wrapper">
+	<!-- <div class="container"> -->
+		<section class="content-header">
+			<!-- <div class="col-md-12"> -->
+				<h1>
+					<strong>Social Wall</strong>
+				</h1>
+
+			<!-- </div> -->
+		</section>
+
+		<!-- <div class="container">
+    		<p><a class='btn btn-warning' >Update</a></p>
+
+  		</div>
+  		<br>
+  		<div class="container">
+    		<p><a class='btn btn-danger' >Delete</a></p>
+
+  		</div> -->
+  
+      <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+
+  <div class="col-xs-12">
+    <div class="box box-default">
+      <div class="box-body">
+
+
+
+        <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+        <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+        <a href="{% url 'ecommerce_integration:apilist' %}" class="btn btn-primary" role="button">APIs</a>
+
+
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'ecommerce_integration:subscribedproductlist' %}" class="btn btn-info" role="button">My Subscriptions</a>            
+             
+
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+  </div>
+
+</div>
+
+
+
+      <div class="row">
+
+        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12 connectedSortable">
+
+           <div class="box box-primary">
+            <div class="box-header">
+              <i class="ion ion-clipboard"></i>
+
+              <h3 class="box-title">To Do List</h3>
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+            {% if todo_list %}
+                  <ul class="todo-list">
+                  {% for todo in todo_list %}
+
+                            <li>
+                              <!-- drag handle -->
+                              <span class="handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                              </span>
+                              <!-- checkbox -->
+                              
+                              <!-- todo text -->
+                              {% if todo.complete %}
+                                <i class="fa fa-check" style="color: #008000;text-shadow: 1px 1px 1px #ccc;"></i>
+                                <span class="text todo-completed">Done</span>
+                                 <span class="text todo-completed"></span>
+                                <span class="text todo-completed">{{todo.text}}</span>
+
+                              {% else %}
+                                <i class="fa fa-times" style="color: #FF0000;text-shadow: 1px 1px 1px #ccc;"></i>
+                                <span class="text todo-completed">Not Done</span>
+                                <a href="{% url 'todogst:complete' todo.id %}"><span class="text">{{todo.text}}</span></a>
+                                {% if todo.daysince > 0 %}
+                                  {% if todo.daysince >= 60 and todo.daysince <= 80 %}
+                                  <small class="label label-info"><i class="fa fa-clock-o"></i> {{ todo.daysince }} days left</small>
+                                  {% elif todo.daysince >= 80 %}
+                                  <small class="label label-success"><i class="fa fa-clock-o"></i> {{ todo.daysince }} days left</small>
+                                  {% elif todo.daysince >= 10 and todo.daysince <= 60 %}
+                                  <small class="label label-warning"><i class="fa fa-clock-o"></i> {{ todo.daysince }} days left</small>
+                                  {% elif todo.daysince <= 10 %}
+                                  <small class="label label-danger"><i class="fa fa-clock-o"></i> {{ todo.daysince }} days left</small>
+                                  {% endif %}
+                                {% else %}
+                                  <small class="label label-danger"><i class="fa fa-clock-o"></i> {{ todo.daysince }} days ago</small>
+                                {% endif %}
+                              {% endif %}
+                             
+                              <!-- General tools such as edit or delete-->
+                              
+                            </li>
+                  {% endfor %}   
+                    
+                  </ul>
+            {% else %}
+
+                  <span class="alert alert-danger">
+                        No Todo Created 
+
+                  </span> 
+            {% endif %}
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix no-border">
+              <a href="{% url 'todogst:index' %}"><button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button></a>
+
+              
+            </div>
+          </div> 
+
+        </section>
+        <!-- right col -->
+      </div>
+      <!-- /.row (main row) -->
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+     <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Create Post</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form action="{% url 'userprofile:post_add' %}" method="POST" class="form-horizontal">
+            {% csrf_token %}
+              <div class="box-body">
+
+                <div class="form-group">
+                  
+                  
+                    <div class="col-sm-12">
+                          
+                        {{ form.post.errors }}
+                        {{ form.post }}
+                      
+                    </div>                 
+
+                </div>
+
+             
+                
+                
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button class="btn btn-default">Cancel</button>
+                {% if not form.instance.pk %}
+                <button type="submit" class="btn btn-info pull-right" value="Submit">Submit</button>
+                {% else %}
+                <button type="submit" class="btn btn-info pull-right" value="Submit">Update</button>
+                {% endif %}
+
+                
+             </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+    
+  </div>
+</div>
+     
+
+
+	<div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+          <!-- The time line -->
+          <ul class="timeline">
+              
+            <!-- timeline time label -->
+              {% for posts in post_list %}
+                  <li class="time-label">
+                      <span class="bg-red">
+                          {{ posts.date|date }}
+                      </span>
+                  </li>
+
+                  <li>
+                    <i class="fa fa-envelope bg-blue"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> {{ posts.date|timesince }}</span>
+
+                      {% if posts.User.profile.image %}
+                          <img class="img-circle img-sm" src="{{ posts.User.profile.image.url }}/" alt="">
+                      {% else %}
+                          <img class="img-circle img-sm" src="{% static 'userprofile/download (1).jpg' %}">
+                      {% endif %}
+
+                      <h3 class="timeline-header"><a href="{% url 'userprofile:specific_profile' pk=posts.User.profile.pk %}">{{ posts.User }}</a>created a post</h3>
+
+                      <div class="timeline-body">
+                       {{ posts.post|safe }}
+                      </div>
+                      <div class="timeline-footer">
+                        <a href="{% url 'userprofile:post_details' pk=posts.pk %}" class="btn btn-primary btn-sm">See Comments</a>
+
+                        <span class="pull-right text-muted">{{ posts.post_comment.count }} Comment{{ posts.post_comment.count|pluralize }} - {{ posts.like.count }} Like{{ posts.like.count|pluralize }}</span>
+                        
+                      </div>
+                    </div>
+                  </li>
+              {% endfor %}
+
+            {% for consultancy in consultancies %}
+            <li class="time-label">
+                <span class="bg-red">
+                    {{ consultancy.Date|date }}
+                </span>
+            </li>
+
+            <li>
+            
+              <i class="fa fa-question-circle bg-blue"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{ consultancy.Date|timesince }}</span>
+
+                {% if consultancy.User.profile.image %}
+                    <img class="img-circle img-sm" src="{{ consultancy.User.profile.image.url }}/" alt="">
+                {% else %}
+                    <img class="img-circle img-sm" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+
+                <h3 class="timeline-header"><a href="{% url 'userprofile:specific_profile' pk=consultancy.User.profile.pk %}">{{ consultancy.User }}</a> asked a query</h3>
+
+                <div class="timeline-body">
+                 {{ consultancy.Questions }}
+                </div>
+                <div class="timeline-footer">
+                  <a href="{% url 'consultancy:consultancydetail' pk=consultancy.pk %}" class="btn btn-primary btn-sm">See Solutions</a>
+
+
+                  <span class="pull-right text-muted">{{ consultancy.consultancies.count }} Solution{{ consultancy.consultancies.count|pluralize }} - {{ consultancy.like.count }} Like{{ consultancy.like.count|pluralize }}</span>
+                  
+                </div>
+              </div>
+            </li>
+      {% endfor %}
+
+      {% for blog in blogs %}
+            <li class="time-label">
+                <span class="bg-red">
+                    {{ blog.Date|date }}
+                </span>
+            </li>
+
+            <li>
+
+              <i class="fa fa-newspaper-o bg-blue"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{ blog.Date|timesince }}</span>
+
+                {% if blog.User.profile.image %}
+                    <img class="img-circle img-sm" src="{{ blog.User.profile.image.url }}/" alt="">
+                {% else %}
+                    <img class="img-circle img-sm" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+
+                <h3 class="timeline-header"><a href="{% url 'userprofile:specific_profile' pk=blog.User.profile.pk %}">{{ blog.User }}</a> posted a blog</h3>
+
+                <div class="timeline-body">
+                 <h3 class="box-title"><a href="{% url 'blog:blogdetail' pk=blog.pk %}">{{ blog.Blog_title }}</a></h3>
+                    {% if blog.Blog_image %}
+                        <img width="100%" height="100%" src="{{ blog.Blog_image.url }}/" alt="">
+                    {% endif %}
+                
+                </div>
+                <div class="timeline-footer">
+                  <a href="{% url 'blog:blogdetail' pk=blog.pk %}" class="btn btn-primary btn-sm">Read More</a>
+
+
+                  <span class="pull-right text-muted">{{ blog.blog_comments.count }} Comment{{ blog.blog_comments.count|pluralize }} - {{ blog.likes.count }} Like{{ blog.likes.count|pluralize }}</span>
+                  
+                </div>
+              </div>
+            </li>
+      {% endfor %}
+          
+          </ul>
+        </div>
+        <!-- /.col -->
+      </div>
+
+
+</section>	
+
+
+  <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>	
+
+
+<script>
+  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var n = new Date();
+  var y = n.getFullYear();
+  var m = n.getMonth() + 1;
+  var d = n.getDate();
+  document.getElementById("date").innerHTML = d + " " + months[m] + " " + y;
+
+</script>
+
+{% endblock %}
+			
+	
+	
+

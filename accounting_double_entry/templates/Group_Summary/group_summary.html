@@ -1,0 +1,171 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Groups{% endblock %}
+
+
+
+
+
+{% block content %}
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+			<section class="content-header">
+				<!-- <div class="col-md-12 col-md-offset-4"> -->
+					<h1>
+            		<strong>Company : {{company_details.Name}}</strong>
+					</h1>
+								<ol class="breadcrumb">
+			       					 <li><a href="#"><i class="fa fa-dashboard"></i> Company Details</a></li>
+			       					 <!-- <li><a href="#">Company list</a></li> -->
+			     				   <li class="active">Group List</li>
+			      </ol>
+				<!-- </div> -->
+			</section>
+
+<section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+			<div class="col-xs-12">
+          <div class="box box-default">
+					<div class="box-body">
+
+			<a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+          {% if not selectdatefield_details %}
+
+                  
+                     <button class="btn btn-primary show-form pull-right" data-url="{% url 'accounting_double_entry:datecreate' %}">
+                      <span class="glyphicon glyphicon-plus"></span>
+                        Select Date Range
+                      </button>
+
+                {% else %} 
+              
+  
+                            <button  class="btn btn-warning show-form-update pull-right" data-url="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                              Update Date Range 
+                            </button>
+
+                      <a  class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a>  
+
+                 
+
+                {% endif %} 
+				
+				
+				
+				</div>
+			
+			</div>
+		
+		</div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+           <a href="{% url 'accounting_double_entry:grouplist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Group </a>
+              <a href="{% url 'accounting_double_entry:groupcreate' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Create Group</a>
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+
+								
+<div class="row">
+        <div class="col-xs-12">
+          {% if group1_list %}
+                <div class="box box-info">
+          
+
+
+                <div class="box-header">
+                  <h3 class="box-title">Group list</h3>
+
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table id="example1" class="table table-bordered table-striped">
+
+                  <thead>
+                    <tr>
+                      <th>Sl no</th>
+                      <th>Group Name</th>
+                      <th>Group ID</th>
+                      <th>Category</th>
+                      <th>Nature</th> 
+                    </tr>
+                  </thead>
+
+
+                  <tbody>
+                    {% for group1 in group1_list %}
+
+                    <tr>
+                      <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.counter}}</a></td>
+                      <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.group_Name}}</a></td>
+                      <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.id}}</a></td>
+                      <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.Master}}</a></td>
+                      <td><a href="{% url 'accounting_double_entry:groupdetailsummary' pk=company_details.pk pk2=group1.pk pk3=selectdatefield_details.pk %}">{{group1.balance_nature}}</a></td>
+                    </tr>
+
+                    {% endfor %}
+                  </tbody>
+                    
+
+    
+                   
+                   
+                  </table>
+
+
+                  
+                </div>
+              </div>
+              
+          {% else %}
+              <div class="col-xs-12 alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                  No Groups created !
+              </div>
+          {% endif %}  
+          
+          
+        </div>
+
+      </div>
+</section>
+
+
+  <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+
+{% endblock %}

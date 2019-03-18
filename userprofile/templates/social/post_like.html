@@ -1,0 +1,20 @@
+{% load staticfiles %}          
+          <form action="{% url 'userprofile:like_post' %}" method="post">
+            {% csrf_token %}
+
+            {% if is_liked %}
+                <button type="submit" id="likepost" name="post_details_id" value="{{ post_details.id}}" class='btn btn-info btn-sm'>                  
+                   <i class="fa fa-fw fa-thumbs-up"></i>
+                    Liked  
+                </button>
+            {% else %}
+                  <button type="submit" id="likepost" name="post_details_id" value="{{ post_details.id}}" class='btn btn-default btn-sm'>
+                  <i class="fa fa-fw fa-thumbs-up"></i>
+
+                    Like   
+                  </button>
+            {% endif %}
+
+          </form>
+
+           <span class="pull-right text-muted"> - {{ total_like }} Like{{ total_like|pluralize }} </span>

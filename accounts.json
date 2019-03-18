@@ -1,0 +1,1591 @@
+[
+{
+  "model": "accounting_double_entry.selectdatefield",
+  "pk": 19,
+  "fields": {
+    "User": 1,
+    "Start_Date": "2018-04-01",
+    "End_Date": "2019-03-31"
+  }
+},
+{
+  "model": "accounting_double_entry.selectdatefield",
+  "pk": 21,
+  "fields": {
+    "User": 18,
+    "Start_Date": "2019-04-01",
+    "End_Date": "2020-03-31"
+  }
+},
+{
+  "model": "accounting_double_entry.selectdatefield",
+  "pk": 24,
+  "fields": {
+    "User": 10,
+    "Start_Date": "2018-04-01",
+    "End_Date": "2019-03-31"
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 858,
+  "fields": {
+    "counter": 1,
+    "urlhash": "PU-1-P-1-C1-AG1",
+    "User": 1,
+    "group_Name": "Primary",
+    "Company": 74,
+    "Master": null,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Not Applicable",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 859,
+  "fields": {
+    "counter": 2,
+    "urlhash": "PU-1-P-1-C1-AG2",
+    "User": 1,
+    "group_Name": "Branch/Divisions",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Liabilities",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 860,
+  "fields": {
+    "counter": 3,
+    "urlhash": "PU-1-P-1-C1-AG3",
+    "User": 1,
+    "group_Name": "Capital A/c",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Liabilities",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 861,
+  "fields": {
+    "counter": 4,
+    "urlhash": "PU-1-P-1-C1-AG4",
+    "User": 1,
+    "group_Name": "Current Assets",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Assets",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 862,
+  "fields": {
+    "counter": 5,
+    "urlhash": "PU-1-P-1-C1-AG5",
+    "User": 1,
+    "group_Name": "Current Liabilities",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Liabilities",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 863,
+  "fields": {
+    "counter": 6,
+    "urlhash": "PU-1-P-1-C1-AG6",
+    "User": 1,
+    "group_Name": "Direct Expenses",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Expenses",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 864,
+  "fields": {
+    "counter": 7,
+    "urlhash": "PU-1-P-1-C1-AG7",
+    "User": 1,
+    "group_Name": "Direct Incomes",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Income",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 865,
+  "fields": {
+    "counter": 8,
+    "urlhash": "PU-1-P-1-C1-AG8",
+    "User": 1,
+    "group_Name": "Fixed Assets",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Assets",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 866,
+  "fields": {
+    "counter": 9,
+    "urlhash": "PU-1-P-1-C1-AG9",
+    "User": 1,
+    "group_Name": "Indirect Income",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Income",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": true
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 867,
+  "fields": {
+    "counter": 10,
+    "urlhash": "PU-1-P-1-C1-AG10",
+    "User": 1,
+    "group_Name": "Indirect Expense",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Expenses",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": true
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 868,
+  "fields": {
+    "counter": 11,
+    "urlhash": "PU-1-P-1-C1-AG11",
+    "User": 1,
+    "group_Name": "Investments",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Assets",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 869,
+  "fields": {
+    "counter": 12,
+    "urlhash": "PU-1-P-1-C1-AG12",
+    "User": 1,
+    "group_Name": "Loans (Liability)",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Liabilities",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 870,
+  "fields": {
+    "counter": 13,
+    "urlhash": "PU-1-P-1-C1-AG13",
+    "User": 1,
+    "group_Name": "Misc Expenses (ASSET)",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Assets",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 871,
+  "fields": {
+    "counter": 14,
+    "urlhash": "PU-1-P-1-C1-AG14",
+    "User": 1,
+    "group_Name": "Purchase Accounts",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Expenses",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 872,
+  "fields": {
+    "counter": 15,
+    "urlhash": "PU-1-P-1-C1-AG15",
+    "User": 1,
+    "group_Name": "Sales Account",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Income",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 873,
+  "fields": {
+    "counter": 16,
+    "urlhash": "PU-1-P-1-C1-AG16",
+    "User": 1,
+    "group_Name": "Suspense A/c",
+    "Company": 74,
+    "Master": 858,
+    "Nature_of_group1": "Liabilities",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 874,
+  "fields": {
+    "counter": 17,
+    "urlhash": "PU-1-P-1-C1-AG17",
+    "User": 1,
+    "group_Name": "Bank Accounts",
+    "Company": 74,
+    "Master": 861,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 875,
+  "fields": {
+    "counter": 18,
+    "urlhash": "PU-1-P-1-C1-AG18",
+    "User": 1,
+    "group_Name": "Bank OD A/c",
+    "Company": 74,
+    "Master": 869,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 876,
+  "fields": {
+    "counter": 19,
+    "urlhash": "PU-1-P-1-C1-AG19",
+    "User": 1,
+    "group_Name": "Cash-in-hand",
+    "Company": 74,
+    "Master": 861,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 877,
+  "fields": {
+    "counter": 20,
+    "urlhash": "PU-1-P-1-C1-AG20",
+    "User": 1,
+    "group_Name": "Deposits(Asset)",
+    "Company": 74,
+    "Master": 861,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 878,
+  "fields": {
+    "counter": 21,
+    "urlhash": "PU-1-P-1-C1-AG21",
+    "User": 1,
+    "group_Name": "Duties & Taxes",
+    "Company": 74,
+    "Master": 862,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 879,
+  "fields": {
+    "counter": 22,
+    "urlhash": "PU-1-P-1-C1-AG22",
+    "User": 1,
+    "group_Name": "Loans & Advances(Asset)",
+    "Company": 74,
+    "Master": 861,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 880,
+  "fields": {
+    "counter": 23,
+    "urlhash": "PU-1-P-1-C1-AG23",
+    "User": 1,
+    "group_Name": "Provisions",
+    "Company": 74,
+    "Master": 862,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 881,
+  "fields": {
+    "counter": 24,
+    "urlhash": "PU-1-P-1-C1-AG24",
+    "User": 1,
+    "group_Name": "Reserves & Surplus",
+    "Company": 74,
+    "Master": 860,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 882,
+  "fields": {
+    "counter": 25,
+    "urlhash": "PU-1-P-1-C1-AG25",
+    "User": 1,
+    "group_Name": "Secured Loans",
+    "Company": 74,
+    "Master": 869,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 883,
+  "fields": {
+    "counter": 26,
+    "urlhash": "PU-1-P-1-C1-AG26",
+    "User": 1,
+    "group_Name": "Stock-in-hand",
+    "Company": 74,
+    "Master": 861,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 884,
+  "fields": {
+    "counter": 27,
+    "urlhash": "PU-1-P-1-C1-AG27",
+    "User": 1,
+    "group_Name": "Sundry Creditors",
+    "Company": 74,
+    "Master": 862,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 885,
+  "fields": {
+    "counter": 28,
+    "urlhash": "PU-1-P-1-C1-AG28",
+    "User": 1,
+    "group_Name": "Sundry Debtors",
+    "Company": 74,
+    "Master": 861,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 886,
+  "fields": {
+    "counter": 29,
+    "urlhash": "PU-1-P-1-C1-AG29",
+    "User": 1,
+    "group_Name": "Unsecured Loans",
+    "Company": 74,
+    "Master": 869,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 887,
+  "fields": {
+    "counter": 30,
+    "urlhash": "PU-1-P-1-C1-AG30",
+    "User": 1,
+    "group_Name": "GST",
+    "Company": 74,
+    "Master": 862,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 888,
+  "fields": {
+    "counter": 1,
+    "urlhash": "PU-10-P-1-C1-AG1",
+    "User": 10,
+    "group_Name": "Primary",
+    "Company": 75,
+    "Master": null,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Not Applicable",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 889,
+  "fields": {
+    "counter": 2,
+    "urlhash": "PU-10-P-1-C1-AG2",
+    "User": 10,
+    "group_Name": "Branch/Divisions",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Liabilities",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 890,
+  "fields": {
+    "counter": 3,
+    "urlhash": "PU-10-P-1-C1-AG3",
+    "User": 10,
+    "group_Name": "Capital A/c",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Liabilities",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 891,
+  "fields": {
+    "counter": 4,
+    "urlhash": "PU-10-P-1-C1-AG4",
+    "User": 10,
+    "group_Name": "Current Assets",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Assets",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 892,
+  "fields": {
+    "counter": 5,
+    "urlhash": "PU-10-P-1-C1-AG5",
+    "User": 10,
+    "group_Name": "Current Liabilities",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Liabilities",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 893,
+  "fields": {
+    "counter": 6,
+    "urlhash": "PU-10-P-1-C1-AG6",
+    "User": 10,
+    "group_Name": "Direct Expenses",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Expenses",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 894,
+  "fields": {
+    "counter": 7,
+    "urlhash": "PU-10-P-1-C1-AG7",
+    "User": 10,
+    "group_Name": "Direct Incomes",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Income",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 895,
+  "fields": {
+    "counter": 8,
+    "urlhash": "PU-10-P-1-C1-AG8",
+    "User": 10,
+    "group_Name": "Fixed Assets",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Assets",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 896,
+  "fields": {
+    "counter": 9,
+    "urlhash": "PU-10-P-1-C1-AG9",
+    "User": 10,
+    "group_Name": "Indirect Income",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Income",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": true
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 897,
+  "fields": {
+    "counter": 10,
+    "urlhash": "PU-10-P-1-C1-AG10",
+    "User": 10,
+    "group_Name": "Indirect Expense",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Expenses",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": true
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 898,
+  "fields": {
+    "counter": 11,
+    "urlhash": "PU-10-P-1-C1-AG11",
+    "User": 10,
+    "group_Name": "Investments",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Assets",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 899,
+  "fields": {
+    "counter": 12,
+    "urlhash": "PU-10-P-1-C1-AG12",
+    "User": 10,
+    "group_Name": "Loans (Liability)",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Liabilities",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 900,
+  "fields": {
+    "counter": 13,
+    "urlhash": "PU-10-P-1-C1-AG13",
+    "User": 10,
+    "group_Name": "Misc Expenses (ASSET)",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Assets",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 901,
+  "fields": {
+    "counter": 14,
+    "urlhash": "PU-10-P-1-C1-AG14",
+    "User": 10,
+    "group_Name": "Purchase Accounts",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Expenses",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 902,
+  "fields": {
+    "counter": 15,
+    "urlhash": "PU-10-P-1-C1-AG15",
+    "User": 10,
+    "group_Name": "Sales Account",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Income",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 903,
+  "fields": {
+    "counter": 16,
+    "urlhash": "PU-10-P-1-C1-AG16",
+    "User": 10,
+    "group_Name": "Suspense A/c",
+    "Company": 75,
+    "Master": 888,
+    "Nature_of_group1": "Liabilities",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 904,
+  "fields": {
+    "counter": 17,
+    "urlhash": "PU-10-P-1-C1-AG17",
+    "User": 10,
+    "group_Name": "Bank Accounts",
+    "Company": 75,
+    "Master": 891,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 905,
+  "fields": {
+    "counter": 18,
+    "urlhash": "PU-10-P-1-C1-AG18",
+    "User": 10,
+    "group_Name": "Bank OD A/c",
+    "Company": 75,
+    "Master": 899,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 906,
+  "fields": {
+    "counter": 19,
+    "urlhash": "PU-10-P-1-C1-AG19",
+    "User": 10,
+    "group_Name": "Cash-in-hand",
+    "Company": 75,
+    "Master": 891,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 907,
+  "fields": {
+    "counter": 20,
+    "urlhash": "PU-10-P-1-C1-AG20",
+    "User": 10,
+    "group_Name": "Deposits(Asset)",
+    "Company": 75,
+    "Master": 891,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 908,
+  "fields": {
+    "counter": 21,
+    "urlhash": "PU-10-P-1-C1-AG21",
+    "User": 10,
+    "group_Name": "Duties & Taxes",
+    "Company": 75,
+    "Master": 892,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 909,
+  "fields": {
+    "counter": 22,
+    "urlhash": "PU-10-P-1-C1-AG22",
+    "User": 10,
+    "group_Name": "Loans & Advances(Asset)",
+    "Company": 75,
+    "Master": 891,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 910,
+  "fields": {
+    "counter": 23,
+    "urlhash": "PU-10-P-1-C1-AG23",
+    "User": 10,
+    "group_Name": "Provisions",
+    "Company": 75,
+    "Master": 892,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 911,
+  "fields": {
+    "counter": 24,
+    "urlhash": "PU-10-P-1-C1-AG24",
+    "User": 10,
+    "group_Name": "Reserves & Surplus",
+    "Company": 75,
+    "Master": 890,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 912,
+  "fields": {
+    "counter": 25,
+    "urlhash": "PU-10-P-1-C1-AG25",
+    "User": 10,
+    "group_Name": "Secured Loans",
+    "Company": 75,
+    "Master": 899,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 913,
+  "fields": {
+    "counter": 26,
+    "urlhash": "PU-10-P-1-C1-AG26",
+    "User": 10,
+    "group_Name": "Stock-in-hand",
+    "Company": 75,
+    "Master": 891,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 914,
+  "fields": {
+    "counter": 27,
+    "urlhash": "PU-10-P-1-C1-AG27",
+    "User": 10,
+    "group_Name": "Sundry Creditors",
+    "Company": 75,
+    "Master": 892,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 915,
+  "fields": {
+    "counter": 28,
+    "urlhash": "PU-10-P-1-C1-AG28",
+    "User": 10,
+    "group_Name": "Sundry Debtors",
+    "Company": 75,
+    "Master": 891,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Debit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 916,
+  "fields": {
+    "counter": 29,
+    "urlhash": "PU-10-P-1-C1-AG29",
+    "User": 10,
+    "group_Name": "Unsecured Loans",
+    "Company": 75,
+    "Master": 899,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.group1",
+  "pk": 917,
+  "fields": {
+    "counter": 30,
+    "urlhash": "PU-10-P-1-C1-AG30",
+    "User": 10,
+    "group_Name": "GST",
+    "Company": 75,
+    "Master": 892,
+    "Nature_of_group1": "Not Applicable",
+    "balance_nature": "Credit",
+    "Group_behaves_like_a_Sub_Group": false,
+    "Nett_Debit_or_Credit_Balances_for_Reporting": false
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 207,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 1,
+    "urlhash": "PU-1-P-1-C1-AL1",
+    "Creation_Date": "2018-04-01",
+    "name": "Cash",
+    "group1_Name": 858,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 208,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 2,
+    "urlhash": "PU-1-P-1-C1-AL2",
+    "Creation_Date": "2018-04-01",
+    "name": "Profit & Loss A/c",
+    "group1_Name": 858,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 209,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 3,
+    "urlhash": "PU-1-P-1-C1-AL3",
+    "Creation_Date": "2018-04-01",
+    "name": "Purchase A/c(Interstate)",
+    "group1_Name": 871,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 210,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 4,
+    "urlhash": "PU-1-P-1-C1-AL4",
+    "Creation_Date": "2018-04-01",
+    "name": "Purchase A/c(Intrastate)",
+    "group1_Name": 871,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 211,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 5,
+    "urlhash": "PU-1-P-1-C1-AL5",
+    "Creation_Date": "2018-04-01",
+    "name": "Sales A/c(Interstate)",
+    "group1_Name": 872,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 212,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 6,
+    "urlhash": "PU-1-P-1-C1-AL6",
+    "Creation_Date": "2018-04-01",
+    "name": "Sales A/c(Intrastate)",
+    "group1_Name": 872,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 213,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 7,
+    "urlhash": "PU-1-P-1-C1-AL7",
+    "Creation_Date": "2018-04-01",
+    "name": "CGST",
+    "group1_Name": 887,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 214,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 8,
+    "urlhash": "PU-1-P-1-C1-AL8",
+    "Creation_Date": "2018-04-01",
+    "name": "SGST",
+    "group1_Name": 887,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 215,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 9,
+    "urlhash": "PU-1-P-1-C1-AL9",
+    "Creation_Date": "2018-04-01",
+    "name": "IGST",
+    "group1_Name": 887,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 216,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 10,
+    "urlhash": "PU-1-P-1-C1-AL10",
+    "Creation_Date": "2018-04-01",
+    "name": "UTGST",
+    "group1_Name": 887,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 217,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 1,
+    "urlhash": "PU-10-P-1-C1-AL1",
+    "Creation_Date": "2018-04-01",
+    "name": "Cash",
+    "group1_Name": 906,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "1627500.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 218,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 2,
+    "urlhash": "PU-10-P-1-C1-AL2",
+    "Creation_Date": "2018-04-01",
+    "name": "Profit & Loss A/c",
+    "group1_Name": 888,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 219,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 3,
+    "urlhash": "PU-10-P-1-C1-AL3",
+    "Creation_Date": "2018-04-01",
+    "name": "Purchase A/c(Interstate)",
+    "group1_Name": 901,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "2400000.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 220,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 4,
+    "urlhash": "PU-10-P-1-C1-AL4",
+    "Creation_Date": "2018-04-01",
+    "name": "Purchase A/c(Intrastate)",
+    "group1_Name": 901,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 221,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 5,
+    "urlhash": "PU-10-P-1-C1-AL5",
+    "Creation_Date": "2018-04-01",
+    "name": "Sales A/c(Interstate)",
+    "group1_Name": 902,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "2675000.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 222,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 6,
+    "urlhash": "PU-10-P-1-C1-AL6",
+    "Creation_Date": "2018-04-01",
+    "name": "Sales A/c(Intrastate)",
+    "group1_Name": 902,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "1275000.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 223,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 7,
+    "urlhash": "PU-10-P-1-C1-AL7",
+    "Creation_Date": "2018-04-01",
+    "name": "CGST",
+    "group1_Name": 917,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "38750.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 224,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 8,
+    "urlhash": "PU-10-P-1-C1-AL8",
+    "Creation_Date": "2018-04-01",
+    "name": "SGST",
+    "group1_Name": 917,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "38750.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 225,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 9,
+    "urlhash": "PU-10-P-1-C1-AL9",
+    "Creation_Date": "2018-04-01",
+    "name": "IGST",
+    "group1_Name": 917,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.ledger1",
+  "pk": 226,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 10,
+    "urlhash": "PU-10-P-1-C1-AL10",
+    "Creation_Date": "2018-04-01",
+    "name": "UTGST",
+    "group1_Name": 917,
+    "Opening_Balance": "0.00",
+    "Balance_opening": "0.00",
+    "User_Name": "",
+    "Address": "",
+    "State": "Choose",
+    "Pin_Code": null,
+    "PanIt_No": "",
+    "GST_No": "",
+    "Closing_balance": "0.00"
+  }
+},
+{
+  "model": "accounting_double_entry.journal",
+  "pk": 239,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 1,
+    "urlhash": "PU-10-P-1-C1-AJ1",
+    "Date": "2018-05-28",
+    "voucher_id": 20,
+    "voucher_type": "Purchase",
+    "By": 219,
+    "To": 217,
+    "Debit": "2400000.00",
+    "Credit": "2400000.00",
+    "narration": ""
+  }
+},
+{
+  "model": "accounting_double_entry.journal",
+  "pk": 240,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 2,
+    "urlhash": "PU-10-P-1-C1-AJ2",
+    "Date": "2018-05-28",
+    "voucher_id": 20,
+    "voucher_type": "Journal",
+    "By": 223,
+    "To": 217,
+    "Debit": "60000.00",
+    "Credit": "60000.00",
+    "narration": ""
+  }
+},
+{
+  "model": "accounting_double_entry.journal",
+  "pk": 241,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 3,
+    "urlhash": "PU-10-P-1-C1-AJ3",
+    "Date": "2018-05-28",
+    "voucher_id": 20,
+    "voucher_type": "Journal",
+    "By": 224,
+    "To": 217,
+    "Debit": "60000.00",
+    "Credit": "60000.00",
+    "narration": ""
+  }
+},
+{
+  "model": "accounting_double_entry.journal",
+  "pk": 242,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 4,
+    "urlhash": "PU-10-P-1-C1-AJ4",
+    "Date": "2018-09-24",
+    "voucher_id": 18,
+    "voucher_type": "Sales",
+    "By": 217,
+    "To": 221,
+    "Debit": "2675000.00",
+    "Credit": "2675000.00",
+    "narration": ""
+  }
+},
+{
+  "model": "accounting_double_entry.journal",
+  "pk": 243,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 5,
+    "urlhash": "PU-10-P-1-C1-AJ5",
+    "Date": "2018-09-24",
+    "voucher_id": 18,
+    "voucher_type": "Journal",
+    "By": 217,
+    "To": 223,
+    "Debit": "66875.00",
+    "Credit": "66875.00",
+    "narration": ""
+  }
+},
+{
+  "model": "accounting_double_entry.journal",
+  "pk": 244,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 6,
+    "urlhash": "PU-10-P-1-C1-AJ6",
+    "Date": "2018-09-24",
+    "voucher_id": 18,
+    "voucher_type": "Journal",
+    "By": 217,
+    "To": 224,
+    "Debit": "66875.00",
+    "Credit": "66875.00",
+    "narration": ""
+  }
+},
+{
+  "model": "accounting_double_entry.journal",
+  "pk": 245,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 7,
+    "urlhash": "PU-10-P-1-C1-AJ7",
+    "Date": "2018-08-26",
+    "voucher_id": 19,
+    "voucher_type": "Sales",
+    "By": 217,
+    "To": 222,
+    "Debit": "1275000.00",
+    "Credit": "1275000.00",
+    "narration": ""
+  }
+},
+{
+  "model": "accounting_double_entry.journal",
+  "pk": 246,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 8,
+    "urlhash": "PU-10-P-1-C1-AJ8",
+    "Date": "2018-08-26",
+    "voucher_id": 19,
+    "voucher_type": "Journal",
+    "By": 217,
+    "To": 223,
+    "Debit": "31875.00",
+    "Credit": "31875.00",
+    "narration": ""
+  }
+},
+{
+  "model": "accounting_double_entry.journal",
+  "pk": 247,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 9,
+    "urlhash": "PU-10-P-1-C1-AJ9",
+    "Date": "2018-08-26",
+    "voucher_id": 19,
+    "voucher_type": "Journal",
+    "By": 217,
+    "To": 224,
+    "Debit": "31875.00",
+    "Credit": "31875.00",
+    "narration": ""
+  }
+}
+]

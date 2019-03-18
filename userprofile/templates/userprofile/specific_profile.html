@@ -1,0 +1,525 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+
+{% block title%}Profile{% endblock %}
+
+
+ {% block content %}
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+      <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Your Profile</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="active">Company list</li>
+                     <li class="active">Dashboard</li>
+                     <li class="active">Todo list</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+<section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+
+
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+            <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+            <a href="{% url 'ecommerce_integration:apilist' %}" class="btn btn-primary" role="button">APIs</a>
+
+
+                  
+          <div class='pull-right'>
+            <a href="{% url 'ecommerce_integration:subscribedproductlist' %}" class="btn btn-info" role="button">My Subscriptions</a>
+            
+              
+
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+  <div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+                {% if profile_details.image %}
+                  <img class="profile-user-img img-responsive img-circle" src="{{ profile_details.image.url }}/" alt="User profile picture">
+                {% else %}
+                    <img class="profile-user-img img-responsive img-circle" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+              <h3 class="profile-username text-center">{{profile_details.Full_Name}}</h3>
+
+              <p class="text-muted text-center">{{profile_details.user_type}}</p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Client</b> <a class="pull-right">1,322</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Consultancy</b> <a class="pull-right">{{ consultancy_count.the_sum }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Blog</b> <a class="pull-right">{{ blog_count.the_sum }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Post</b> <a class="pull-right">{{ post_count.the_sum }}</a>
+                </li>
+              </ul>
+
+              <a href="{% url 'userprofile:profileupdate' %}" class="btn btn-primary btn-block" ><b>Edit Profile</b></a>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">About Me</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+              <p class="text-muted">{{ profile_details.Permanant_Address }}</p>
+
+              <hr>
+
+              <strong><i class="fa fa-book margin-r-5"></i>Rating</strong>
+
+              <div class="product-rating">
+                  <i class="fa fa-star checked"></i>
+                  <i class="fa fa-star checked"></i>
+                  <i class="fa fa-star checked"></i>
+                  <i class="fa fa-star-o empty"></i>
+                  <i class="fa fa-star-o empty"></i>
+                </div>
+
+              <hr>
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Organisation</strong>
+
+              <p>
+                <span class="label label-danger"></span>
+  
+              </p>
+
+              <hr>
+
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Basic Info</strong>
+
+              <p>
+                <span class="label label-danger">{{ profile_details.basic_info }}</span>
+  
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-trophy margin-r-5"></i><a href="{% url 'userprofile:case_list' %}">Case Achievements</a></strong>
+
+              <p class="pull-right">{{ case_count }}</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">About Organisation</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Rating</strong>
+
+                <div class="product-rating">
+                  <i class="fa fa-star checked"></i>
+                  <i class="fa fa-star checked"></i>
+                  <i class="fa fa-star checked"></i>
+                  <i class="fa fa-star-o empty"></i>
+                  <i class="fa fa-star-o empty"></i>
+                </div>
+
+              <hr>
+
+              <strong><i class="fa fa-book margin-r-5"></i> Name</strong>
+
+              <p class="text-muted"></p>
+
+              <hr>
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Members</strong>
+
+              <p>
+                <span class="label label-danger"></span>
+  
+              </p>
+
+              <hr>
+
+               <strong><i class="fa fa-pencil margin-r-5"></i> Clients</strong>
+
+              <p>
+                <span class="label label-danger"></span>
+  
+              </p>
+
+
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Client</b> <a class="pull-right">1,322</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Consultancy</b> <a class="pull-right">{{ consultancy_count.the_sum }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Blog</b> <a class="pull-right">{{ blog_count.the_sum }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Post</b> <a class="pull-right">{{ post_count.the_sum }}</a>
+                </li>
+              </ul>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+              <p>Siliguri</p>
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Qualification</strong>
+
+              <p>
+                <span class="label label-danger"></span>
+  
+              </p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+
+        {% if profile_details.user_type == 'Professional' %}
+
+            {% if services %}
+              <div class="box box-info">
+                <div class="box-header">
+                  <h3 class="box-title">My Services</h3>
+
+                  <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                      <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                      <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-bordered table-hover" id="book-table">
+
+                    <thead>
+                      <tr>
+                      
+                      <th><center>Service Name</center></th>
+                      <th><center>Service Details</center></th>
+                      <th><center>Service Type</center></th>
+                      <th><center>Duration</center></th> 
+                      <th><center>Service Mode</center></th> 
+                      <th><center>Rate</center></th> 
+                      
+                    </tr>
+                    </thead>
+                    
+
+                    <tbody>
+                      
+                      {% include 'services/service_list2.html' %}
+
+
+                    </tbody>
+                    
+                     
+                   
+                   
+                  </table>
+                  
+                </div>
+              </div>
+
+          {% endif %}
+
+        {% endif %}
+
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+              <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+              
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                <!-- Post -->
+                {% for consultancy in consultancy_user %}
+                <div class="post">
+                  <div class="user-block">
+                {% if consultancy.User.profile.image %}
+                  <img class="profile-user-img img-responsive img-circle" src="{{ consultancy.User.profile.image.url }}/" alt="User profile picture">
+                {% else %}
+                    <img class="profile-user-img  img-circle" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+                        <span class="username">
+                          <a href="{% url 'userprofile:specific_profile' pk=consultancy.User.profile.pk %}">{{ consultancy.User }}</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                    <span class="description">Asked a query - {{ consultancy.Date|date:'h' }}:{{ consultancy.Date|date:'i' }} {{ consultancy.Date|date:'A' }} {{ consultancy.Date|timesince }} ago</span>
+                  </div>
+                  <!-- /.user-block -->
+                  <p>
+                    {{ consultancy.Questions }}
+                  </p>
+                  <ul class="list-inline">
+                   <!--  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li> -->
+                    <li><a href="{% url 'consultancy:consultancydetail' pk=consultancy.pk %}" class="btn btn-primary">View Query</a>
+                    </li>
+                   <!--  <li class="pull-right">
+                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                        (5)</a></li> -->
+                  </ul>
+
+                  <!-- <input class="form-control input-sm" type="text" placeholder="Type a comment"> -->
+                </div>
+                {% endfor %}
+                <!-- /.post -->
+
+                <!-- Post -->
+        
+        
+<!--                 <div class="post clearfix">
+                  <div class="user-block">
+                {% if profile_details.image %}
+                  <img class="profile-user-img img-responsive img-circle" src="{{ profile_details.image.url }}/" alt="User profile picture">
+                {% else %}
+                    <img class="profile-user-img  img-circle" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+                        <span class="username">
+                          <a href="#">Sarah Ross</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                    <span class="description">Sent you a message - 3 days ago</span>
+                  </div> -->
+                  <!-- /.user-block -->
+<!--                   <p>
+                    Lorem ipsum represents a long-held tradition for designers,
+                    typographers and the like. Some people hate it and argue for
+                    its demise, but others ignore the hate as they create awesome
+                    tools to help create filler text for everyone from bacon lovers
+                    to Charlie Sheen fans.
+                  </p>
+
+                  <form class="form-horizontal">
+                    <div class="form-group margin-bottom-none">
+                      <div class="col-sm-9">
+                        <input class="form-control input-sm" placeholder="Response">
+                      </div>
+                      <div class="col-sm-3">
+                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
+                      </div>
+                    </div>
+                  </form>
+                </div> -->
+                <!-- /.post -->
+
+                <!-- Post -->
+                {% for blog in blog_user %}
+                <div class="post">
+                  <div class="user-block">
+                {% if blog.User.profile.image %}
+                  <img class="profile-user-img img-responsive img-circle" src="{{ blog.User.profile.image.url }}/" alt="User profile picture">
+                {% else %}
+                    <img class="profile-user-img  img-circle" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+                        <span class="username">
+                          <a href="{% url 'userprofile:specific_profile' pk=blog.User.profile.pk %}">{{ blog.User }}</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                    <span class="description">Posted a blog - {{ blog.Date|timesince}} ago</span>
+                  </div>
+                  <!-- /.user-block -->
+                  <div class="row margin-bottom">
+                    <div class="col-sm-12">
+                    {% if blog.Blog_image %}
+                      <img class="img-responsive" src="{{ blog.Blog_image.url }}/" alt="Photo">
+                    {% endif %}
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-12">
+                    <h3 class="box-title"><a href="{% url 'blog:blogdetail' pk=blog.pk %}">{{ blog.Blog_title }}</a></h3>
+                    </div>
+                    <div class="col-sm-12">
+                    <p>{{ blog.Description|safe|truncatewords:"50"|linebreaks}}</p>
+                    </div>
+                  </div>
+                  <!-- /.row -->
+
+                  <ul class="list-inline">
+                    <li><a href="{% url 'blog:blogdetail' pk=blog.pk %}" class="btn btn-info btn-block">Read More &rarr;</a></li>
+                   <!--  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                    </li>
+                    <li class="pull-right">
+                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                        (5)</a></li> -->
+                  </ul>
+
+                  
+                </div>
+                {% endfor %}
+                <!-- /.post -->
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="timeline">
+                <!-- The timeline -->
+                <ul class="timeline timeline-inverse">
+                  <!-- timeline time label -->
+                  {% for blog in blogs %}
+                    <li class="time-label">
+                          <span class="bg-red">
+                           {{ blog.Date|date }}
+                          </span>
+                    </li>
+                    <!-- /.timeline-label -->
+                    <!-- timeline item -->
+                    
+                    <li>
+                      <i class="fa fa-newspaper-o bg-blue"></i>
+
+                      <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> {{ blog.Date|date:'h' }}:{{ blog.Date|date:'i' }}</span>
+
+                        {% if blog.User.profile.image %}
+                          <img class="img-circle img-sm" src="{{ blog.User.profile.image.url }}/" alt="">
+                        {% else %}
+                          <img class="img-circle img-sm" src="{% static 'userprofile/download (1).jpg' %}">
+                        {% endif %}
+                        <h3 class="timeline-header"><a href="{% url 'userprofile:specific_profile' pk=blog.User.profile.pk %}">{{ blog.User }}</a> posted a blog</h3>
+
+                        <div class="timeline-body">
+                          <h3 class="box-title"><a href="{% url 'blog:blogdetail' pk=blog.pk %}">{{ blog.Blog_title }}</a></h3>
+                          {% if blog.Blog_image %}
+                            <img width="100%" height="100%" src="{{ blog.Blog_image.url }}/" alt="">
+                          {% endif %}
+                          
+                        </div>
+                        <div class="timeline-footer">
+                          <a href="{% url 'blog:blogdetail' pk=blog.pk %}" class="btn btn-primary btn-xs">Read more</a>
+
+                          <span class="pull-right text-muted">{{ blog.blog_comments.count }} Comment{{ blog.blog_comments.count|pluralize }} - {{ blog.likes.count }} Like{{ blog.likes.count|pluralize }}</span>
+                        </div>
+                      </div>
+                    </li>
+                  {% endfor %}
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+
+                  <!-- END timeline item -->
+                  <!-- timeline time label -->
+          {% for consultancy in consultancies %}
+            <li class="time-label">
+                <span class="bg-red">
+                    {{ consultancy.Date|date }}
+                </span>
+            </li>
+
+            <li>
+              <i class="fa fa-envelope bg-blue"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{ consultancy.Date|timesince }}</span>
+
+                {% if consultancy.User.profile.image %}
+                    <img class="img-circle img-sm" src="{{ consultancy.User.profile.image.url }}/" alt="">
+                {% else %}
+                    <img class="img-circle img-sm" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+
+                <h3 class="timeline-header"><a href="{% url 'userprofile:specific_profile' pk=consultancy.User.profile.pk %}">{{ consultancy.User }}</a> posted a query</h3>
+
+                <div class="timeline-body">
+                 {{ consultancy.Questions }}
+                </div>
+                <div class="timeline-footer">
+                  <a href="{% url 'consultancy:consultancydetail' pk=consultancy.pk %}" class="btn btn-primary btn-sm">See Solutions</a>
+                 
+                  <span class="pull-right text-muted">{{ consultancy.consultancies.count }} Solution{{ consultancy.consultancies.count|pluralize }} - {{ consultancy.like.count }} Like{{ consultancy.like.count|pluralize }}</span>
+                  
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+                  <!-- END timeline item -->
+                  <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.tab-pane -->
+
+             
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+
+
+
+</section>
+
+</div>
+
+  <div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+
+{% endblock %}
+

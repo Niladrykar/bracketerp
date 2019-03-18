@@ -1,0 +1,315 @@
+
+
+
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load mathfilters %}
+<html>
+
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Purchase Invoice PDF</title>
+
+   <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.7 -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+
+        <!-- bootstrap datepicker -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/font-awesome/css/font-awesome.min.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
+          <!-- DataTables -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+
+          <!-- daterange picker -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/bootstrap-daterangepicker/daterangepicker.css' %}">
+
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/Ionicons/css/ionicons.min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/jvectormap/jquery-jvectormap.css' %}">
+
+       <!--  {# MEDIUM STYLE EDITOR#} -->
+        <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+          <style>
+              .example-modal .modal {
+              position: relative;
+              top: auto;
+              bottom: auto;
+              right: auto;
+              left: auto;
+              display: block;
+              z-index: 1;
+            }
+
+              .example-modal .modal {
+              background: transparent !important;
+            }
+
+          </style>
+
+
+        <!-- {# Custom CSS#} -->
+        <link rel="stylesheet" href="{% static 'clouderp/css/master.css' %}">
+        <!-- {# Theme CSS#} -->
+        <link rel="stylesheet" href="{% static 'clouderp/css/theme.min.css' %}">
+        <!-- {# Skin CSS#} -->
+        <link rel="stylesheet" href="{% static 'clouderp/css/skin.min.css' %}">
+        <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+         <link rel="stylesheet" href="{% static 'clouderp/css/select2.min.css' %}">
+
+        <!-- {# Fonts#} -->
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+
+<div class="content-wrapper">
+
+<section class="content">
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+            
+              <h3 class="box-title"><b>Purchase Invoice</b></h3>
+           
+            </div>
+            <!-- /.box-header -->
+  <div class="box-body">
+     <section class="invoice">
+      <!-- title row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> {{company_details.Name}}
+            <small class="pull-right">Date: {{purchase_details.date}}</small>
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+
+        <div class="col-sm-4 invoice-col">
+          Seller
+          <address>
+            <strong>{{purchase_details.billname}}</strong><br>
+            {{purchase_details.Address}}<br>
+            State : {{purchase_details.State}}<br>
+            Phone : {{purchase_details.Contact}}<br>
+            
+          </address>
+        </div>
+        <div class="col-sm-4 invoice-col">
+          Buyer
+          <address>
+            <strong>{{company_details.Name}}</strong><br>
+            {{company_details.Address}}<br>
+             Pin   : {{company_details.Pincode}}<br>
+             State : {{company_details.State}}<br>
+             Phone : {{company_details.Mobile_No}}<br>
+             GSTIN : {{company_details.gst}}<br>
+          </address>
+        </div>
+        <!-- /.col -->
+        
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <b>Invoice #{{purchase_details.ref_no}}</b><br>
+          <br>
+          <b>Order ID:</b> {{purchase_details.id}}<br>
+          <b>Payment Due:</b> ----<br>
+          <b>Account:</b> ----
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <hr>
+
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Sl.no</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Rate</th>
+              <th>Discount(%)</th>
+              <th>Sub Total(&#8377;)</th>
+              {% if company_details.State == purchase_details.State %}
+                <th>CGST(%)</th>
+                <th>SGST(%)</th>
+              {% else %}
+                <th>IGST(%)</th>
+              {% endif %}
+              <th>Total(&#8377;)</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for stock_total in stocklist %}
+
+              <tr>
+                <th>{{forloop.counter}}</th>
+                <th>{{stock_total.stockitem}}</th>
+                <th>{{stock_total.Quantity_p}}</th>
+                <th>{{stock_total.rate_p}}</th>
+                <th>{{stock_total.Disc_p}}</th>
+                <th>{{stock_total.Total_p}}</th>
+                {% if company_details.State == purchase_details.State %}                
+
+                  <th>{{name}}-({{stock_total.stockitem.gst_rate|div:2}}%)</th>
+                  <th>{{stock_total.stockitem.gst_rate|div:200|mul:stock_total.Total_p|floatformat:2}}-({{stock_total.stockitem.gst_rate|div:2}}%)</th>
+                
+                {% else %}
+
+                  <th>{{stock_total.stockitem.gst_rate|div:100|mul:stock_total.Total_p|floatformat:2}}-{{stock_total.stockitem.gst_rate}}%</th>
+
+                {% endif %}
+
+                <th>{{stock_total.stockitem.gst_rate|div:100|addition:1|mul:stock_total.Total_p|floatformat:2}}</th>
+                
+              </tr>
+
+
+              {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <hr>
+              
+              
+              
+            
+          <div class="table-responsive pull-right">
+            <table class="table">
+              <tr>
+                 <th></th>
+                <th></th>
+                <th></th>
+                <th style="width:50%">Subtotal:(&#8377;)</th>
+                <th></th>
+                <th></th>
+                <td>{{purchase_details.Total_Purchase}}</td>
+              </tr>
+          {% if company_details.State == purchase_details.State %}
+              <tr>
+                 <th></th>
+                <th></th>
+                <th></th>
+                <th style="width:50%">CGST:(&#8377;)</th>
+                <th></th>
+                <th></th>
+                <td>{{purchase_details.Total_Purchase}}</td>
+              </tr>
+              <tr>
+                 <th></th>
+                <th></th>
+                <th></th>
+                <th style="width:50%">SGST:(&#8377;)</th>
+                <th></th>
+                <th></th>
+                <td>{{purchase_details.Total_Purchase}}</td>
+              </tr>
+          {% else %}
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="width:50%">IGST:(&#8377;)</th>
+                <th></th>
+                <th></th>
+                <td>{{purchase_details.Total_Purchase}}</td>
+              </tr>
+          {% endif %}
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="width:50%">Total:(&#8377;)</th>
+                <th></th>
+                <th></th>
+                <td>{{purchase_details.Total_Purchase}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6">
+          <p class="lead"><strong>Company Bank Details:</strong></p>
+          
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            <strong>Bank Name:</strong>_____________________________________  
+          </p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            <strong>A/c no:</strong>__________________________________________
+          </p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            <strong>
+            Branch & IFSC code:</strong>_______________________________  
+          </p>
+          <p class="lead"><strong>Declaration:</strong></p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            We declare that this invoice shows the actual price of the goods described and all the paritculars are true and correct.
+          </p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            Subjected to local jurisdiction.
+          </p>
+        </div>
+        <!-- /.col -->
+
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+  </div>      <!-- form start -->
+   
+
+      <!-- this row will not appear when printing -->
+ 
+          </div>
+
+        </div>
+</div>
+
+
+
+
+
+
+
+
+</section>
+</div>
+
+    
+  
+
+
+</html>
+
+

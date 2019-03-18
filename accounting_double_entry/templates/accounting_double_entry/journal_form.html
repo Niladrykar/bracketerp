@@ -1,0 +1,272 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+        {% if not form.instance.pk %}
+        Create Journal
+        {% else %}
+        Update Journal
+        {% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+ 
+  
+
+
+
+<div class="content-wrapper">
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company Details</li>
+                     <li class="active">Create Journal</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+            <a href="{% url 'accounting_double_entry:list' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Journal </a>
+            <a href="{% url 'accounting_double_entry:create' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Create Journal</a>
+
+            <div class="pull-right">
+              <a href="{% url 'accounting_double_entry:groupcreate' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Create Group</a>
+
+              <a href="{% url 'accounting_double_entry:ledgercreate' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Create Ledger</a>
+              
+            </div>
+
+            
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+            {% if not form.instance.pk %}
+              <h3 class="box-title"><b>Create Journal</b></h3>
+            {% else %}
+              <h3 class="box-title"><b>Update Journal</b></h3>
+            {% endif %}
+            </div>
+
+    <form action="" method="post">
+
+        {% csrf_token %}
+        <div class="pull-right">
+        <label>Date:<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+        {{ form.Date }}
+
+        </div>
+
+        <br>
+        <br>
+
+
+
+
+
+      <!--   <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box box-info">
+                  <div class="box-header with-border">
+                    <h3 class="box-title col-md-3"></h3>
+                    <h4 class="box-title col-md-4">Particulars</h4>
+                    <h4 class="box-title col-md-5">Debit Amount</h4>
+                  </div> 
+
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-3">
+                  By
+                </div>
+                <div class="col-md-4">
+                  {{ form.By }}
+                </div>
+                <div class="col-md-5">
+                  {{ form.Debit }}
+                </div>
+              </div>
+            </div>
+           
+                    
+                </div>
+                
+            </div>
+            
+        </div> -->
+
+                        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box box-info">
+                    <style type="text/css">
+
+                    .table-bordered td, .table-bordered th{
+                        border-color: #bfbfbf !important;
+                    
+                         }
+                    </style>
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-bordered">
+
+                            <tr>
+                                <td>
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th><center></center></th>
+                                            <th><center>Particulars<i class="material-icons" style="font-size:16px;color:red">*</i></center></th>
+                                            
+                                            <th><center>Debit Amount<i class="material-icons" style="font-size:16px;color:red">*</i></center></th>
+                                        </tr>
+                                        <tr>
+                                            <th><center>By</center></th>
+                                            <th><center>{{ form.By }}</center></th>
+                                            
+                                            <th><center>{{ form.Debit }}</center></th>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+
+                <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box box-info">
+                    <style type="text/css">
+
+                    .table-bordered td, .table-bordered th{
+                        border-color: #bfbfbf !important;
+                    
+                         }
+                    </style>
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-bordered">
+
+                            <tr>
+                                <td>
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th><center></center></th>
+                                            <th><center>Particulars<i class="material-icons" style="font-size:16px;color:red">*</i></center></th>
+                                            
+                                            <th><center>Credit<i class="material-icons" style="font-size:16px;color:red">*</i></center></th>
+                                        </tr>
+                                        <tr>
+                                            <th><center>To</center></th>
+                                            <th><center>{{ form.To }}</center></th>
+                                            
+                                            <th><center>{{ form.Credit }}</center></th>
+                                        </tr>
+                                    </table>
+
+                                    <table class="table table-hover">
+                                        <tr>
+                                          
+                                            <th>Narration</th>
+                                            
+                                          </tr>
+                                        <tr>
+                                            <th>{{ form.narration }}</th>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+
+
+
+                </div>
+                
+            </div>
+            
+        </div>
+
+<div class="box box-danger">
+        {{ form.non_field_errors }}
+</div>
+        
+        <div class="box-footer">
+                <button class="btn btn-default">Cancel</button>
+                {% if not form.instance.pk %}
+                <button type="submit" class="btn btn-info pull-right" value="Submit">Create Journal</button>
+                {% else %}
+                <button type="submit" class="btn btn-info pull-right" value="Submit">Update Journal</button>
+                {% endif %}
+
+                
+        </div>
+    </form>
+    </div>
+</div>
+</div>
+
+</section>
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Stockgroup{% endblock %}
+
+
+
+
+
+{% block content %}
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+			<section class="content-header">
+				<!-- <div class="col-md-12 col-md-offset-4"> -->
+					<h1>
+            		<strong>Company : {{company_details.Name}}</strong>
+					</h1>
+								<ol class="breadcrumb">
+			       					 <li><a href="#"><i class="fa fa-dashboard"></i> Company Details</a></li>
+			       					 <!-- <li><a href="#">Company list</a></li> -->
+			     				   <li class="active">Group List</li>
+			      </ol>
+				<!-- </div> -->
+			</section>
+
+<section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+			<div class="col-xs-12">
+          <div class="box box-default">
+					<div class="box-body">
+
+			<a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+				
+				
+				</div>
+			
+			</div>
+		
+		</div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+         <a href="{% url 'stockkeeping:stockgrouplist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Stockgroup List</a>
+          
+          <a href="{% url 'stockkeeping:stockgroupcreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Stockgroup</a>
+              
+        
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+
+								
+<div class="row">
+        <div class="col-xs-12">
+          {% if stockgroup_list %}
+                <div class="box box-info">
+          
+
+
+                <div class="box-header">
+                  <h3 class="box-title">Stockgroup list details</h3>
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table id="example1" class="table table-bordered table-striped">
+
+                    <thead>
+                      <tr>
+                      <th>Sl no</th>
+                      <th>Name</th>
+                      <th>Under</th> 
+                    </tr>
+                    </thead>
+                    
+                    <tbody>
+                    {% for stockgroup in stockgroup_list %}
+                    <tr>
+                      <td><a href="{% url 'stockkeeping:stockgroupdetail' pk2=stockgroup.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}">
+                        {{ forloop.counter0|add:page_obj.start_index }}
+                      </a></td>
+                      <td><a href="{% url 'stockkeeping:stockgroupdetail' pk2=stockgroup.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}"">{{stockgroup.name}}</a></td>
+                      <td> <a href="{% url 'stockkeeping:stockgroupdetail' pk2=stockgroup.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}">{{stockgroup.under}}</a></td>
+                     
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+
+
+                     
+                   
+                   
+                  </table>
+
+              </div>
+              
+          {% else %}
+              <div class="col-xs-12 alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                  No Stockgroup created !
+              </div>
+          {% endif %}  
+          
+          
+        </div>
+
+      </div>
+</section>
+
+
+
+{% endblock %}

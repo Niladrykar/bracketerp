@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+<form method="post" data-url="{% url 'accounting_double_entry:dateupdate' form.instance.id %}" class="update-form">
+	{% csrf_token %}
+		<div class="modal-header">
+		<h5 class="modal-title" >Update Dates</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		<div class="modal-body">
+		{{form|crispy}}
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<button type="submit" id="update_reload" class="btn btn-warning">Update</button>
+		</div>
+</form>
+
+
+<script type="text/javascript">
+
+$('#update_reload').click(function() {
+    location.reload();
+});
+
+</script>

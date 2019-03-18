@@ -1,0 +1,181 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+
+{% block title %}Mailbox{% endblock %}
+
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+
+
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Mailbox</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Group</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+
+<!-- <div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+            <a href="{% url 'messaging:messagecreate' %}" class="btn btn-success" role="button">Compose</a>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div> -->
+
+
+   <div class="row">
+        <div class="col-md-3">
+          <a href="{% url 'messaging:messagecreate' %}" class="btn btn-primary btn-block margin-bottom">Compose</a>
+
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Folders</h3>
+
+              <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="{% url 'messaging:messageinbox' %}"><i class="fa fa-inbox"></i> Inbox
+                  <span class="label label-primary pull-right">{{ inbox_count }}</span></a></li>
+                <li class="active"><a href="{% url 'messaging:messagesend' %}"><i class="fa fa-envelope-o"></i> Sent
+                <span class="label label-warning pull-right">{{ send_count }}</span></a></li>
+               
+                <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Sent Items</h3>
+
+              <div class="box-tools pull-right">
+                <div class="has-feedback">
+                  <input type="text" class="form-control input-sm" placeholder="Search Mail">
+                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                </div>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="mailbox-controls">
+                <!-- Check all button -->
+                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+                </button>
+                <!-- /.btn-group -->
+                <button type="button" id="update_reload_messages" class="btn btn-default btn-sm pull-right"><i class="fa fa-refresh"></i></button>
+
+                <!-- /.pull-right -->
+              </div>
+              <div class="table-responsive mailbox-messages">
+                <table class="table table-hover table-striped">
+                  <tbody>
+                  {% for message in message_send %}
+                  <tr>
+                    <!-- <td><input type="checkbox"></td> -->
+                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                    <td class="mailbox-name"><a href="{% url 'messaging:messagedetails' pk=message.pk %}">{{ message.reciever }}</a></td>
+                    <td class="mailbox-subject"><b>{{ message.subject|safe|truncatewords:"4" }}</b> - {{ message.msg_content|safe|truncatewords:"5" }}
+                    </td>
+                    <td class="mailbox-attachment"></td>
+                    <td class="mailbox-date">{{ message.created_at|timesince}} ago</td>
+                    <td class="mailbox-date"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></td>
+                  </tr>
+                  {% endfor %}
+                  
+                  </tbody>
+                </table>
+                <!-- /.table -->
+              </div>
+              <!-- /.mail-box-messages -->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer no-padding">
+                    <br>
+                     <div class="pull-left">
+                        <p>Showing item {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }} entries</p>
+                    </div>
+
+
+                  <div class="pull-right">
+                        {% if is_paginated %}
+                            <ul class="pagination">
+                             {% if page_obj.has_previous %}
+                                <li><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                              {% else %}
+                                <li class="disabled"><span>Previous</span></li>
+                              {% endif %}
+                              {% for i in paginator.page_range %}
+                                  {% if page_obj.number == i %}
+                                     <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                  {% else %}
+                                      <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                  {% endif %}
+                              {% endfor %}
+                              {% if page_obj.has_next %}
+                                  <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                              {% else %}
+                                  <li class="disabled"><span>Next</span></li>
+                              {% endif %}
+                          </ul>
+                        {% endif %}
+                    </div>
+            </div>
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+  <!-- /.container -->
+
+</section>
+</div>
+
+<script type="text/javascript">
+$('#update_reload_messages').click(function() {
+    location.reload();
+});
+</script>
+
+{% endblock %}

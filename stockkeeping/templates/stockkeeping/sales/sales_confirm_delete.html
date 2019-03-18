@@ -1,0 +1,109 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Delete Purchase Invoice{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+   <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Group Details</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+           <a href="{% url 'stockkeeping:saleslist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Sales Invoice</a>
+          
+          <a href="{% url 'stockkeeping:salescreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Sales Invoice</a>
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+ 
+    <div class="box box-info">
+          <div class="box-body">
+              <div class="col-md-12">
+              <h1>
+              <strong>Delete {{sales.Name }}?</strong>
+              </h1>
+              </div>
+          </div>
+       
+   
+<div class="box-footer">
+  <form method="post">
+  {% csrf_token %}
+  <input type="submit" class="btn btn-danger" value="Delete">
+  <a class='btn btn-default' href="{% url 'stockkeeping:salesdetail' pk2=sales.pk pk1=company_details.pk pk3=selectdatefield_details.pk %}">Cancel</a>
+
+</form>
+</div>
+
+</div>
+  
+
+
+
+    
+  </section>
+</div>
+
+    
+  
+  
+
+  
+
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+{% block title %}
+    {% if not form.instance.pk %}
+    Mailbox 
+    {% else %}
+    Update Mailbox 
+    {% endif %}
+{% endblock %}
+
+{% block head_extra %} 
+
+{{ form.media }}
+
+{% endblock head_extra %}
+
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+      <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>    
+            {% if not form.instance.pk %}
+                             Mailbox 
+                        {% else %}
+                            Update Mailbox 
+                        {% endif %}
+            </strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Read Blogs & Articles</li>
+                     <li class="active">Create Post</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+            <a href="{% url 'messaging:messagecreate' %}" class="btn btn-success" role="button">Compose</a>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.id_file').attr("multiple","true");
+
+  })
+ </script>
+
+<div class="row">
+        <div class="col-md-12">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Compose New Message</h3>
+            </div>
+
+             <form method="POST" class="form-horizontal" enctype="multipart/form-data">
+            {% csrf_token %}
+              <div class="box-body">
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">To</label>
+                  
+                    <div class="col-sm-10">
+                          
+                        {{ form.reciever.errors }}
+                        {{ form.reciever }}
+                      
+                    </div>
+
+                 
+
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Subject</label>
+
+                  <div class="col-sm-10">
+                    {{ form.subject }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Message Content</label>
+
+                  <div class="col-sm-10">
+                    {{ form.msg_content }}
+                  </div>
+                </div>
+
+                
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Attachment</label>
+
+                  <div class="col-sm-10">
+                     {{ form.attchment}}
+                  </div>
+                </div>
+               
+                
+                
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+              <div class="pull-right">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
+              </div>
+              <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
+            </div>
+            <!-- /.box-footer -->
+            </form>
+            <!-- /.box-body -->
+            
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+</div>
+
+
+
+</section>
+</div>
+
+    
+  
+
+{% endblock %}

@@ -1,0 +1,36 @@
+        <div class="box-footer">
+          
+         
+
+        <div class="row">
+
+          <div class = "col-sm-6">
+             <STRONG><p>Total Upvotes  : {{ total_likes}}</p></STRONG>
+             <STRONG><p>Total Comments  : {{ blog_details.blog_comments.count }}</p></STRONG>
+             <STRONG><p>Total Views    : {{ blog_details.blog_views }}</p></STRONG>
+          </div>
+         
+
+          <div class = "col-sm-6">
+          <form action="{% url 'blog:like_post' %}" method="post">
+            {% csrf_token %}
+            {% if is_liked %}
+                <button type="submit" id="like" name="blog_details_id" value="{{ blog_details.id}}" class='btn btn-danger btn-md pull-right'>
+                  <i class="fa fa-fw fa-thumbs-down"></i>
+
+               Remove Upvote   
+              </button>
+            {% else %}
+                  <button type="submit" id="like" name="blog_details_id" value="{{ blog_details.id}}" class='btn btn-success btn-md pull-right'>
+                  <i class="fa fa-fw fa-thumbs-up"></i>
+
+                Upvote   
+                </button>
+            {% endif %}
+
+          </form>
+
+          </div>
+
+        </div>
+        </div>

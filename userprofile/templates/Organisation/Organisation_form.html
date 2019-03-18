@@ -1,0 +1,137 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+{% block title %}About Organisation{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+      <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Submit Details About Your Organisation</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Profile</li>
+                     <li class="active">Profile Update</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+
+
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+            <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+            <a href="{% url 'ecommerce_integration:apilist' %}" class="btn btn-primary" role="button">APIs</a>
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'ecommerce_integration:subscribedproductlist' %}" class="btn btn-info" role="button">My Subscriptions</a>
+ 
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+            
+              <h3 class="box-title">Submit Details About Your Organisation</h3>
+           
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form method="POST" class="form-horizontal" enctype="multipart/form-data">
+              
+            {% csrf_token %}
+            
+              <div class="box-body">
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Organisation Name</label>
+                  
+                    <div class="col-sm-10">
+                          
+                        
+                        {{ form.name }}
+                      
+                    </div>
+
+                 
+
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Location</label>
+                  
+                    <div class="col-sm-10">
+                          
+                        
+                        {{ form.location }}
+                      
+                    </div>
+
+                 
+
+                </div>
+
+                 
+          
+                
+                
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+               
+              
+                 <button type="submit" class="btn btn-info pull-right" value="Submit">Submit</button>
+                
+
+                
+             </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+
+
+
+</div>
+</div>
+
+
+
+</section>
+</div>
+
+    
+  
+
+{% endblock %}

@@ -1,0 +1,217 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Dashboard{% endblock %}
+
+
+    
+			
+			
+{% block content %}
+<div class="content-wrapper">
+	<!-- <div class="container"> -->
+		<section class="content-header">
+			<!-- <div class="col-md-12"> -->
+				<h1>
+					<strong>Selected Company : {{company_details.Name}}</strong>
+				</h1>
+        <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Company list</a></li>
+        <li class="active">Selected Company</li>
+      </ol>
+			<!-- </div> -->
+		</section>
+
+		<!-- <div class="container">
+    		<p><a class='btn btn-warning' >Update</a></p>
+
+  		</div>
+  		<br>
+  		<div class="container">
+    		<p><a class='btn btn-danger' >Delete</a></p>
+
+  		</div> -->
+  
+      <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-default" >
+            <!-- <div class="box-header with-border">
+              <h3 class="box-title">Modal Examples</h3>
+            </div> -->
+            <div class="box-body">
+              <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:update' pk=company_details.pk %}" class="btn btn-warning" role="button">Update Company details</a>
+            
+              
+              {% if not selectdatefield_details %}
+
+                  
+                     <button class="btn btn-primary show-form pull-right" data-url="{% url 'accounting_double_entry:datecreate' %}">
+                      <span class="glyphicon glyphicon-plus"></span>
+                        Select Date Range
+                      </button>
+
+                {% else %} 
+              
+  
+                            <button  class="btn btn-warning show-form-update pull-right" data-url="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                              Update Date Range 
+                            </button>
+
+                      <a id="book-table-date" class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a>  
+
+                 
+
+                {% endif %} 
+               
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+            <a href="{% url 'accounting_double_entry:list' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-success" role="button">Select Journal </a>
+            <a href="{% url 'accounting_double_entry:create' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Create Journal</a>
+
+            <div class="pull-right">
+
+              <a href="{% url 'accounting_double_entry:ledgerlist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Ledger </a>
+              <a href="{% url 'accounting_double_entry:ledgercreate' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Create Ledger</a>
+            
+            </div>
+             
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+	<!-- here is the personal statistics part		 -->
+  <!-- Main row -->
+  <style type="text/css">
+    #blue {
+      color: #3b8bba;
+      text-shadow: 1px 1px 1px #ccc;
+      font-size: 1.5em;
+    }
+
+    #shadow {
+      color: #c1c7d1;
+      text-shadow: 1px 1px 1px #ccc;
+      font-size: 1.5em;
+    }
+
+  </style>
+      <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-7 connectedSortable">
+          <!-- Custom tabs (Charts with tabs)-->
+          <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right">
+              <li><i class="fa fa-square" id="shadow" aria-hidden="true"></i>&nbsp; Purchases&nbsp;</li>
+              <li><i class="fa fa-square" id="blue" aria-hidden="true"></i>&nbsp; Sales&nbsp;</li>
+
+              <li class="pull-left header"><i class="fa fa-inbox"></i>Purchase and Sales</li>
+            </ul>
+            <div class="tab-content no-padding">
+              <!-- Morris chart - Sales -->
+              <!-- <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div> -->
+
+              <canvas class="chart tab-pane active" id="areaChart" style="height:250px"></canvas>
+              <!-- <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div> -->
+            </div>
+          </div>
+          <!-- /.nav-tabs-custom -->
+          <div class="box box-solid bg-teal-gradient">
+            <div class="box-header">
+              <i class="fa fa-th"></i>
+
+              <h3 class="box-title">Profit Graph</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body border-radius-none">
+              <div class="chart" id="line-chart" style="height: 250px;"></div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer no-border">
+              <div class="row">
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
+                         data-fgColor="#39CCCC">
+
+                  <div class="knob-label">Mail-Orders</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                  <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
+                         data-fgColor="#39CCCC">
+
+                  <div class="knob-label">Online</div>
+                </div>
+                <!-- ./col -->
+                <div class="col-xs-4 text-center">
+                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
+                         data-fgColor="#39CCCC">
+
+                  <div class="knob-label">In-Store</div>
+                </div>
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+         
+
+</section>
+
+      </div>
+      <!-- /.row (main row) -->
+
+
+</section>	
+
+
+  <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>	
+
+
+
+{% endblock %}
+			
+	
+	
+

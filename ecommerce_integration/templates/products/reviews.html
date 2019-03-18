@@ -1,0 +1,39 @@
+
+{% for review in reviews %} 
+                      
+  <div class="single-review">
+    <div class="review-heading">
+      <div><a href="{% url 'userprofile:specific_profile' pk=review.User.profile.pk %}"><i class="fa fa-user-o"></i> {{ review.User }}</a>
+        
+      </div>
+        <div><a href="#"><i class="fa fa-clock-o"></i> {{ review.date|date }} / {{ review.date|date:"h" }}:{{ review.date|date:"i" }} {{ review.date|date:"A" }}</a></div>
+          <style type="text/css">
+            .checked {
+                color: orange;
+          }
+          </style>
+          <div class="review-rating pull-right">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-o empty "></span>
+            <span class="fa fa-star-o empty"></span>
+          </div>
+    </div>
+    <div class="review-body">
+        <p>{{ review.text }}</p>
+    </div>
+
+                    {% if user.is_superuser or review.User == user %}
+                      
+                        <button class="show-form-delete pull-right" data-url="{% url 'ecommerce_integration:reviewdelete' review.id %}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    
+                     
+                    {% endif %}
+  </div>
+
+  <br>
+
+{% endfor %}

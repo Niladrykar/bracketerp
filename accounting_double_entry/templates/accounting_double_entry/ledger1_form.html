@@ -1,0 +1,264 @@
+{% extends "clouderp/base.html" %}
+
+
+
+{% block title %}
+		{% if not form.instance.pk %}
+		Create Ledger
+		{% else %}
+		Update Ledger
+		{% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+      <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Ledger</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+<section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+            <a href="{% url 'accounting_double_entry:ledgerlist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Ledger </a>
+                <a href="{% url 'accounting_double_entry:ledgerlist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Create Ledger</a>
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="box box-info">
+      <div class="box-header with-border">
+        {% if not form.instance.pk %}
+          <h3 class="box-title">Create Ledger</h3>
+        {% else %}
+          <h3 class="box-title">Update Ledger</h3>
+        {% endif %}
+        </div>
+  <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              
+  
+            
+            
+      <div class="box-body">
+        <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Creation Date<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                  
+                    <div class="col-sm-10">
+                          
+                       
+                        {{ form.Creation_Date }}
+                      
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Ledger name<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                  
+                    <div class="col-sm-10">
+                          
+                       
+                        {{ form.name }}
+                      
+                    </div>
+                </div>
+
+
+        <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Under Group<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                <div class="col-sm-10">
+                 
+                  
+                   
+                       
+                      
+                        {{ form.group1_Name }}
+                      
+
+
+                      
+                  </div>
+                </div>  
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Opening_Balance<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                  
+                    <div class="col-sm-10">
+                          
+                       
+                        {{ form.Opening_Balance }}
+                      
+                    </div>
+                </div>  
+
+
+
+
+              </div>
+          
+        
+
+        
+             <div class="box-header with-border">
+              <h3 class="box-title">Mailing Details</h3>
+            </div>
+                      
+
+              <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Name</label>
+                  
+                    <div class="col-sm-10">
+                          
+                       
+                        {{ form.User_Name}}
+                      
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Address</label>
+                  
+                    <div class="col-sm-10">
+                          
+                       
+                        {{ form.Address }}
+                      
+                    </div>
+                </div>
+
+
+              <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">State</label>
+                  
+                    <div class="col-sm-10">
+                          
+                       
+                        {{ form.State }}
+                      
+                    </div>
+                </div>  
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Pin Code</label>
+                  
+                    <div class="col-sm-10">
+                          
+                       
+                        {{ form.Pin_Code }}
+                      
+                    </div>
+                </div>  
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Pan No</label>
+                  
+                    <div class="col-sm-10">
+                          
+                       
+                        {{ form.PanIt_No }}
+                      
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">GST No</label>
+                  
+                    <div class="col-sm-10">
+                          
+                       
+                        {{ form.GST_No}}
+                      
+                    </div>
+                </div>
+
+
+              
+
+                
+        
+
+              <div class="box-footer">
+                <button class="btn btn-default btn-lg">Cancel</button>
+                  {% if not form.instance.pk %}
+                    <button type="submit" class="btn btn-info btn-lg pull-right" value="Submit">Create Ledger</button>
+                  {% else %}
+                    <button type="submit" class="btn btn-info btn-lg pull-right" value="Submit">Update Ledger</button>
+                  {% endif %}
+
+
+                </div>
+    </form>
+
+  </div>
+</div>
+
+
+</div>	
+
+  </section>
+  					
+</div>
+
+
+				
+{% endblock %}

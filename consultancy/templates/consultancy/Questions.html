@@ -1,0 +1,48 @@
+{% load staticfiles %}
+    <ul class="timeline">
+      
+
+      {% for consultancy in consultancy_list %}
+            <li class="time-label">
+                <span class="bg-red">
+                    {{ consultancy.Date|date }}
+                </span>
+            </li>
+
+            <li>
+              <i class="fa fa-envelope bg-blue"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{ consultancy.Date|timesince }}</span>
+
+                {% if consultancy.User.profile.image %}
+                    <img class="img-circle img-sm" src="{{ consultancy.User.profile.image.url }}/" alt="">
+                {% else %}
+                    <img class="img-circle img-sm" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+
+                <h3 class="timeline-header"><a href="{% url 'userprofile:specific_profile' pk=consultancy.User.profile.pk %}">{{ consultancy.User }}</a></h3>
+
+                <div class="timeline-body">
+                 {{ consultancy.Questions }}
+                </div>
+                <div class="timeline-footer">
+                  <a href="{% url 'consultancy:consultancydetail' pk=consultancy.pk %}" class="btn btn-primary btn-sm">See Solutions</a>
+                  {% if consultancy.User == user %}
+                      <button class="show-form-update btn btn-warning btn-sm" data-url="{% url 'consultancy:consultancyupdate' id=consultancy.id %}">
+                        Update
+                      </button>
+
+                      <button class="show-form-delete btn btn-danger btn-sm" data-url="{% url 'consultancy:consultancydelete' id=consultancy.id %}">
+                        Delete
+                      </button>
+
+                  {% endif %}
+
+                  <span class="pull-right text-muted">{{ consultancy.consultancies.count }} Solution{{ consultancy.consultancies.count|pluralize }} - {{ consultancy.like.count }} Like{{ consultancy.like.count|pluralize }}</span>
+                  
+                </div>
+              </div>
+            </li>
+      {% endfor %}
+    </ul>

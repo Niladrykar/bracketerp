@@ -1,0 +1,154 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+
+{% block title%}Your Post{% endblock %}
+
+
+
+{% block content %}
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+			<section class="content-header">
+				<!-- <div class="col-md-12 col-md-offset-4"> -->
+					<h1>
+						<strong>Post Details</strong>
+					</h1>
+								<ol class="breadcrumb">
+			       					 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			       					 <!-- <li><a href="#">Company list</a></li> -->
+			     				   <li class="active">Company list</li>
+			      </ol>
+				<!-- </div> -->
+			</section>
+
+<section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+
+  <div class="col-xs-12">
+    <div class="box box-default">
+      <div class="box-body">
+
+
+
+        <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+        <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+        <a href="{% url 'ecommerce_integration:apilist' %}" class="btn btn-primary" role="button">APIs</a>
+
+
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'ecommerce_integration:subscribedproductlist' %}" class="btn btn-info" role="button">My Subscriptions</a>            
+             
+
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+  </div>
+
+</div>
+
+
+
+<div class="row">
+ <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Box Comment -->
+          <div class="box box-widget">
+            <div class="box-header with-border">
+              <div class="user-block">
+                {% if post_details.User.profile.image %}
+                    <img class="img-circle img-sm" src="{{ post_details.User.profile.image.url }}/" alt="">
+                {% else %}
+                    <img class="img-circle img-sm" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+                <span class="username"><a href="{% url 'userprofile:specific_profile' pk=post_details.User.profile.pk %}">{{ post_details.User }}</a></span>
+                <span class="description">Shared publicly - {{ post_details.Date|date:"H:i" }}{{ post_details.Date|timesince }} ago</span>
+              </div>
+              <!-- /.user-block -->
+              <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <!-- post text -->
+              <p><strong>{{ post_details.post|safe }}</strong></p>
+
+            <hr>
+
+            <div id="like-section-post">
+        
+              {% include 'social/post_like.html' %}
+
+            </div>
+
+             <span class="pull-right text-muted">{{ post_details.post_comment.count }} Solution{{ post_details.post_comment.count|pluralize }}</span>
+             
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer box-comments">
+              <div class="box-comment">
+                <div id="book-table">
+                  {% include 'social/post_comment.html' %}
+                </div>
+                
+              </div>
+            </div>
+
+
+            
+            {% if user.is_authenticated %}
+              
+              <div class="box-footer">
+                <form method="post">
+                  {% csrf_token %}               
+                  
+                  <div class="col-sm-10 col-md-10 col-xs-6">
+                    {{ Comment_form.text }}
+                  </div>
+                    
+                    <div class="col-sm-2 col-md-2 col-xs-6">
+                      <input type="submit" class="btn btn-info pull-right" value="Submit"> 
+                    </div>
+                
+                </form>
+              </div>
+
+            {% endif %}
+           
+          </div>
+         
+        </div>
+     
+</div>
+
+
+								
+
+</section>
+
+</div>
+
+  <div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+
+{% endblock %}

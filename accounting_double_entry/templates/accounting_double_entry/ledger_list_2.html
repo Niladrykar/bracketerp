@@ -1,0 +1,30 @@
+{% load mathfilters %}
+{% for ledger in ledger1_list %}
+  <tr>
+
+    <td><a href="{% url 'accounting_double_entry:ledgerdetail' pk=company_details.pk pk2=ledger.pk pk3=selectdatefield_details.pk %}">{{ledger.counter}}</a></td>
+                        
+    <td><a href="{% url 'accounting_double_entry:ledgerdetail' pk=company_details.pk pk2=ledger.pk pk3=selectdatefield_details.pk %}">{{ledger.name}}</a></td>
+
+    <td><a href="{% url 'accounting_double_entry:ledgerdetail' pk=company_details.pk pk2=ledger.pk pk3=selectdatefield_details.pk %}">{{ledger.Creation_Date}}</a></td>
+
+    <td><a href="{% url 'accounting_double_entry:ledgerdetail' pk=company_details.pk pk2=ledger.pk pk3=selectdatefield_details.pk %}">{{ledger.group1_Name}}</a></td>
+
+    <td><a href="{% url 'accounting_double_entry:ledgerdetail' pk=company_details.pk pk2=ledger.pk pk3=selectdatefield_details.pk %}">{{ledger.group1_Name.balance_nature}}</a></td>
+
+    <td><a href="{% url 'accounting_double_entry:ledgerdetail' pk=company_details.pk pk2=ledger.pk pk3=selectdatefield_details.pk %}">{{ledger.Balance_opening}}</a></td>
+
+    <td><a href="{% url 'accounting_double_entry:ledgerdetail' pk=company_details.pk pk2=ledger.pk pk3=selectdatefield_details.pk %}">{{ledger.Closing_balance|floatformat:2|abs}}</a></td>
+
+    <td>
+    	    <button class="btn btn-danger show-form-delete" data-url="{% url 'accounting_double_entry:ledgerdelete' pk=company_details.pk pk2=ledger.pk pk3=selectdatefield_details.pk %}">
+        <span class="glyphicon glyphicon-trash"></span>
+                              
+
+    </button>
+
+    </td>
+
+  </tr>
+                      
+{% endfor %}

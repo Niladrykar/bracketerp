@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load mathfilters %}
+<html>
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Ledger Monthly PDF</title>
+   <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.7 -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+
+        <!-- bootstrap datepicker -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/font-awesome/css/font-awesome.min.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
+          <!-- DataTables -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+
+          <!-- daterange picker -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/bootstrap-daterangepicker/daterangepicker.css' %}">
+
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/Ionicons/css/ionicons.min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'clouderp/bower_components/jvectormap/jquery-jvectormap.css' %}">
+
+       <!--  {# MEDIUM STYLE EDITOR#} -->
+        <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+          <style>
+              .example-modal .modal {
+              position: relative;
+              top: auto;
+              bottom: auto;
+              right: auto;
+              left: auto;
+              display: block;
+              z-index: 1;
+            }
+
+              .example-modal .modal {
+              background: transparent !important;
+            }
+
+          </style>
+
+
+        <!-- {# Custom CSS#} -->
+        <link rel="stylesheet" href="{% static 'clouderp/css/master.css' %}">
+        <!-- {# Theme CSS#} -->
+        <link rel="stylesheet" href="{% static 'clouderp/css/theme.min.css' %}">
+        <!-- {# Skin CSS#} -->
+        <link rel="stylesheet" href="{% static 'clouderp/css/skin.min.css' %}">
+        <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+         <link rel="stylesheet" href="{% static 'clouderp/css/select2.min.css' %}">
+
+        <!-- {# Fonts#} -->
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> 
+</head>
+<body>
+
+
+<div class="content-wrapper">
+   <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+
+
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="box box-info">
+
+          <div class="box-header with-border">
+              
+              <h3 class="box-title"><b>Ledger Details</b></h3>
+        
+          </div>
+
+          <div class="box-header with-border">
+              
+              <h2><b><center>{{ ledger1_details.name }}</center></b></h2>
+        
+          </div>
+
+          <div class="box-body table-responsive no-padding">
+
+          <style type="text/css">
+
+          .table-bordered td, .table-bordered th{
+            border-bottom-color: #bfbfbf !important;
+            border-bottom-style: solid;
+            border-bottom-width: 0.5px;  
+
+            border-left-color: #bfbfbf !important;
+            border-left-style: solid;
+            border-left-width: 0.5px;  
+
+            border-right-color: #bfbfbf !important;
+            border-right-style: solid;
+            border-right-width: 0.5px; 
+
+            border-top-color: #bfbfbf !important;
+            border-top-style: solid;
+            border-top-width : 0.5px;     
+               }
+        </style>
+
+            <table class="table table-bordered table-hover">
+
+                <tr>
+                  <th><center>Months</center></th>
+                  <th><center>Debit(<i class="fa fa-inr"></i>)</center></th>
+                  <th><center>Credit(<i class="fa fa-inr"></i>)</center></th>
+                  <th><center>Closing Balance(<i class="fa fa-inr"></i>)</center></th>
+                </tr>
+
+                <tr>
+                  <th><center>Opening Balance</center></th>
+                  <th><center></center></th>
+                  <th><center></center></th>
+                  {% if ledger1_details.group1_Name.balance_nature == 'Debit' %}
+
+                    {% if opening_balance > 0 %}
+
+                      {% if opening_balance == 0 %}
+
+                        <th><center></center></th>
+
+                      {% else %}
+
+                        <th><center>{{ opening_balance }} Dr</center></th>
+
+                      {% endif %}
+                      
+
+                    {% else %}
+
+                      {% if opening_balance == 0 %}
+
+                        <th><center></center></th>
+
+                      {% else %}
+
+                        <th><center>{{ opening_balance }} Cr</center></th>
+                      {% endif %}
+
+                    {% endif %}
+
+                  {% else %}
+
+
+                    {% if opening_balance > 0 %}
+
+                      {% if opening_balance == 0 %}
+
+                        <th><center></center></th>
+
+                      {% else %}
+
+                        <th><center>{{ opening_balance }} Cr</center></th>
+
+                      {% endif %}
+
+                    {% else %}
+
+                      {% if opening_balance == 0 %}
+
+                        <th><center></center></th>
+
+                      {% else %}
+
+                        <th><center>{{ opening_balance }} Dr</center></th>
+                        
+                      {% endif %}
+
+                    {% endif %}
+
+                  {% endif %}
+                </tr>               
+                
+
+                {% for key, value in data %}
+                  <tr>
+                    <td><center>{{ key }}</center></td>
+
+                    {% if value.0 == 0 %}
+                      <th><center></center></th>
+                    {% else %}
+                      <td><center>{{ value.0 }}</center></td>
+                    {% endif %}
+
+
+                    {% if value.1 == 0 %}
+                      <th><center></center></th>
+                    {% else %}
+                      <td><center>{{ value.1 }}</center></td>
+                    {% endif %}
+
+                  {% if ledger1_details.group1_Name.balance_nature == 'Debit' %}
+
+                    {% if value.2 > 0 %}
+
+                        {% if value.2 == 0 %}
+                          <th><center></center></th>
+                        {% else %}
+                          <td><center>{{ value.2|abs }} Dr</center></td>
+                        {% endif %}
+
+                    {% else %}
+
+                        {% if value.2 == 0 %}
+                          <th><center></center></th>
+                        {% else %}
+                          <td><center>{{ value.2|abs }} Cr</center></td>
+                        {% endif %}
+
+                    {% endif %}
+                      </tr>
+
+                  {% else %}
+                    
+                      {% if value.2 > 0 %}
+
+                        {% if value.2 == 0 %}
+                          <th><center></center></th>
+                        {% else %}
+                          <td><center>{{ value.2|abs }} Cr</center></td>
+                        {% endif %}
+
+                      {% else %}
+
+                        {% if value.2 == 0 %}
+                          <th><center></center></th>
+                        {% else %}
+                          <td><center>{{ value.2|abs }} Dr</center></td>
+                        {% endif %}
+
+                      {% endif %}
+                  {% endif %}
+
+                      </tr>
+                {% endfor %}
+
+                  <tr>
+                    <th><center></center></th>
+                    <th><center></center></th>
+                    <th><center></center></th>
+                    <th><center></center></th>
+                  </tr>
+
+                <tr>
+                  <th><center>Grand Total</center></th>
+                  {% if total_debit == 0 %}
+                    <th><center></center></th>
+                  {% else %}
+                    <th><center>{{ total_debit }}</center></th>
+                  {% endif %}
+
+                  {% if total_credit == 0 %}
+                    <th><center></center></th>
+                  {% else %}
+                    <th><center>{{ total_credit }}</center></th>
+                  {% endif %}
+
+                  {% if ledger1_details.group1_Name.balance_nature == 'Debit' %}
+
+                    {% if total > 0 %}
+                      <th><center>{{ total|abs }} Dr</center></th>
+
+                    {% else %}
+
+                      <th><center>{{ total|abs }} Cr</center></th>
+
+                    {% endif %}
+
+                  {% else %}
+
+                    {% if total > 0 %}
+                      <th><center>{{ total|abs }} Cr</center></th>
+
+                    {% else %}
+
+                      <th><center>{{ total|abs }} Dr</center></th>
+
+                    {% endif %}
+
+                  {% endif %} 
+                    
+                </tr>                
+                
+
+
+
+            </table>
+          </div>
+
+
+
+
+
+        </div>
+
+
+        </div>
+      </div>
+    
+  </section>
+</div>
+
+</body>
+
+
+</html>
+
+
+
+
+

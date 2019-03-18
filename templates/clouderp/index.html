@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        
+        <title>BracketLine</title>
+        <meta name="description" content="">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="{% static 'clouderp/s_business/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'clouderp/s_business/css/animations.css' %}">
+        <link rel="stylesheet" href="{% static 'clouderp/s_business/css/font-awesome.min.css' %}"> 
+        <link rel="stylesheet" href="{% static 'clouderp/s_business/css/main.css' %}">  
+        <script src="{% static 'clouderp/s_business/js/vendor/modernizr-2.6.2.min.js' %}"></script>
+        <!-- [if lt IE 9]
+            <script src="js/vendor/respond.min.js"></script>
+        [endif] -->
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+ <div class="head">
+    <div class="container">
+        <div class="row">
+            <div id="head1">
+                <div class="col-md-5">           
+                        <span class="fa" id="mailID"><i class="fa fa-envelope-o"></i>bracketlinelimited@gmail.com</span>
+                        <span class="fa" id="phone">
+                            <i class="fa fa-phone"></i>
+                            +91 9733025982
+                        </span>             
+                </div>
+ 
+                 <div class="col-md-4 middle">                     
+                        <div class="logo">
+                            <a href="">
+                                <!-- <div class="img-logo">
+                                    <img alt="" src="clouderp/s_business/example/logo.png">
+                                </div> -->
+                            </a>
+                        </div>                      
+                </div> 
+                <div class="col-md-3 socials">
+                    <!-- <a href="#">
+                        <i class="fa fa-dribbble socials-link"></i>
+                    </a> -->
+                    <!-- <a href="#">
+                        <i class="fa fa-twitter socials-link"></i>
+                    </a> -->
+                    <a href="https://www.facebook.com/Bracketline-Pvt-Ltd-526501204526396/" target="_blank">
+                        <i class="fa fa-facebook socials-link"></i>
+                    </a>
+                    <a href="https://www.google.com/search?source=hp&ei=ZSNdXPygC4f-rQGphp7oDQ&q=bracketline+private+limited&oq=bracketline+&gs_l=psy-ab.1.0.35i39j0i13l2j0i13i30l7.1018.3038..4597...0.0..0.350.2440.0j10j2j1......0....1..gws-wiz.....0..0i131j0j0i10j38.08mugOZIras" target="_blank">
+                        
+                        <i class="fa fa-google-plus socials-link"></i>
+                    </a>
+               </div> 
+            </div> 
+        </div> 
+    </div> 
+</div> 
+ 
+
+ <section id="mainslider" class="">
+       <!--  <div class="flexslider"> -->
+            <ul class="slides">
+                <li>
+                    <img src="{% static 'clouderp/s_business/example/final_logo.jpg' %}" alt=""/>
+                    <div class="slide_description_wrapper">
+                        <div class="slide_description">
+                            <h3 data-animation="slideUp">BracketLine</h3>
+                            <h2 data-animation="slideUp">the Artificial Intelligence
+                            <br> your business DESERVES</h2>                            
+                            <p data-animation="slideUp">                               
+                                <a class="theme_btn" href="{% url 'accounts:login' %}">Login</a>
+                                <a class="theme_btn" href="{% url 'accounts:signup' %}">Register</a>
+                                <!-- <a class="theme_btn" href="{% url 'admin:index' %}">Admin-Login</a> -->
+                            </p>                            
+                        </div>
+                    </div> 
+                </li>
+              </ul>
+                <!-- <li>
+                    <img src="{% static 'clouderp/s_business/example/slide_2.jpg' %}" alt=""/>
+                    <div class="slide_description_wrapper">
+                        <div class="slide_description">
+                            <h3 data-animation="slideUp">Effective Business Solutions </h3>
+                            <h2 data-animation="slideUp">For every one</h2>                            
+                            <p data-animation="slideUp">                               
+                                <a class="theme_btn" href="#">Login</a>
+                                <a class="theme_btn" href="#">Register</a>
+                            </p>  
+                        </div> 
+                    </div> 
+                </li>                
+            </ul> -->
+       <!--  </div> -->
+  </section> 
+
+ <header id="header" class="light_section">
+        <div class="container">
+            <div class="row">                
+                <div class="col-sm-12 mainmenu_wrap">
+                    <div class="main-menu-icon visible-xs">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav>
+                        <ul id="mainmenu" class="nav menu sf-menu responsive-menu superfish">
+                            <li class="">
+                                <a href="#top">Home</a>
+                            </li>
+                            <li class="">
+                                <a href="#about">About Us</a>
+                            </li>
+                            <!-- <li class="">
+                                <a href="#team">Team</a>
+                             </li>  --> 
+                             <li class="">
+                                <a href="#service">Services</a>
+                             </li>  
+                              <!-- <li class="">
+                                <a href="#portfolio">Gallery</a>
+                             </li>    -->      
+                             <li class="">
+                                <a href="#post-blogs">News</a>
+                             </li>           
+                            <li class="">
+                               <a href="#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<section class="welcome-box">
+    <div class="container">
+      <div class="row ">
+            <div class="col-sm-6 col-sm-offset-3">   
+             <h3 class="head-title text-center to_animate" data-animation="slideDown">ALL POWER OF ACOUNTING IN YOUR SMART PHONE!</h3>
+              <strong><p class="head-desc text-center to_animate" data-animation="fadeInUp">Download the app now for hassle free cutting edge AI Artificial Intelligent solutions!!</p></strong>
+                        <div><center>
+                           <a class="theme_btn" href="{% url 'accounts:login' %}">Login</a>
+                            <a class="theme_btn" href="{% url 'accounts:signup' %}">Register</a>
+                            </center>
+                        </div>
+                           
+                <hr class="title-border">
+            </div>
+        </div>
+        <div class="row">            
+            <div class="col-sm-7 to_animate" data-animation="fadeInLeft"> 
+             <div class="slide_description_wrapper">               
+                  <h3>Why Choose Us</h3>
+                    <strong>
+                    <p>We are a growing network accountants, lawyers ,professionals and developers working together to give your business the edge it needs with Artificial Intelligence and Big Data technology in accounting, compliances, management and consultancy.
+                    <br><br>
+                    Technology has a role to play with the rollout of a new tax structure - GST in India so we aim to replace all manual solutions of recording, invoicing, and e-filings with ground breaking image recognition technology backed by team of professionals and technical service providers.
+                    <br><br>
+                    We aim to improve all business processes for our clients using mobile technology and easily compy with all government compliances for the ease doing of business with the use of advanced data analytics and personalised experience.
+                    </p> 
+                    </strong>   
+                  
+              </div>    
+            </div>
+            <div class="col-sm-5 to_animate" data-animation="fadeInRight">
+                <div class="slide_image_wrapper">
+                    <img src="{% static 'clouderp/s_business/example/bootstrap.png' %}" alt="">
+                </div>                              
+            </div>
+        </div>
+    </div>
+</section>
+ <section id="about" class="grey_section">
+  <div class="container">    
+     <div class="row ">
+      <div class="col-sm-6 col-sm-offset-3">   
+       <h3 class="head-title text-center to_animate" data-animation="slideDown">About Us</h3>         
+        <p class="head-desc text-center to_animate" data-animation="fadeInUp"><strong>India's First Image recognition based Accounting Software !!</strong></p>
+          <hr class="title-border">
+      </div>
+  </div> 
+
+  <div class="row">        
+    <div class="col-md-3 col-sm-6 title-item">     
+        <div class="rt-icon-pen2 icon_title">          
+        </div>
+          <div class="title-content">
+              <h4 class="title">Military Grade Security</h4>      
+               <p class="title_description">
+                 All your data shall be encrypted by SHA256 standards which is the highest level security for encryption and decryption used by world wide organisations and the US military.
+               </p>          
+             
+          </div>
+    </div> 
+    
+     <div class="col-md-3 col-sm-6 title-item">     
+        <div class="rt-icon-world icon_title">          
+        </div> 
+           <div class="title-content">
+              <h4 class="title">OCR Technology</h4>      
+               <p class="title_description">
+                  Business data is mostly on physical paper and its a pain to record them , costs incurred on basic vouching with the professionals help and the hours wasted. we bring the power of OCR for invoices, vouchers, notes in one dashboard.   
+                </p>       
+              
+            </div>
+    </div>     
+     <div class="col-md-3 col-sm-6 title-item">  
+        <div class="rt-icon-gift icon_title">          
+        </div> 
+            <div class="title-content">
+              <h4 class="title">24/7 Cloud Access</h4>      
+               <p class="title_description"> Access your business analytics from your devices anywhere, anytime, anyplace with the power of cloud based storage. We are hosted with the worlds best cloud service providers to provide you the ultimate speed and experience.</p>        
+             
+           </div>
+    </div> 
+        <div class="col-md-3 col-sm-6 title-item">  
+        <div class="rt-icon-briefcase icon_title">          
+        </div> 
+            <div class="title-content">
+              <h4 class="title">365 day Support</h4>      
+               <p class="title_description"> we have partnered with a huge community of professionals to serve you from your own town, state or locality for each professional necessity at reasonable rates. Find and hire the best professional near you.</p>        
+             
+           </div>
+    </div>
+    </div>   
+  </div>
+</section> 
+
+  <!-- <section id="skills" class="parallax">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-sm-3 to_animate" data-animation="fadeInLeft">
+          <span data-percent="75" class="chart">
+            <span class="percent"></span>
+          </span>
+          <h4 class="text-center">Chartered Accountants</h4>         
+        </div>
+        <div class="col-sm-3 to_animate" data-animation="fadeInLeft">
+          <span data-percent="62" class="chart">
+            <span class="percent"></span>
+          </span>
+          <h4 class="text-center">Lawyers</h4>          
+        </div>
+        <div class="col-sm-3 to_animate" data-animation="fadeInRight">
+          <span data-percent="57" class="chart">
+            <span class="percent"></span>
+          </span>
+          <h4 class="text-center">Consultants</h4>         
+        </div>
+        <div class="col-sm-3 to_animate" data-animation="fadeInRight">
+          <span data-percent="87" class="chart">
+            <span class="percent"></span>
+          </span>
+          <h4 class="text-center">GST Practitioners</h4>         
+        </div>
+      </div>
+    </div>
+  </section>  
+   
+    
+ <section id="offer" class="">
+      <div class="container">
+          <div class="row ">
+            <div class="col-sm-6 col-sm-offset-3">   
+             <h3 class="head-title text-center to_animate" data-animation="slideDown">What We Offer</h3>
+              <strong><p class="head-desc text-center to_animate" data-animation="fadeInUp">24/7 Support team of Professionals to assist your needs !</p></strong>
+                <hr class="title-border">
+            </div>
+         </div>
+          
+       <div class="row">
+          <article class="col-md-3 col-sm-6 col-xs-6">
+              <div class="hexagon figure">
+                  <div class="full-hexagon">
+                      <div class="hex-upper hex-box"></div>
+                      <div class="hex-middle"></div>
+                      <div class="hex-lower hex-box"></div>
+                  </div>
+                  <div class="full-square"></div>
+                  <i class="sprite-Mail_icon"></i>
+              </div>
+              <div class="figcaption">
+                  <h4>Accountancy</h4>
+                  <h5>Book keeping in a double entry erp system.</h5>
+              </div>
+          </article>
+          
+          <article class="col-md-3 col-sm-6 col-xs-6">
+              <div class="hexagon figure">
+                  <div class="full-hexagon">
+                      <div class="hex-upper hex-box"></div>
+                      <div class="hex-middle"></div>
+                      <div class="hex-lower hex-box"></div>
+                  </div>
+                  <div class="full-square"></div>
+                  <i class="sprite-Compass_icon"></i>
+              </div>
+              <div class="figcaption">
+                  <h4>Legal & Litigation</h4>
+                  <h5>All drafting needs and paperwork from expert lawyer</h5>
+              </div>
+          </article>
+          
+          <article class="col-md-3 col-sm-6 col-xs-6">
+              <div class="hexagon figure">
+                  <div class="full-hexagon">
+                      <div class="hex-upper hex-box"></div>
+                      <div class="hex-middle"></div>
+                      <div class="hex-lower hex-box"></div>
+                  </div>
+                  <div class="full-square"></div>
+                  <i class="sprite-Support_icon"></i>
+              </div>
+              <div class="figcaption">
+                  <h4>Consultancy</h4>
+                  <h5>There are many versions of lorem ipsum available</h5>
+              </div>
+          </article>
+          
+          <article class="col-md-3 col-sm-6 col-xs-6">
+              <div class="hexagon figure">
+                  <div class="full-hexagon">
+                      <div class="hex-upper hex-box"></div>
+                      <div class="hex-middle"></div>
+                      <div class="hex-lower hex-box"></div>
+                  </div>
+                  <div class="full-square"></div>
+                  <i class="sprite-Lupa_icon"></i>
+              </div>
+              <div class="figcaption">
+                  <h4>Financial Techology</h4>
+                  <h5>There are many versions of lorem ipsum available</h5>
+              </div>
+          </article>
+          </div>
+      </div>
+  </section> 
+ -->
+ <section id="some-fact" class="color_section parallax">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h3 class="parallax-title text-center to_animate" data-animation="slideDown">Analytics to date</h3>       
+                <hr class="parallax-border to_animate" data-animation="fadeInUp"> 
+
+            </div>
+        </div>
+        <div class="row">
+
+        <div class="col-sm-6 col-md-3 to_animate" data-animation="fadeInUpBig">
+          <div class="single_teaser icons style2">
+            <div class="icons_introimg image-icon">
+              <i class="fa fa-smile-o"></i>
+            </div>
+            <h3>Business Users</h3>
+            <h2 class="counter" data-from="0" data-to="{{ Bussiness_users }}" data-speed="2000"></h2>          
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 to_animate" data-animation="fadeInUpBig">
+          <div class="single_teaser icons style2">
+            <div class="icons_introimg image-icon">
+              <i class="fa fa-rocket"></i>
+            </div>
+            <h3>Professionals </h3>
+            <h2 class="counter" data-from="0" data-to="{{ Professional_users }}" data-speed="2500"></h2>           
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 to_animate" data-animation="fadeInUpBig">
+
+          <div class="single_teaser icons style2">
+            <div class="icons_introimg image-icon">
+              <i class="fa fa-trophy"></i>
+            </div>
+            <h3>Products</h3>
+            <h2 class="counter" data-from="0" data-to="{{ Products_count }}" data-speed="3500"></h2>          
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 to_animate" data-animation="fadeInUpBig">
+          <div class="single_teaser icons style2">
+            <div class="icons_introimg image-icon">
+              <i class="fa fa-pencil"></i>
+            </div>
+            <h3>Consultancies provided</h3>
+            <h2 class="counter" data-from="0" data-to="{{ total_consultancies }}" data-speed="2100"></h2>          
+          </div>
+        </div>
+      </div>
+
+    </div>
+</section> 
+
+
+<!-- <section id="service" class="">
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-6 col-sm-offset-3">   
+             <h3 class="head-title text-center to_animate" data-animation="slideDown">Products</h3> -->
+              <!-- <p class="head-desc text-center to_animate" data-animation="fadeInUp">Our plans include</p> -->
+                <!-- <hr class="title-border">
+            </div>
+         </div>
+
+         <div class="row">
+
+              {% for products in Products %}
+                <div class="col-sm-6 col-md-3 pricing-table text-center to_animate" data-animation="fadeIn">
+                    <div class="single-table" >
+                        <h2>{{ products.title}}</h2>                           
+                         <p class="price"><span class="dollar-icon">₹​</span><span>{{ products.price }}</span></p>
+                        <ul>
+                            <li>{{ products.summary|safe|truncatewords:"45" }}</li>
+                           
+                        </ul>
+                        <a class="btn-signup" href="#">Details</a>
+                    </div>
+                </div>
+              {% endfor %}
+
+
+            </div>
+        
+  </div>
+</section>  -->
+
+<style type="text/css">
+
+.tcb-product-slider .carousel-control {
+  width: 5%;
+}
+.tcb-product-item a {
+  color: #147196;
+}
+.tcb-product-item a:hover {
+  text-decoration: none;
+}
+.tcb-product-item .tcb-hline {
+  margin: 10px 0;
+  height: 1px;
+  background: #ccc;
+}
+@media all and (max-width: 768px) {
+  .tcb-product-item {
+    margin-bottom: 30px;
+  }
+}
+.tcb-product-photo {
+  text-align: center;
+  height: 180px;
+  background: #fff;
+}
+.tcb-product-photo img {
+  height: 100%;
+  display: inline-block;
+}
+.tcb-product-info {
+  background: #f0f0f0;
+  padding: 15px;
+}
+.tcb-product-title h4 {
+  margin-top: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.tcb-product-rating {
+  color: #acacac;
+}
+.tcb-product-rating .active {
+  color: #FFB500;
+}
+.tcb-product-price {
+  color: firebrick;
+  font-size: 18px;
+}
+
+
+
+.details {
+    margin: 50px 0; }
+ .details h1 {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 3px; }
+    .details .back-link {
+      text-align: center; }
+      .details .back-link a {
+        display: inline-block;
+        margin: 20px 0;
+        padding: 15px 30px;
+        background: #333;
+        color: #fff;
+        border-radius: 24px; }
+        .details .back-link a svg {
+          margin-right: 10px;
+          vertical-align: text-top;
+          display: inline-block; }
+
+
+
+
+</style>
+
+<section id="service" class="">
+    <div class="container">
+                <div class="row">
+                  <div class="col-sm-12 text-center">
+                      <h3 class="parallax-title text-center to_animate" data-animation="slideDown">ALL PRODUCTS</h3>       
+                      <hr class="parallax-border to_animate" data-animation="fadeInUp"> 
+
+                  </div>
+                </div>
+
+
+            <div class="tcb-product-slider">
+        <div class="container">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+
+                  
+
+                        <div class="item active">
+                            <div class="row">
+                              {% for products in Products %}
+                                <div class="col-xs-6 col-sm-3">
+                                    <div class="tcb-product-item">
+                                        <div class="tcb-product-photo">
+                                          {% if products.image %}
+                                            <img src="{{ products.image.url }}/" class="img-responsive" alt="a" />
+                                          {% else %}
+                                            <img src="{% static 'userprofile/comming soon.jpg' %}" class="img-responsive" alt="a" />
+                                          {% endif %}
+                                        </div>
+                                        <div class="tcb-product-info">
+                                            <div class="tcb-product-title">
+                                                <h4><a href="{% url 'ecommerce_integration:productdetail' pk=products.pk %}">{{ products.title}} </a></h4></div>
+                                            <div class="tcb-product-rating">
+                                                <i class="active glyphicon glyphicon-star"></i><i class="active glyphicon glyphicon-star"></i><i class="active glyphicon glyphicon-star"></i><i class="active glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i>
+                                                <a href="#">(4,585 ratings)</a>
+                                            </div>
+                                            <div class="tcb-hline"></div>
+                                            <div class="tcb-product-price">
+                                                 &#8377; {{ products.price }}/-</strong>   annually.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    
+                </div>
+                <!-- Controls -->
+<!--                 <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <button class="btn-info">Previous</button>
+                    
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <button class="btn-info">Next</button>
+                </a> -->
+            </div>
+        </div>
+    </div>
+
+</div>
+        
+  </div>
+</section>
+
+
+
+
+
+
+<!-- 
+<section id="team" class="grey_section">
+        <div class="container">
+          <div class="row ">
+            <div class="col-sm-6 col-sm-offset-3">   
+             <h3 class="head-title text-center to_animate" data-animation="slideDown">Meet Our Team</h3>
+              <p class="head-desc text-center to_animate" data-animation="fadeInUp">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                <hr class="title-border">
+            </div>
+          </div>
+            <div class="row to_animate_child_blocks">
+                <div class="block col-sm-6 col-md-3 to_animate" data-animation="fadeInUpBig">
+                    <div class="thumbnail">
+                        <img src="{% static 'clouderp/s_business/example/team/team1.jpg' %}" alt="team">
+                        <div class="caption">
+                            <h4>Jat Anderson</h4>                      
+                            <p>Designer</p>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="block col-sm-6 col-md-3 to_animate" data-animation="fadeInUpBig">
+                    <div class="thumbnail">
+                        <img src="{% static 'clouderp/s_business/example/team/team2.jpg' %}" alt="team">
+                        <div class="caption">
+                            <h4>Sarah Marsh</h4>               
+                            <p>Marketing</p>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="block col-sm-6 col-md-3 to_animate" data-animation="fadeInUpBig">
+                    <div class="thumbnail">
+                        <img src="{% static 'clouderp/s_business/example/team/team3.jpg' %}" alt="team">
+                        <div class="caption">
+                            <h4>Michael Lee</h4>                  
+                             <p>Manager</p>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="block col-sm-6 col-md-3 to_animate" data-animation="fadeInUpBig">
+                    <div class="thumbnail">
+                        <img src="{% static 'clouderp/s_business/example/team/team4.jpg' %}" alt="">
+                        <div class="caption">
+                            <h4>Selena Stefan</h4>
+                            <p>Developer</p>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>  -->
+
+<!-- 
+  <section id="portfolio" class="fullwidth_portfolio">
+    <div class="container">      
+       <div class="row ">
+            <div class="col-sm-6 col-sm-offset-3">   
+             <h3 class="head-title text-center to_animate" data-animation="slideDown">Our Best Work</h3>
+              <p class="head-desc text-center to_animate" data-animation="fadeInUp">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                <hr class="title-border">
+            </div>
+       </div>
+    </div>
+  <div id="portfolio_wrapper">
+    <div class="text-center filters">
+      <ul id="filtrable">
+        <li><a class="selected" data-filter="*" href="#">All</a></li>
+        <li><a data-filter=".video" href="#" class="">Video</a></li>
+        <li><a data-filter=".photography" href="#" class="">Photography</a></li>
+        <li><a data-filter=".webdesign" href="#" class="">Web Design</a></li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>   
+             
+      <ul class="items-row row portfolio filtrable clearfix isotope" id="portfolioContainer">
+        <li class="item isotope-item video webdesign">
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img1.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 's_business/example/gallery/intro_img1.jpg' %}"><i class="fa fa-plus"></i></a>
+                <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>              
+            </div>
+          </div>          
+        </li>        
+        <li class="item isotope-item photography webdesign">
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img2.jpg' %}">
+             <div class="overlay text-center">                
+                  <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 's_business/example/gallery/intro_img2.jpg' %}"><i class="fa fa-plus"></i></a>
+                   <h2>Project Name</h2>
+                  <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>               
+              </div>
+          </div>             
+        </li>        
+        <li class="item isotope-item photography webdesign"> 
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img3.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 'clouderp/s_business/example/gallery/intro_img3.jpg' %}"><i class="fa fa-plus"></i></a>
+                 <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>              
+            </div>
+          </div>          
+        </li>        
+        <li class="item isotope-item"> 
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img4.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 'clouderp/s_business/example/gallery/intro_img4.jpg' %}"><i class="fa fa-plus"></i></a>
+                 <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>           
+            </div>
+          </div>                        
+        </li>        
+        <li class="item isotope-item video webdesign">  
+          <div class="{% static 's_business/portfolio_item_image portfolio-content' %}">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img5.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 's_business/example/gallery/intro_img5.jpg' %}"><i class="fa fa-plus"></i></a>
+                 <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>          
+            </div>
+          </div>       
+        </li>
+        <li class="item isotope-item"> 
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img6.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 'clouderp/s_business/example/gallery/intro_img6.jpg' %}"><i class="fa fa-plus"></i></a>
+                 <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>              
+            </div>
+          </div>    
+        </li>
+        <li class="item isotope-item photography webdesign"> 
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img7.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 'clouderp/s_business/example/gallery/intro_img7.jpg' %}"><i class="fa fa-plus"></i></a>
+                <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>              
+            </div>
+          </div>         
+        </li>
+        <li class="item isotope-item video webdesign">
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img8.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 's_business/example/gallery/intro_img8.jpg' %}"><i class="fa fa-plus"></i></a>
+                <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>        
+            </div>
+          </div>       
+        </li>
+        <li class="item isotope-item video webdesign">
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img9.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 's_business/example/gallery/intro_img9.jpg' %}"><i class="fa fa-plus"></i></a>
+                <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>             
+            </div>
+          </div>       
+        </li>
+        <li class="item isotope-item video webdesign">
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img10.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 'clouderp/s_business/example/gallery/intro_img10.jpg' %}"><i class="fa fa-plus"></i></a>
+                <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>            
+            </div>
+          </div>       
+        </li>
+        <li class="item isotope-item video webdesign">
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img11.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 'clouderp/s_business/example/gallery/intro_img11.jpg' %}"><i class="fa fa-plus"></i></a>
+                 <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>          
+            </div>
+          </div>       
+        </li>
+        <li class="item isotope-item video webdesign">
+          <div class="portfolio_item_image portfolio-content">
+            <img alt="" src="{% static 'clouderp/s_business/example/gallery/intro_img12.jpg' %}">
+            <div class="overlay text-center">               
+                <a class="folio-detail prettyPhoto " title="" data-gal="prettyPhoto[gal]" href="{% static 'clouderp/s_business/example/gallery/intro_img12.jpg' %}"><i class="fa fa-plus"></i></a>
+                <h2>Project Name</h2>
+                <p>WEB DESIGN, LOGO, PRINT, VIDEO</p>           
+            </div>
+          </div>       
+        </li>
+      </ul>
+  </div>  
+</section>  -->
+
+ <section id="testimonials" class="color_section parallax">       
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="carousel-testimonial-fullwidth" class="carousel slide block">
+           <ol class="carousel-indicators">
+                    <li data-target="#carousel-testimonial-fullwidth" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-testimonial-fullwidth" data-slide-to="1"></li>
+                    <li data-target="#carousel-testimonial-fullwidth" data-slide-to="2"></li>
+                 </ol>  
+          <div class="carousel-inner text-center">
+            <div class="item active">
+              <div>
+                <h1>
+                  Masha Bull 
+                </h1>
+                <p><strong>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, quam consectetur deserunt delectus, maxime natus aperiam libero molestiae beatae
+                  </strong>
+                </p>
+                
+              </div>
+            </div>
+            <div class="item">
+              <div>
+                <h1>
+                  Lena Johns
+                </h1>
+                <p>
+                  <strong>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, quam consectetur deserunt delectus, maxime natus aperiam libero molestiae beatae
+                  </strong>
+                </p>
+                
+              </div>
+            </div>
+            <div class="item">
+              <div>
+                <h1>
+                  Shena Anderson
+                </h1>
+                <p><strong>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, quam consectetur deserunt delectus, maxime natus aperiam libero molestiae beatae
+                  </strong>
+                </p>                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
+
+
+<section id="post-blogs" class="darkgrey_section">
+      <div class="container">
+        <div class="row ">
+            <div class="col-sm-6 col-sm-offset-3">   
+             <h3 class="head-title text-center to_animate" data-animation="slideDown">Blogs</h3>
+              <p class="head-desc text-center to_animate" data-animation="fadeInUp">Read Blogs here</p>
+                <hr class="title-border">
+            </div>
+       </div>
+
+       <style type="text/css">
+         .blogimg {
+                width: 706px;
+                height: 427px;
+         }
+       </style>
+       {% for blog in blog_list %}
+          <article class="col-lg-6 col-md-6">
+              <div class="blog-posts"> <!--individual blog posts-->
+                  <figure class="effect-milo">
+                      <div class="date">
+                          <h3>{{ blog.Date|date:'d'}}</h3>
+                          <h6>{{ blog.Date|date:'M'}}</h6>
+                          
+                      </div>                      
+                      {% if blog.Blog_image %}
+                          <img src="{{ blog.Blog_image.url }}/" alt="" class="blogimg">
+                      {% endif %}
+                      <div class="likes-n-comments text-center">
+                            <p class="likes">{{ blog.likes.count }} like{{ blog.likes.count|pluralize }}</p>
+
+                          <a href="{% url 'blog:blogdetail' pk=blog.pk %}" class="more-btn btn">READ MORE</a>
+                      </div>
+                  </figure>
+
+                  <div class="blog-post-heading">
+                      <div class="blog-post-type">
+                          <i class="fa fa-bars"></i>    
+                      </div>
+                      <div class="blog-post-title">
+                          <h3><a href="{% url 'blog:blogdetail' pk=blog.pk %}">{{ blog.Blog_title|safe|truncatewords:"5"}}</a></h3>
+                          <h6>{{ blog.Description|safe|truncatewords:"9"|linebreaks}}</h6>
+                      </div>
+                  </div>
+              </div>
+          </article>
+        {% endfor %}
+
+
+
+ 
+
+
+
+
+      </div>
+  </section> 
+
+
+
+ <!-- <section id="contact">
+        <div class="container">
+         <div class="row ">
+            <div class="col-sm-6 col-sm-offset-3">   
+             <h3 class="head-title text-center to_animate" data-animation="slideDown">Contact Us</h3>
+              <p class="head-desc text-center to_animate" data-animation="fadeInUp">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                <hr class="title-border">
+            </div>
+         </div>
+            <div class="row">
+                <div class="block col-sm-6">
+                    <h3>Drop us a message </h3>
+                    <form class="contact-form" method="post" action="/">
+                        <p class="contact-form-name">
+                            <label for="name">Name <span class="required">*</span></label>
+                            <input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="Name">
+                        </p>
+                        <p class="contact-form-email">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email">
+                        </p>
+                        <p class="contact-form-subject">
+                            <label for="subject">Subject <span class="required">*</span></label>
+                            <input type="text" aria-required="true" size="30" value="" name="subject" id="subject" class="form-control" placeholder="Subject">
+                        </p>
+                        <p class="contact-form-message">
+                            <label for="message">Message</label>
+                            <textarea aria-required="true" rows="8" cols="45" name="message" id="message" class="form-control" placeholder="Message"></textarea>
+                        </p>
+                        <p class="contact-form-submit vertical-margin-40">
+                            <input type="submit" value="Send" id="contact_form_submit" name="contact_submit" class="btn btn-primary">
+                        </p>
+                    </form>
+                </div>
+                <div class="block widget_text col-sm-6">
+                  <h3>Contact Info</h3>
+                  <div id="map" class="light_section"></div>                    
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, aspernatur, velit. Adipisci, animi, molestiae, neque voluptatum non voluptas atque aperiam nam sed quidem quae harum ipsum sit veritatis expedita. Laudantium.</p>
+                    <p>
+                        <strong>Address:</strong> 8605 Santa Monica Blvd, LA, CA 97845, US<br> 
+                        <strong>Phone: </strong>+28 356 859 4857<br>
+                        <strong>Email: </strong><a href=#>info@company.net</a><br> 
+                        <strong>Website: </strong><a href="#">www.company.net</a>
+                    </p>
+                    <h3>Find Us On</h3>
+                    <p id="social-bottom">
+                        <a class="socialico-facebook monochrome" href="#" title="Facebook">#</a>
+                        <a class="socialico-twitter monochrome" href="#" title="Twitter">#</a>
+                        <a class="socialico-google monochrome" href="#" title="Google">#</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>  -->
+
+
+
+
+
+    <section id="copyright" class="color_section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12 text-center">
+                    &copy; Copyright 2018 - BracketLine
+                </div>
+            </div>
+
+        </div>
+    </section>
+ 
+
+     <!--  <div class="preloader">
+         <div class="preloaderimg"></div> 
+    </div>  --> 
+
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery-migrate-1.2.1.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/bootstrap.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/placeholdem.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/hoverIntent.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/superfish.js' %}"</script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.actual.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.appear.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquerypp.custom.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.elastislide.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.flexslider-min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.prettyPhoto.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.easing.1.3.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.ui.totop.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.isotope.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.easypiechart.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jflickrfeed.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.sticky.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.nicescroll.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.fractionslider.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.scrollTo-min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.localscroll-min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.parallax-1.1.3.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.bxslider.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.funnyText.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/jquery.countTo.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/vendor/grid.js' %}"></script>  
+        <script src="{% static 'clouderp/s_business/twitter/jquery.tweet.min.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/plugins.js' %}"></script>
+        <script src="{% static 'clouderp/s_business/js/main.js' %}"></script>
+
+
+<!-- Map Scripts -->
+
+         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript">
+            var lat;
+            var lng;
+            var map;
+            //type your address after "address="
+            jQuery.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=london, baker street, 221b&sensor=false', function(data) {
+                lat = data.results[0].geometry.location.lat;
+                lng = data.results[0].geometry.location.lng;
+            }).complete(function(){
+                dxmapLoadMap();
+            });
+            function attachSecretMessage(marker, message)
+            {
+                var infowindow = new google.maps.InfoWindow(
+                    { content: message
+                    });
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.open(map,marker);
+                });
+            }
+            window.dxmapLoadMap = function()
+            {
+                var center = new google.maps.LatLng(lat, lng);
+                var settings = {
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    zoom: 16,
+                    draggable: false,
+                    scrollwheel: false,
+                    center: center
+                };
+                map = new google.maps.Map(document.getElementById('map'), settings);
+                var marker = new google.maps.Marker({
+                    position: center,
+                    title: 'Map title',
+                    map: map
+                });
+                marker.setTitle('Map title'.toString());
+            //type your map title and description here
+            attachSecretMessage(marker, '<h3>Map title</h3>Map HTML description');
+            }
+        </script> 
+
+
+
+
+    </body>
+</html>

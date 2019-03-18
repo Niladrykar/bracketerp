@@ -1,0 +1,352 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    {% if not form.instance.pk %}
+    Create Purchase Invoice
+    {% else %}
+    Update Purchase Invoice
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+      <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Simple Unit</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+             
+
+              {% if not selectdatefield_details %}
+
+                  
+                     <button class="btn btn-primary show-form pull-right" data-url="{% url 'accounting_double_entry:datecreate' %}">
+                      <span class="glyphicon glyphicon-plus"></span>
+                        Select Date Range
+                      </button>
+
+                {% else %} 
+              
+  
+                            <button  class="btn btn-warning show-form-update pull-right" data-url="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                              Update Date Range 
+                            </button>
+
+                      <a id="book-table-date" class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a>  
+
+                 
+
+                {% endif %}
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+         <a href="{% url 'stockkeeping:purchaselist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Purchase Invoice</a>
+          
+          <a href="{% url 'stockkeeping:purchasecreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Purchase Invoice</a>
+
+          <a href="" class="btn btn-success pull-right" role="button">Upload via Excel</a>
+          <a href="" class="btn btn-info pull-right" role="button">Upload via Image</a>
+          <a href="" class="btn btn-warning pull-right" role="button">Multiple Image Upload</a>
+                  
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <!-- Horizontal Form -->
+          <div class="box">
+            <div class="box-header with-border">
+            {% if not form.instance.pk %}
+              <h3 class="box-title">Create Purchase Invoice</h3>
+            {% else %}
+              <h3 class="box-title">Update Purchase Invoice</h3>
+            {% endif %}
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form method="POST" class="form-horizontal">
+
+            {% csrf_token %}
+            
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-success">
+              
+              <div class="box-body form-responsive no-padding">
+
+                
+                 
+                 <div class="col-md-4">
+                  
+                     
+                     <div class="form-group">
+                       <label for="Buyer3" class="col-md-4 control-label" style="font-size: x-small;">Buyer Information</label>
+                       <div class="col-md-8">
+                         <p style="margin: 5px">
+                         <small><strong>{{company_details.Name}}</strong><br>
+                         {{company_details.Address}}<br>
+                         State : {{company_details.State}}<br>
+                         Phone no :  {{company_details.Mobile_No}}</small>
+                       </p>
+                       </div>
+                       
+                     </div>
+
+
+                    <div class="form-group">
+                       <label for="Seller2" class="col-md-4 control-label" style="font-size: x-small;">Name of Party<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                       <div class="col-md-8">
+                        {{form.Party_ac}}
+                      </div>
+                    </div> 
+
+                    <div class="form-group">
+                       <label for="Seller2" class="col-md-4 control-label" style="font-size: x-small;">Purchase Ledger<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                       <div class="col-md-8">
+                        {{form.purchase}}
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                       <label for="Seller2" class="col-md-4 control-label" style="font-size: x-small;">Seller Name<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                       <div class="col-md-8">
+                        {{form.billname}}
+                      </div>
+                    </div>
+
+                      <div class="form-group">
+                       <label for="Place1" class="col-md-4 control-label" style="font-size: x-small;">Place of Residence</label>
+                       <div class="col-md-8">
+                         {{form.Address}}
+                      </div>
+                    </div> 
+
+                     <div class="form-group">
+                       <label for="GST1" class="col-md-4 control-label" style="font-size: x-small;">GSTIN/UIN</label>
+                       <div class="col-md-8">
+                        {{form.GSTIN}}
+                      </div>
+                    </div> 
+
+                     <div class="form-group">
+                       <label for="PAN1" class="col-md-4 control-label" style="font-size: x-small;">PAN/IT NO</label>
+                       <div class="col-md-8">
+                        {{form.PAN}}
+                      </div>
+                    </div> 
+
+
+
+                  
+                 </div> 
+
+                 <div class="col-md-8">
+                   
+                     <br>
+
+                    <div class="form-group">
+                       <label for="State1" class="col-md-4 control-label" style="font-size: x-small;">State Name<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                       <div class="col-md-8">
+                        {{form.State}}
+                      </div>
+                    </div> 
+
+                     <div class="form-group">
+                       <label for="Contact1" class="col-md-4 control-label" style="font-size: x-small;">Contact</label>
+                       <div class="col-md-8">
+                          {{form.Contact}}
+
+                      </div>
+                    </div> 
+
+                    <div class="form-group">
+                       <label for="Invoice1" class="col-md-4 control-label" style="font-size: x-small;">Invoice No<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                       <div class="col-md-8">
+                         {{form.ref_no}}
+                       </div>
+                    </div>
+
+                     <div class="form-group">
+                       <label for="Deli3" class="col-md-4 control-label" style="font-size: x-small;">Delivery Note</label>
+                       <div class="col-md-8">
+                          {{form.DeliveryNote}}
+                       </div>
+                    </div>
+
+                     <div class="form-group">
+                       <label for="Supp3" class="col-md-4 control-label" style="font-size: x-small;">Supplier's Ref</label>
+                       <div class="col-md-8">
+                        {{form.Supplierref}}
+                       </div>
+                    </div>
+
+                     <div class="form-group">
+                       <label for="Date3" class="col-md-4 control-label" style="font-size: x-small;">Dated<i class="material-icons" style="font-size:16px;color:red">*</i></label>
+                       <div class="col-md-8">
+                        {{form.date}}
+                       </div>
+                    </div>
+
+                     <div class="form-group">
+                       <label for="Mode3" class="col-md-4 control-label" style="font-size: x-small;">Mode/Terms Of Payment</label>
+                       <div class="col-md-8">
+                         {{form.Mode}}
+                       </div>
+                    </div> 
+
+                     
+                   
+                 </div>
+
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+
+            <div class="row">
+          <div class="col-md-12">
+            <div class="box box-success">
+              <div class="box-header with-border">
+               <h2 class="box-title"><strong>Stock Details</strong></h2>
+             </div>
+
+              <div class="box-body table-responsive no-padding">
+                      <table class="table">
+                    {{ stocks.management_form }}
+
+            {% for form in stocks.forms %}
+                {% if forloop.first %}
+                    <thead>
+                    <tr>
+                        {% for field in form.visible_fields %}
+                                                                
+                            <th class='col-md-2'>{{ field.label|capfirst }}</th>
+                          
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                {% endif %}
+                <tr class='{% cycle "row1" "row2" %}  formset_row'>
+                    {% for field in form.visible_fields %}
+                        
+                            {# Include the hidden fields in the form #}
+                            {% if forloop.first %}
+                                {% for hidden in form.hidden_fields %}
+                                    {{ hidden }}
+                                {% endfor %}
+                            {% endif %}
+                            {{ field.errors.as_ul }}
+
+                            {% if forloop.first %}
+                               <td class="col-md-3"> {{ field }}</td>
+                            {% elif forloop.last %}
+                                <td class="col-md-1 btn btn-default btn-block">{{ field }}</td>
+                            {% else %}
+                              <td class='col-md-2'>{{ field }}</td>
+                            {% endif %}
+
+                            {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+                
+              </div>
+
+             
+            </div>
+          </div>
+        </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+               <a href="{% url 'stockkeeping:purchaselist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-default" role="button">Cancel </a>
+                {% if not form.instance.pk %}
+                <button type="submit" class="btn btn-info pull-right" value="Submit">Create</button>
+                {% else %}
+                <button type="submit" class="btn btn-info pull-right" value="Submit">Update</button>
+                {% endif %}
+
+                
+             </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+        </div>
+</div>
+
+
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{% static 'formset/jquery.formset.js' %}"></script>
+
+<script type="text/javascript">
+    $('.formset_row').formset({
+        addText: 'add stock',
+        deleteText: 'remove',
+        prefix: 'purchasetotal'
+    });
+</script>
+
+</section>
+</div>
+
+
+
+  <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+    
+  
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load staticfiles %}
+{% load mathfilters %}
+{% for company in company_list %}
+
+  {% for selectdatefield in selectdates %}
+
+    <tr>
+      <td><a href="{% url 'company:Dashboard' pk=company.pk pk3=selectdatefield.pk %}">{{company.Name}}</a></td>
+      <td><a href="{% url 'company:Dashboard' pk=company.pk pk3=selectdatefield.pk %}">{{company.Books_Begining_From}}</a></td>
+      <td><a href="{% url 'company:Dashboard' pk=company.pk pk3=selectdatefield.pk %}">{{capital|floatformat:2|abs}}</a></td>
+      <td><a href="{% url 'company:Dashboard' pk=company.pk pk3=selectdatefield.pk %}">{{company.Type_of_company}}</a></td>
+      <td><a href="{% url 'company:Dashboard' pk=company.pk pk3=selectdatefield.pk %}">{{Assets|floatformat:2|abs}}</a></td>
+      <td><a href="{% url 'company:Dashboard' pk=company.pk pk3=selectdatefield.pk %}">{{company.modified_date}}</a></td>
+      <td>100000</td>
+      <td>
+
+      <button class="btn btn-danger show-form-delete" data-url="{% url 'company:delete' company.id %}">
+          <span class="glyphicon glyphicon-trash"></span>
+                                
+
+      </button>
+      </td>
+      <td><a href="#" class="btn btn-default"><i class="fa fa-gear"></i></a></td>
+      
+    </tr>
+
+  {% endfor %}  
+                    
+{% endfor %}

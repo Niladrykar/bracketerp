@@ -1,0 +1,120 @@
+{% if new %}
+	{% for i in new %}
+
+		{% for j in i|slice:"0:1" %}
+			{% if j != None %}
+
+				<tr>
+																
+					<td><center><a href="{% url 'accounting_double_entry:pl_detail' pk1=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">{{j.Date}}</a></center></td>
+																
+					<td><center><a href="{% url 'accounting_double_entry:pl_detail' pk1=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">{{j.By}}</a></center></td>
+																
+					<td><center><a href="{% url 'accounting_double_entry:pl_detail' pk1=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">{{j.To}}</a></center></td>
+
+					{% if j.voucher_id == None %}
+																	
+						<td><center><a href="{% url 'accounting_double_entry:pl_detail' pk1=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">{{j.id}}</a></center></td>
+					{% else %}
+													
+						<td><center><a href="{% url 'accounting_double_entry:pl_detail' pk1=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">{{j.voucher_id}}</a></center></td>
+
+					{% endif %}
+
+																
+					{% if j.voucher_type == '' %}
+																	
+						<td><center><a href="{% url 'accounting_double_entry:pl_detail' pk1=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">Journal</a></center></td>
+																
+					{% else %}
+
+																	
+						<td><center><a href="{% url 'accounting_double_entry:pl_detail' pk1=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">{{j.voucher_type}}</a></center></td>
+
+					{% endif %}
+																
+					<td><center><a href="{% url 'accounting_double_entry:pl_detail' pk1=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">{{j.Debit}}</a></center></td>
+
+					{% if j.narration %}
+																	
+						<td><center><a href="{% url 'accounting_double_entry:pl_detail' pk1=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">{{j.narration|safe|truncatewords:"8"}}</a></center></td>
+																
+					{% else %}
+
+						<td><center><a href="{% url 'accounting_double_entry:pl_detail' pk1=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">being {{j.By}} debited by {{j.To}} for {{j.Credit}}.</a></center></td>
+																
+					{% endif %}
+
+					<td>
+			    	    <button class="btn btn-danger show-form-delete" data-url="{% url 'accounting_double_entry:pl_delete' pk=company_details.pk pk2=j.pk pk3=selectdatefield_details.pk %}">
+			        	<span class="glyphicon glyphicon-trash"></span>
+			                              
+
+			    		</button>
+
+			    	</td>			
+															
+				</tr>
+			{% endif %}
+		{% endfor %}
+
+		{% for k in i|slice:"1:2" %}
+			{% if k != None %}
+
+				<tr>
+																
+					<td><center><a href="{% url 'accounting_double_entry:detail' pk1=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">{{k.Date}}</a></center></td>
+																
+					<td><center><a href="{% url 'accounting_double_entry:detail' pk1=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">{{k.By}}</a></center></td>
+																
+					<td><center><a href="{% url 'accounting_double_entry:detail' pk1=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">{{k.To}}</a></center></td>
+
+					{% if k.voucher_id == None %}
+																	
+						<td><center><a href="{% url 'accounting_double_entry:detail' pk1=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">{{k.id}}</a></center></td>
+					{% else %}
+													
+						<td><center><a href="{% url 'accounting_double_entry:detail' pk1=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">{{k.voucher_id}}</a></center></td>
+
+					{% endif %}
+
+																
+					{% if k.voucher_type == '' %}
+																	
+						<td><center><a href="{% url 'accounting_double_entry:detail' pk1=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">Journal</a></center></td>
+																
+					{% else %}
+
+																	
+						<td><center><a href="{% url 'accounting_double_entry:detail' pk1=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">{{k.voucher_type}}</a></center></td>
+
+					{% endif %}
+																
+					<td><center><a href="{% url 'accounting_double_entry:detail' pk1=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">{{k.Debit}}</a></center></td>
+
+					{% if k.narration %}
+																	
+						<td><center><a href="{% url 'accounting_double_entry:detail' pk1=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">{{k.narration|safe|truncatewords:"8"}}</a></center></td>
+																
+					{% else %}
+
+						<td><center><a href="{% url 'accounting_double_entry:detail' pk1=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">being {{k.By}} debited by {{k.To}} for {{k.Credit}}.</a></center></td>
+																
+					{% endif %}
+
+					<td>
+			    	    <button class="btn btn-danger show-form-delete" data-url="{% url 'accounting_double_entry:delete' pk=company_details.pk pk2=k.pk pk3=selectdatefield_details.pk %}">
+			        	<span class="glyphicon glyphicon-trash"></span>
+			                              
+
+			    		</button>
+
+			    	</td>			
+															
+				</tr>
+			{% endif %}
+		{% endfor %}
+	{% endfor %}
+
+{% endif %}
+

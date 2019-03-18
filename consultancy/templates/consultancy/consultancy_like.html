@@ -1,0 +1,21 @@
+{% load staticfiles %}          
+          <form action="{% url 'consultancy:like_question' %}" method="post">
+            {% csrf_token %}
+
+            {% if is_liked %}
+                <button type="submit" id="like" name="consultancy_details_id" value="{{ consultancy_details.id}}" class='btn btn-info btn-sm'>
+                    
+
+                     Following   
+                </button>
+            {% else %}
+                  <button type="submit" id="like" name="consultancy_details_id" value="{{ consultancy_details.id}}" class='btn btn-default btn-sm'>
+                    
+
+                    Follow   
+                  </button>
+            {% endif %}
+
+          </form>
+
+           <span class="pull-right text-muted"> - {{ total_like }} follow{{ total_like|pluralize }} </span>

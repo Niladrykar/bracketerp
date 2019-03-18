@@ -1,0 +1,26 @@
+{% for group in group1_list %}
+  <tr>
+
+    <td><center><a href="{% url 'accounting_double_entry:groupdetail' pk1=company_details.pk pk2=group.pk pk3=selectdatefield_details.pk %}">{{group.group_Name}}</a></center></td>
+
+
+    <td><a href="{% url 'accounting_double_entry:groupdetail' pk1=company_details.pk pk2=group.pk pk3=selectdatefield_details.pk %}">{{group.counter}}</a></td>
+
+    <td><a href="{% url 'accounting_double_entry:groupdetail' pk1=company_details.pk pk2=group.pk pk3=selectdatefield_details.pk %}">{{group.Master}}</a></td>
+
+    <td><a href="{% url 'accounting_double_entry:groupdetail' pk1=company_details.pk pk2=group.pk pk3=selectdatefield_details.pk %}">{{group.balance_nature}}</a></td>
+
+    <td>
+    <center>
+       <button class="btn btn-danger show-form-delete" data-url="{% url 'accounting_double_entry:groupdelete' pk=company_details.pk pk2=group.pk pk3=selectdatefield_details.pk %}">
+        <span class="glyphicon glyphicon-trash"></span>
+                              
+    </button> 
+    </center>
+    
+    </td>
+
+  </tr>
+
+{% endfor %}
+

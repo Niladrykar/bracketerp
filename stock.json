@@ -1,0 +1,317 @@
+[
+{
+  "model": "stockkeeping.stockgroup",
+  "pk": 11,
+  "fields": {
+    "User": 1,
+    "Company": 74,
+    "counter": 1,
+    "urlhash": "PU-1-P-1-C1-SSG1",
+    "name": "Primary",
+    "under": null,
+    "quantities": false
+  }
+},
+{
+  "model": "stockkeeping.stockgroup",
+  "pk": 12,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 1,
+    "urlhash": "PU-10-P-1-C1-SSG1",
+    "name": "Primary",
+    "under": null,
+    "quantities": false
+  }
+},
+{
+  "model": "stockkeeping.stockgroup",
+  "pk": 13,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 2,
+    "urlhash": "PU-10-P-1-C1-SSG2",
+    "name": "Sale of Mobile",
+    "under": 12,
+    "quantities": false
+  }
+},
+{
+  "model": "stockkeeping.stockgroup",
+  "pk": 14,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 3,
+    "urlhash": "PU-10-P-1-C1-SSG3",
+    "name": "Sale of laptop",
+    "under": 12,
+    "quantities": false
+  }
+},
+{
+  "model": "stockkeeping.simpleunits",
+  "pk": 25,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 1,
+    "urlhash": "PU-10-P-1-C1-SSU1",
+    "symbol": "pcs",
+    "formal": "Pieces"
+  }
+},
+{
+  "model": "stockkeeping.simpleunits",
+  "pk": 26,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 2,
+    "urlhash": "PU-10-P-1-C1-SSU2",
+    "symbol": "Doz",
+    "formal": "Dozen"
+  }
+},
+{
+  "model": "stockkeeping.stockdata",
+  "pk": 40,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 1,
+    "urlhash": "PU-10-P-1-C1-SSD1",
+    "Date": "2019-03-08",
+    "daterange": null,
+    "stock_name": "Vivo",
+    "batch_no": null,
+    "bar_code": "",
+    "mnf_date": null,
+    "exp_date": null,
+    "under": 13,
+    "unitsimple": 25,
+    "unitcomplex": null,
+    "gst_rate": "5.00",
+    "hsn": 8502
+  }
+},
+{
+  "model": "stockkeeping.stockdata",
+  "pk": 41,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 2,
+    "urlhash": "PU-10-P-1-C1-SSD2",
+    "Date": "2019-03-08",
+    "daterange": null,
+    "stock_name": "HP",
+    "batch_no": null,
+    "bar_code": "",
+    "mnf_date": null,
+    "exp_date": null,
+    "under": 14,
+    "unitsimple": 25,
+    "unitcomplex": null,
+    "gst_rate": "5.00",
+    "hsn": 8506
+  }
+},
+{
+  "model": "stockkeeping.purchase",
+  "pk": 20,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 1,
+    "urlhash": "PU-10-P-1-C1-SP1",
+    "date": "2018-05-28",
+    "ref_no": 5555,
+    "Party_ac": 217,
+    "purchase": 219,
+    "billname": "Supplier",
+    "Address": "",
+    "GSTIN": "",
+    "PAN": "",
+    "State": "West Bengal",
+    "Contact": null,
+    "DeliveryNote": "",
+    "Supplierref": "",
+    "Mode": "",
+    "sub_total": "2400000.00",
+    "cgst_alltotal": "60000.00",
+    "gst_alltotal": "60000.00",
+    "Total": "2520000.00"
+  }
+},
+{
+  "model": "stockkeeping.sales",
+  "pk": 18,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 1,
+    "urlhash": "PU-10-P-1-C1-SS1",
+    "ref_no": 4444,
+    "Party_ac": 217,
+    "sales": 221,
+    "billname": "Customer",
+    "date": "2018-09-24",
+    "Address": "",
+    "GSTIN": "",
+    "PAN": "",
+    "State": "West Bengal",
+    "Contact": null,
+    "DeliveryNote": "",
+    "Supplierref": "",
+    "Mode": "",
+    "sub_total": "2675000.00",
+    "cgst_alltotal": "66875.00",
+    "gst_alltotal": "66875.00",
+    "Total": "2808750.00"
+  }
+},
+{
+  "model": "stockkeeping.sales",
+  "pk": 19,
+  "fields": {
+    "User": 10,
+    "Company": 75,
+    "counter": 2,
+    "urlhash": "PU-10-P-1-C1-SS2",
+    "ref_no": 6666,
+    "Party_ac": 217,
+    "sales": 222,
+    "billname": "Customer",
+    "date": "2018-08-26",
+    "Address": "",
+    "GSTIN": "",
+    "PAN": "",
+    "State": "West Bengal",
+    "Contact": null,
+    "DeliveryNote": "",
+    "Supplierref": "",
+    "Mode": "",
+    "sub_total": "1275000.00",
+    "cgst_alltotal": "31875.00",
+    "gst_alltotal": "31875.00",
+    "Total": "1338750.00"
+  }
+},
+{
+  "model": "stockkeeping.stock_total",
+  "pk": 38,
+  "fields": {
+    "purchases": 20,
+    "stockitem": 41,
+    "Quantity_p": 60,
+    "rate_p": "30000.00",
+    "Disc_p": "0.00",
+    "cgst": "2.50",
+    "sgst": "2.50",
+    "igst": "0.00",
+    "ugst": "0.00",
+    "cgst_total": "45000.00",
+    "gst_total": "45000.00",
+    "Total_p": "1800000.00",
+    "grand_total": "1890000.00"
+  }
+},
+{
+  "model": "stockkeeping.stock_total",
+  "pk": 39,
+  "fields": {
+    "purchases": 20,
+    "stockitem": 41,
+    "Quantity_p": 60,
+    "rate_p": "10000.00",
+    "Disc_p": "0.00",
+    "cgst": "2.50",
+    "sgst": "2.50",
+    "igst": "0.00",
+    "ugst": "0.00",
+    "cgst_total": "15000.00",
+    "gst_total": "15000.00",
+    "Total_p": "600000.00",
+    "grand_total": "630000.00"
+  }
+},
+{
+  "model": "stockkeeping.stock_total_sales",
+  "pk": 32,
+  "fields": {
+    "sales": 18,
+    "stockitem": 41,
+    "Quantity": 30,
+    "rate": "60000.00",
+    "Disc": "0.00",
+    "cgst": "2.50",
+    "sgst": "2.50",
+    "igst": "0.00",
+    "ugst": "0.00",
+    "cgst_total": "45000.00",
+    "gst_total": "45000.00",
+    "Total": "1800000.00",
+    "grand_total": "1890000.00"
+  }
+},
+{
+  "model": "stockkeeping.stock_total_sales",
+  "pk": 33,
+  "fields": {
+    "sales": 18,
+    "stockitem": 40,
+    "Quantity": 35,
+    "rate": "25000.00",
+    "Disc": "0.00",
+    "cgst": "2.50",
+    "sgst": "2.50",
+    "igst": "0.00",
+    "ugst": "0.00",
+    "cgst_total": "21875.00",
+    "gst_total": "21875.00",
+    "Total": "875000.00",
+    "grand_total": "918750.00"
+  }
+},
+{
+  "model": "stockkeeping.stock_total_sales",
+  "pk": 34,
+  "fields": {
+    "sales": 19,
+    "stockitem": 41,
+    "Quantity": 15,
+    "rate": "60000.00",
+    "Disc": "0.00",
+    "cgst": "2.50",
+    "sgst": "2.50",
+    "igst": "0.00",
+    "ugst": "0.00",
+    "cgst_total": "22500.00",
+    "gst_total": "22500.00",
+    "Total": "900000.00",
+    "grand_total": "945000.00"
+  }
+},
+{
+  "model": "stockkeeping.stock_total_sales",
+  "pk": 35,
+  "fields": {
+    "sales": 19,
+    "stockitem": 40,
+    "Quantity": 15,
+    "rate": "25000.00",
+    "Disc": "0.00",
+    "cgst": "2.50",
+    "sgst": "2.50",
+    "igst": "0.00",
+    "ugst": "0.00",
+    "cgst_total": "9375.00",
+    "gst_total": "9375.00",
+    "Total": "375000.00",
+    "grand_total": "393750.00"
+  }
+}
+]

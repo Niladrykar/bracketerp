@@ -1,0 +1,152 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+{% load mathfilters %}
+{% block title %}Member List{% endblock %}
+
+
+{% block content %}
+
+<div class="content-wrapper">
+
+
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Member List</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Group</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+
+
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+            <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+            <a href="{% url 'blog:allbloglist' %}" class="btn btn-primary" role="button">APIs</a>
+
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'blog:bloglist' %}" class="btn btn-info" role="button">My Subscriptions</a>
+            
+              
+
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+
+                <div class="row">
+                <div class="col-xs-12">
+              <div class="box box-info">
+             <div class="box-header">
+                  <h3 class="box-title"><strong>Member List</strong> </h3>
+
+                </div>
+
+                  <div class="box-body table-responsive no-padding">
+                    <table id="example1" class="table table-hover">
+                
+               
+                  <tr>
+                    <th><center>Sl No</center></th>
+                    <th><center>Name</center></th>
+                    <th><center>Admin status</center></th>
+                    <th><center>Delete Member</center></th>
+                  </tr>
+               
+
+                
+                  {% for member in organisation_member_list %}
+                    
+                    <tr>
+                                            
+                      <td><center>{{ forloop.counter }}</center></td>
+
+                                            
+                      <td><center><a href="{% url 'userprofile:organisation_member_update' pk=member.pk %}">{{ member.member_name }}</a></center></td>
+
+                       {% if member.is_admin == True %}                     
+                        <td><center><i class="fa fa-check" style="color:green"></i></center></td>
+                       {% else %} 
+                          <td><center><i class="fa fa-times" style="color:red"></i></center></td> 
+                        {% endif %}                 
+
+
+                      <td>
+                        <center><a href="{% url 'userprofile:delete_members' pk=member.pk %}" data-balloon="remove this member" class="text-danger btn btn-danger" onclick="return confirm_delete();">
+                            <i class="fa fa-trash"></i>
+                          </a></center>
+
+                        </td>     
+                                          
+                    </tr>
+
+
+                  {% empty %}
+
+                          <tr>
+                            <td colspan= 3> You do not have any member.</td>
+                          </tr>
+
+                                        
+
+                  {% endfor %}
+                
+                
+
+                  
+              </table>
+                  </div>
+
+
+            </div>
+                </div>
+
+
+
+
+    </div>
+
+
+
+  <!-- /.container -->
+</section>
+</div>
+
+  <script>
+  function confirm_delete(){
+    return confirm("Do you want to remove this member?");
+  }
+  </script>
+
+{% endblock %}

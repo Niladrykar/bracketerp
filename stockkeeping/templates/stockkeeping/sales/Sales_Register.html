@@ -1,0 +1,226 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+{% load mathfilters %}
+
+{% block title %}Sales Register{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+   <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Group Details</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+      <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+        
+        
+              {% if not selectdatefield_details %}
+
+                  
+                     <button class="btn btn-primary show-form pull-right" data-url="{% url 'accounting_double_entry:datecreate' %}">
+                      <span class="glyphicon glyphicon-plus"></span>
+                        Select Date Range
+                      </button>
+
+                {% else %} 
+              
+  
+                            <button  class="btn btn-warning show-form-update pull-right" data-url="{% url 'accounting_double_entry:dateupdate' pk=selectdatefield_details.pk %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                              Update Date Range 
+                            </button>
+
+                      <a id="book-table-date" class="pull-right"><strong>Selected Period: From</strong> {{ selectdatefield_details.Start_Date|date }} <strong>To</strong> {{ selectdatefield_details.End_Date|date }}  &nbsp;</a>  
+
+                 
+
+                {% endif %} 
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+                <a href="{% url 'stockkeeping:purchase_register' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-primary" role="button">Purchase Register</a>
+
+                <a href="{% url 'accounting_double_entry:daybook' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-warning" role="button">Day Book</a>
+
+                <a href="{% url 'accounting_double_entry:journalregister' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-default" role="button">Journal Register</a>
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+
+  
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="box box-info">
+
+
+<div id="printableArea">
+  
+
+
+          <div class="box-header with-border">
+              
+              <h2 class="box-title"><b>Sales Register</b></h2>
+        
+          </div>
+
+          <div class="box-body table-responsive no-padding">
+
+          <style type="text/css">
+
+          .table-bordered td, .table-bordered th{
+            border-color: #bfbfbf !important;
+                    
+               }
+        </style>
+
+            <table class="table table-bordered table-hover">
+
+                <tr>
+                  <th><center>Months</center></th>
+                  <th><center>Debit(&#8377)</center></th>
+                  <th><center>Credit(&#8377)</center></th>
+                  <th><center>Closing Balance(&#8377)</center></th>
+                </tr>
+                
+ 
+                {% for key, value in data %}
+                  <tr>
+                    <td><center>{{ key }}</center></td>
+
+                    <th><center></center></th>
+
+                    {% if value.0 == 0 %}
+                      <td><center></center></td>
+                    {% else %}
+                      <td><center>{{ value.0 }}</center></td>
+                    {% endif %}
+
+                    
+
+                    {% if value.1 == 0 %}
+                      <th><center></center></th>
+                    {% else %}
+                      <td><center>{{ value.1 }} Cr</center></td>
+                    {% endif %}
+                  </tr>
+                {% endfor %}
+
+                  <tr>
+                    <th><center></center></th>
+                    <th><center></center></th>
+                    <th><center></center></th>
+                    <th><center></center></th>
+                  </tr>
+
+                <tr>
+                  <th><center>Grand Total</center></th>
+                  <th><center></center></th>
+                  <th><center>{{ total_sale }}</center></th>
+                  
+                  <th><center>{{ total_sale }} Cr</center></th>
+                </tr>                
+                
+
+
+
+            </table>
+          </div>
+
+</div>
+
+
+
+                            <div class="box-footer">
+                    <hr>
+                     <div class="pull-left">
+                     <input class='btn btn-default' type="button" onclick="printDiv('printableArea')" value="Print" />
+                    
+                     </div>
+
+                  <div class="pull-right">
+                        <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                               <i class="fa fa-download"></i> Generate PDF
+                        </button>
+                    </div>
+
+                  </div>
+
+        </div>
+
+
+        </div>
+      </div>
+    
+  </section>
+</div>
+
+
+  <div class="modal fade" id="modal-book-date">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+  
+  function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+  }
+</script> 
+
+{% endblock %}

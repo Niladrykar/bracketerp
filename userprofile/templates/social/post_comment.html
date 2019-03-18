@@ -1,0 +1,40 @@
+{% load staticfiles %}
+
+{% for answer in comments %}
+                <!-- User image -->
+                {% if answer.User.profile.image %}
+                    <img class="img-circle img-sm" src="{{ answer.User.profile.image.url }}/" alt="">
+                {% else %}
+                    <img class="img-circle img-sm" src="{% static 'userprofile/download (1).jpg' %}">
+                {% endif %}
+                    <div class="comment-text">
+                          <span class="username">
+                            <a href="{% url 'userprofile:specific_profile' pk=answer.User.profile.pk %}">{{ answer.User }}</a>
+                            
+                            <span class="text-muted">{{ answer.Date|date }}</span>   <span class="text-muted pull-right"> {{ answer.Date|timesince }} ago</span>
+                          </span><!-- /.username -->
+                      {{ answer.text }}
+
+                       {% if post_details.User == user or answer.User == user %}
+                          
+                            <button class="show-form-delete pull-right" data-url="{% url 'userprofile:postcommentdelete' answer.id %}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+
+                            <button class="show-form-update pull-right" data-url="{% url 'userprofile:postcommentupdate' id=answer.id %}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                          
+                        {% endif %}
+                    </div>
+
+
+
+
+                    {% if not forloop.last %}
+                      <hr>
+                    {% endif %}
+
+
+                <!-- /.comment-text -->
+                {% endfor %}

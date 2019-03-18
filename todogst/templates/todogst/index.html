@@ -1,0 +1,191 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+{% load mathfilters %}
+
+{% block title%}Todo List{% endblock %}
+
+
+ {% block content %}
+<div class="content-wrapper">
+<!-- <div class="container"> -->
+      <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Todo List</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="active">Company list</li>
+                     <li class="active">Dashboard</li>
+                     <li class="active">Todo list</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+<section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+<div class="row">
+
+  <div class="col-xs-12">
+    <div class="box box-default">
+      <div class="box-body">
+
+
+
+        <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+        <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+        <a href="{% url 'ecommerce_integration:apilist' %}" class="btn btn-primary" role="button">APIs</a>
+
+
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'ecommerce_integration:subscribedproductlist' %}" class="btn btn-info" role="button">My Subscriptions</a>            
+             
+
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+  </div>
+
+</div>
+
+
+
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="box box-info"> 
+          <div class="box-header with-border">
+              <h2>WHAT DO YOU WANT TO DO TODAY?</h2>
+
+          
+          <form action="{% url 'todogst:add' %}" method="POST" class="form-horizontal">
+            {% csrf_token %}
+
+
+            <div class="form-group">
+                 
+
+                  
+                  <label for="input" class="col-sm-2 control-label">Enter Task</label>
+                  
+                    <div class="col-sm-10">
+                          
+                        {{ form.text.errors }}
+                        {{ form.text }}
+                      
+                    </div>
+                 
+                </div>
+
+                  <br>
+
+                  <div class="form-group">
+                  <label for="input" class="col-sm-2 control-label">Todo completion Date</label>
+                  
+                    <div class="col-sm-10">
+                          
+                        {{ form.complete_by.errors }}
+                        {{ form.complete_by }}
+                      
+                    </div>
+                  </div>
+
+                    <div class="col-sm-2 pull-right">
+                      <button type="submit" class="btn btn-info btn-block" value="Submit">Add</button>
+                    </div>
+                   
+              </form>  
+                </div>
+            
+          
+
+          
+            <div class="box-body table-responsive no-padding">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th><h3><center></center></h3></th>
+                  <th><h3><center>Creation Date</center></h3></th>
+                  <th><h3><center>TODO LIST<br>(Just Click on the todo if it is completed)</center></h3></th>
+                  <th><h3><center>Status</center></h3></th>
+                  <th><h3><center>Time Remaining</center></h3></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                  {% for todo in todo_list %}
+                    {% if todo.complete %}
+                      <tr>
+                        <td><center><h4><i class="fa fa-check" style="color: #008000;text-shadow: 1px 1px 1px #ccc;"></i></h4></center></td>
+                        <td><center><h4>{{ todo.Date }}</h4></center></td>
+                        <th><center><h4>{{ todo.text }}</h4></center></th>
+                        <td><center><h4>Completed</h4></center></td>
+                        <td><center><h4></h4></center></td>
+                      </tr>
+
+                    {% else %}
+                      <tr>
+                        <td><center><h4><i class="fa fa-times" style="color: #FF0000;text-shadow: 1px 1px 1px #ccc;"></i></h4></center></td>
+                        <td><center><h4>{{ todo.Date }}</h4></center></td>
+                         <th><center><h4><a href="{% url 'todogst:complete' todo.id %}">{{ todo.text }}</a></h4></center></th>
+                        <td><center><h4>Not Completed</h4></center></td>
+                        {% if todo.daysince < 0 %}
+                          <td><center><h4>{{ todo.daysince|abs }} days ago</h4></center></td>
+                        {% else %}
+                          <td><center><h4>{{ todo.daysince }} days left</h4></center></td>
+                        {% endif %}
+                      </tr>
+                       
+                    {% endif %}
+                  
+                  {% endfor %}
+                </tbody>
+
+                
+              </table>
+            </div>
+
+             <div class="box-footer">
+          <div class="row t10">
+            <div class="col-lg-12">
+              <div class="btn-toolbar">
+                <div class="btn-group">
+                  <a href="{% url 'todogst:deletecomplete' %}"><button type="button" class="btn btn-warning">
+                    <i class="glyphicon glyphicon-trash"></i> DELETE COMPLETED
+                  </button></a>
+                </div>
+                <div class="btn-group">
+                  <a href="{% url 'todogst:deleteall' %}"><button type="button" class="btn btn-warning">
+                    <i class="glyphicon glyphicon-trash"></i> DELETE ALL
+                  </button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+              
+                      
+              </div>
+      </div>
+    </div>
+
+</section>
+
+</div>
+
+
+{% endblock %}
+

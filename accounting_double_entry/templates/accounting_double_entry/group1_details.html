@@ -1,0 +1,169 @@
+{% extends "clouderp/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Group Details{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+
+  <div class="modal fade" id="modal-book">
+  <div class="modal-dialog">
+    <div class="modal-content"></div>
+  </div>
+</div>
+	 <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>Company : {{company_details.Name}}</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Group Details</li>
+            </ol>
+           
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-warning">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+              <a href="{% url 'company:list' %}" class="btn btn-success" role="button">Select Company </a>
+              <a href="{% url 'company:create' %}" class="btn btn-warning" role="button">Create Company details</a>
+              
+
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+          <a href="{% url 'accounting_double_entry:grouplist' pk=company_details.pk pk3=selectdatefield_details.pk %}" class="btn btn-success" role="button">Select Group </a>
+          <a href="{% url 'accounting_double_entry:groupcreate' pk=company_details.pk pk3=selectdatefield_details.pk  %}" class="btn btn-warning" role="button">Create Group</a>
+
+
+
+
+      
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="box box-info">
+					<div class="box-header with-border">
+        			
+          				<h2 class="box-title"><b>Group Details</b></h2>
+        
+        	</div>
+
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-striped">
+              <tr>
+                <th>Group Name</th>
+                <th>{{ group1_details.group_Name }}</th>
+              </tr>
+
+              <tr>
+                <th>Under</th>
+                <th>{{ group1_details.Master }}</th>
+              </tr>
+
+
+               <tr>
+                <th>Balance Nature</th>
+                <th>{{ group1_details.balance_nature }}</th>
+              </tr>
+
+
+               <tr>
+                <th>Nature of Group</th>
+                <th>{{ group1_details.Nature_of_group1 }}</th>
+              </tr>
+
+              <tr>
+                <th>Group behaves like a Sub Group?</th>
+                <th>{{ group1_details.Group_behaves_like_a_Sub_Group}}</th>
+              </tr>
+
+              <tr>
+                <th>Nett_Debit_or_Credit_Balances_for_Reporting?</th>
+                <th>{{ group1_details.Nett_Debit_or_Credit_Balances_for_Reporting}}</th>
+              </tr>
+            </table>
+          </div>
+
+
+
+              
+
+					<!-- <h2> <small>Group Name</small> : {{ group1_details.group_Name }}</h2>
+					<h2> <small>Under</small> : {{ group1_details.Master }}<h2>
+					
+					
+					<h3> <small>Nature_of_group</small> : {{ group1_details.Nature_of_group1 }}</h3>
+					<h3> <small>Balance Nature</small> : {{ group1_details.balance_nature }}</h3>
+					<h3> <small>Group_behaves_like_a_Sub_Ledger?</small> {{ group1_details.Group_behaves_like_a_Sub_Ledger}}</h3>
+					<h3> <small>Nett_Debit_or_Credit_Balances_for_Reporting?</small> {{ group1_details.Nett_Debit_or_Credit_Balances_for_Reporting}}</h3>
+ -->
+
+					<div class="box-footer">
+    					<p><a class='btn btn-warning' href="{% url 'accounting_double_entry:groupupdate' pk1=company_details.pk pk2=group1_details.pk pk3=selectdatefield_details.pk %}">Update Group</a></p>
+
+  					</div>
+
+				</div>
+
+
+				</div>
+			</div>
+		
+	</section>
+</div>
+
+		
+	
+
+
+
+
+
+
+
+
+
+{% endblock %}

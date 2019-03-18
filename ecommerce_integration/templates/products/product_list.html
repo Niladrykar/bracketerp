@@ -1,0 +1,217 @@
+{% extends "clouderp/base_2.html" %}
+{% load staticfiles %}
+
+{% block title %}Products{% endblock %}
+
+
+
+{% block content %}
+
+<div class="content-wrapper">
+
+
+ <section class="content-header">
+        <!-- <div class="col-md-12 col-md-offset-4"> -->
+          <h1>
+            <strong>All Products</strong>
+          </h1>
+                <ol class="breadcrumb">
+                       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                       <!-- <li><a href="#">Company list</a></li> -->
+                     <li class="">Company list</li>
+                     <li class="active">Create Group</li>
+            </ol>
+        <!-- </div> -->
+      </section>
+
+  <section class="content">
+      <div class="callout callout-info">
+        <h4>Welcome!</h4>
+        Welcome to predict books your personal AI powered business engine!
+        <!-- <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a> -->
+      </div>
+
+
+
+<div class="row">
+      <div class="col-xs-12">
+          <div class="box box-default">
+          <div class="box-body">
+
+
+
+            <a href="{% url 'ecommerce_integration:productlist' %}" class="btn btn-success" role="button">Products</a>
+            <a href="{% url 'ecommerce_integration:servicelist' %}" class="btn btn-info" role="button">Services</a>
+            <a href="{% url 'ecommerce_integration:apilist' %}" class="btn btn-primary" role="button">APIs</a>
+
+
+            
+                  
+          <div class='pull-right'>
+            <a href="{% url 'ecommerce_integration:subscribedproductlist' %}" class="btn btn-info" role="button">My Subscriptions</a>
+            
+              
+
+          </div>
+        
+        
+        
+        </div>
+      
+      </div>
+    
+    </div>
+
+</div>
+
+<!-- Service Images -->
+
+        <div class="row">        
+
+          {% for products in users %}
+            <div class="col-sm-4">
+              <div class="box box-info">
+                <div class="box-header">
+            {% if products.image %}
+               <img class="img-responsive" src="{{ products.image.url }}/" alt="product picture">
+            {% else %}
+                <img class="img-responsive" src="{% static 'userprofile/comming soon.jpg' %}">
+            {% endif %}
+                <h3><a href="{% url 'ecommerce_integration:productdetail' pk=products.pk %}">{{ products.title}}</a></h3>
+                <h4><center><strong> &#8377; {{ products.price }}/-</strong>   annually.</center></h4>
+                </div>
+                <div class="box-body">
+                  <p>{{ products.summary|safe|truncatewords:"45" }}</p>
+
+              <div class="ratings">
+                <p class="pull-right">{{ products.product_review.count }} review{{ products.product_review.count|pluralize }}</p>
+
+                <style type="text/css">
+                  .checked {
+                     color: orange;
+                }
+                </style>
+                <p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star-o empty "></span>
+                    <span class="fa fa-star-o empty"></span>
+                </p>
+            </div>
+                </div>
+                <div class="box-footer">
+                              {% if products in user.profile.subscribed_products.all %}
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                                  Subscribed
+                                </button>
+
+                              {% for productactivate in products.product_activate.all %}
+
+                                {% if productactivate.User == user %}
+
+                                  {% if productactivate.is_active == False %}
+
+                                    <a class="btn btn-success pull-right" href="{% url 'userprofile:activate_product' productactivate.id %}">Activate</a>
+
+                                  {% else %}
+
+                                    <a class="btn btn-danger pull-right" href="{% url 'userprofile:deactivate_product' productactivate.id %}">DeActivate</a>
+
+                                  {% endif %}
+
+                                {% endif %}
+
+                              {% endfor %}
+
+                              {% elif products in current_order_products %}
+
+                                <a href="{% url 'ecommerce_cart:order_summary' %}" class="btn btn-warning">Go to Cart</a>
+                      
+
+                              {% else %}
+ <!--                                <div class="col-xs-3">
+                                  
+                                  <a href="https://www.instamojo.com/@bracketlinelimited/l798821d2522d432a99234314e0ce6ee2/" rel="im-checkout" data-behaviour="remote" data-style="flat" data-text="Buy now"></a>
+                                  <script src="https://js.instamojo.com/v1/button.js"></script>
+
+                                </div> -->
+                                
+
+                                <a href="{% url 'ecommerce_cart:add_to_cart' products.id %}" class="btn btn-warning" onclick="return confirm_delete();"><i class="fa fa-shopping-cart" style="font-size:16px"></i>&nbsp; Add to cart</a>
+                               
+                              {% endif %}
+
+                                <a class="btn btn-info pull-right" href="{% url 'ecommerce_integration:productdetail' pk=products.pk %}">Details</a>
+                                
+                </div>
+                
+              </div>
+
+            </div>
+          {% endfor %}
+
+
+
+        <!-- Pagination -->
+        <ul class="text-center">
+                  {% if users.has_other_pages %}
+                      <ul class="pagination">
+                       {% if users.has_previous %}
+                          <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                          <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in users.paginator.page_range %}
+                            {% if users.number == i %}
+                               <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if users.has_next %}
+                            <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+        </ul>
+
+
+      <!-- Sidebar Widgets Column -->
+
+    </div>
+    <!-- /.row -->
+
+
+</section>
+</div>
+
+    
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>You have already subscribed to this product&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->  
+  
+  <script>
+  function confirm_delete(){
+    return alert("Item added to cart");
+  }
+  </script>
+  
+
+{% endblock %}
