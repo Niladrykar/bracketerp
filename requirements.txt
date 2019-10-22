@@ -47,7 +47,7 @@ oauthlib==2.1.0
 odfpy==1.4.0
 openpyxl==2.5.12
 pandas==0.23.4
-Pillow==5.2.0
+Pillow==6.2.0
 pycparser==2.18
 pyexcel==0.5.10
 pyexcel-io==0.5.11
