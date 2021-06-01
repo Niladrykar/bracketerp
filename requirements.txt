@@ -72,7 +72,7 @@ text-unidecode==1.2
 texttable==1.5.0
 unicodecsv==0.14.1
 Unidecode==0.4.21
-urllib3==1.23
+urllib3==1.26.5
 webencodings==0.5.1
 Willow==1.1
 xhtml2pdf==0.2.3
