@@ -42,7 +42,7 @@ idna==2.7
 jdcal==1.4
 jsonfield==2.0.2
 lml==0.0.7
-numpy==1.15.4
+numpy==1.22.0
 oauthlib==2.1.0
 odfpy==1.4.0
 openpyxl==2.5.12
